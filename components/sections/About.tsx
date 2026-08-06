@@ -4,15 +4,23 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { personal } from '@/lib/data';
 
-const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 50 },
+import type { Variants } from "framer-motion";
+
+const fadeUp = (delay = 0): Variants => ({
+  hidden: {
+    opacity: 0,
+    y: 50,
+  },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] },
+    transition: {
+      duration: 0.9,
+      delay,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
   },
 });
-
 export default function About() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
