@@ -40,7 +40,7 @@ export default function Resume() {
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
             >
               Experience<br />
               <span style={{ WebkitTextStroke: '1px rgba(247,247,245,0.2)', color: 'transparent' }}>
@@ -81,7 +81,7 @@ export default function Resume() {
                 className="relative flex gap-6 pb-10 last:pb-0"
                 initial={{ opacity: 0, x: 30 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-                transition={{ duration: 0.8, delay: 0.2 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.8, delay: 0.2 + i * 0.12, ease: "easeOut" }}
               >
                 {/* Timeline line */}
                 <div className="flex flex-col items-center">

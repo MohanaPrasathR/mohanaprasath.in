@@ -17,7 +17,8 @@ const fadeUp = (delay = 0): Variants => ({
     transition: {
       duration: 0.9,
       delay,
-      ease: [0.16, 1, 0.3, 1] as const,
+      ease: "easeOut",
+    
     },
   },
 });

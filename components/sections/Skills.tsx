@@ -43,7 +43,7 @@ export default function Skills() {
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
             >
               The Stack
             </motion.h2>
@@ -65,7 +65,7 @@ export default function Skills() {
                 key={group.category}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.7, delay: 0.2 + gi * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.7, delay: 0.2 + gi * 0.08, ease: "easeOut" }}
               >
                 <p
                   className="text-xs tracking-[0.2em] text-gold font-mono uppercase mb-4"

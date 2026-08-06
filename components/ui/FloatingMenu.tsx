@@ -40,7 +40,7 @@ export default function FloatingMenu() {
       <motion.div
         className="fixed top-6 right-6 z-[200]"
         animate={{ y: hidden && !open ? -80 : 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <button
           onClick={() => setOpen(!open)}
@@ -66,7 +66,7 @@ export default function FloatingMenu() {
         className="fixed top-6 left-6 z-[200] font-mono text-xs tracking-[0.3em] text-white-muted hover:text-gold transition-colors duration-300"
         style={{ fontFamily: "'JetBrains Mono', monospace" }}
         animate={{ y: hidden && !open ? -80 : 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
       >
         MP
@@ -94,7 +94,7 @@ export default function FloatingMenu() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.5, delay: i * 0.07, ease: "easeOut" }}
                 >
                   <span
                     className="block font-display font-light text-white-primary hover:text-gold transition-colors duration-300"
