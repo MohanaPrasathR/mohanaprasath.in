@@ -47,11 +47,9 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-[300] flex items-center justify-between px-6 md:px-12 lg:px-20"
-      style={{ height: '84px' }}
-      initial={{ opacity: 0, y: -20 }}
+      className="fixed top-0 left-0 right-0 z-[300] flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 h-16 md:h-20"
+      initial={{ opacity: 1, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
     >
       {/* Blur background on scroll */}
       <div
@@ -59,27 +57,30 @@ export default function Navbar() {
         style={{
           backdropFilter: scrolled ? 'blur(20px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-          background: scrolled ? 'rgba(5,5,5,0.85)' : 'transparent',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.1)' : '1px solid transparent',
+          background: scrolled ? 'rgba(5,5,5,0.88)' : 'transparent',
+          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
         }}
       />
 
-      {/* Big Logo */}
+      {/* Sleek Logo */}
       <button
         onClick={() => scrollTo('hero')}
-        className="relative z-10 flex items-center group py-2"
+        className="relative z-10 flex items-center gap-2.5 group shrink-0"
         aria-label="Back to top"
       >
         <svg
-          className="w-14 h-14 md:w-16 md:h-16 text-white transition-transform duration-300 group-hover:scale-105"
+          className="w-9 h-9 md:w-10 md:h-10 text-white transition-transform duration-300 group-hover:scale-105"
           viewBox="0 0 100 100"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <rect width="100" height="100" rx="16" fill="#121212" stroke="#FFFFFF" strokeWidth="6"/>
-          <path d="M16 75 V25 L36 60 L56 25 V75" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M68 75 V25 Q90 25 90 45 Q90 62 68 62" stroke="#FFFFFF" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/>
+          <rect width="100" height="100" rx="16" fill="#141414" stroke="#FFFFFF" strokeWidth="5"/>
+          <path d="M18 75 V25 L38 60 L58 25 V75" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M70 75 V25 Q90 25 90 45 Q90 62 70 62" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
+        <span className="font-mono text-xs font-bold tracking-[0.25em] text-white hidden sm:inline-block">
+          MP
+        </span>
       </button>
 
       {/* Nav links — responsive gap and scaling */}

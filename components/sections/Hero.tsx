@@ -48,7 +48,7 @@ export default function Hero({ ready }: { ready: boolean }) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-20 px-6 md:px-12 lg:px-20 overflow-hidden pt-16"
+      className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-20 px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden pt-24 sm:pt-28 md:pt-32"
     >
       {/* ── Animated background ─── */}
       <div ref={bgRef} className="absolute inset-0 pointer-events-none" aria-hidden>
