@@ -36,7 +36,7 @@ export default function Projects() {
           style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
         >
           Selected<br />
           <span style={{ WebkitTextStroke: '1px rgba(247,247,245,0.25)', color: 'transparent' }}>
@@ -96,7 +96,7 @@ function ProjectSlide({
         className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 select-none pointer-events-none"
         initial={{ opacity: 0, x: 40 }}
         animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-        transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
       >
         <span
           className="font-display font-thin"
@@ -147,7 +147,7 @@ function ProjectSlide({
             }}
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
           >
             {project.title}
           </motion.h3>
@@ -178,7 +178,7 @@ function ProjectSlide({
             style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
           >
             {project.description}
           </motion.p>

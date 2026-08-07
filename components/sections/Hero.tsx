@@ -4,20 +4,27 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { personal } from '@/lib/data';
+import type { Variants } from "framer-motion";
 
 /* ── Stagger reveal variant ─────────────────────────────────── */
-const charVariants = {
-  hidden: { y: '110%', opacity: 0 },
-  visible: (i: number) => ({
-    y: '0%',
+const charVariants: Variants = {
+  hidden: {
+    y: "110%",
+    opacity: 0,
+  },
+  visible: {
+    y: "0%",
     opacity: 1,
     transition: { duration: 1.0, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
+const fadeUp: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
     opacity: 1,
     y: 0,
     transition: { duration: 0.8, delay: i * 0.1 + 0.6, ease: [0.16, 1, 0.3, 1] as const },
@@ -103,7 +110,7 @@ export default function Hero({ ready }: { ready: boolean }) {
             {firstName.map((char, i) => (
               <motion.span
                 key={i}
-                custom={i}
+                custom={0}
                 variants={charVariants}
                 initial="hidden"
                 animate={ready ? 'visible' : 'hidden'}

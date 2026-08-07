@@ -54,7 +54,7 @@ export default function Contact() {
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             initial={{ opacity: 0, y: 50 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
           >
             Let&apos;s build
           </motion.h2>
@@ -67,7 +67,7 @@ export default function Contact() {
             }}
             initial={{ opacity: 0, y: 50 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           >
             something great.
           </motion.h2>
