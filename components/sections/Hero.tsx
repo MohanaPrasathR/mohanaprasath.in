@@ -11,7 +11,7 @@ const charVariants = {
   visible: (i: number) => ({
     y: '0%',
     opacity: 1,
-    transition: { duration: 1.0, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 1.0, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
@@ -20,7 +20,7 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: i * 0.1 + 0.6, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.8, delay: i * 0.1 + 0.6, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
@@ -47,7 +47,7 @@ export default function Hero({ ready }: { ready: boolean }) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-20 px-6 md:px-12 overflow-hidden pt-16"
+      className="relative min-h-screen flex flex-col justify-end pb-16 md:pb-20 px-6 md:px-12 lg:px-20 overflow-hidden pt-16"
     >
       {/* ── Animated background ─── */}
       <div ref={bgRef} className="absolute inset-0 pointer-events-none" aria-hidden>
@@ -80,7 +80,7 @@ export default function Hero({ ready }: { ready: boolean }) {
       </div>
 
       {/* ── Hero content ─── */}
-      <div className="relative z-10 max-w-[1400px] w-full">
+      <div className="relative z-10 max-w-[1400px] w-full mx-auto">
         {/* Available badge */}
         {ready && (
           <motion.div

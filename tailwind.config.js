@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       colors: {
         bg: '#050505',
-        gold: '#D4AF37',
-        'gold-muted': 'rgba(212,175,55,0.4)',
-        'gold-faint': 'rgba(212,175,55,0.08)',
+        gold: '#DC2626',
+        'gold-muted': 'rgba(220,38,38,0.4)',
+        'gold-faint': 'rgba(220,38,38,0.08)',
         'white-primary': '#F7F7F5',
         'white-muted': '#9A9A9A',
         'white-faint': '#3A3A3A',

@@ -171,12 +171,6 @@ export default function Resume() {
               >
                 {ed.period}
               </p>
-              <p
-                className="text-xs text-white-muted font-mono mt-1"
-                style={{ fontFamily: "'JetBrains Mono', monospace" }}
-              >
-                {ed.note}
-              </p>
             </div>
           </motion.div>
         ))}

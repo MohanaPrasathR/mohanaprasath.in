@@ -11,6 +11,7 @@ import About from '@/components/sections/About';
 import Projects from '@/components/sections/Projects';
 import Skills from '@/components/sections/Skills';
 import Resume from '@/components/sections/Resume';
+import Certifications from '@/components/sections/Certifications';
 import Contact from '@/components/sections/Contact';
 
 // Custom cursor is client-only
@@ -45,6 +46,7 @@ export default function Home() {
           <Projects />
           <Skills />
           <Resume />
+          <Certifications />
           <Contact />
         </main>
       </SmoothScroll>

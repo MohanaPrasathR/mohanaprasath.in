@@ -17,7 +17,8 @@ const fadeUp = (delay = 0): Variants => ({
     transition: {
       duration: 0.9,
       delay,
-      ease: [0.16, 1, 0.3, 1] as const,
+      ease: "easeOut",
+    
     },
   },
 });
@@ -121,10 +122,9 @@ export default function About() {
             variants={fadeUp(0.5)}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="grid grid-cols-3 gap-6 pt-6 border-t border-white-faint/20"
+            className="grid grid-cols-2 gap-6 pt-6 border-t border-white-faint/20"
           >
             {[
-              { num: '9.36', label: 'CGPA / 10' },
               { num: '5+', label: 'Projects Built' },
               { num: '3+', label: 'Certifications' },
             ].map((stat) => (

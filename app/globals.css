@@ -7,9 +7,11 @@
 /* ─── Root variables ───────────────────────────────────────────── */
 :root {
   --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-bebas: 'Bebas Neue', 'Oswald', sans-serif;
   --font-inter: 'Inter', system-ui, sans-serif;
   --font-jetbrains: 'JetBrains Mono', monospace;
-  --gold: #D4AF37;
+  --gold: #DC2626;
+  --red: #DC2626;
   --bg: #050505;
   --white: #F7F7F5;
   --muted: #9A9A9A;
@@ -23,8 +25,8 @@
 }
 
 html {
-  background-color: var(--bg);
-  color: var(--white);
+  background-color: #050505 !important;
+  color: #F7F7F5 !important;
   font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,8 +34,10 @@ html {
 }
 
 body {
-  background-color: #050505;
+  background-color: #050505 !important;
+  color: #F7F7F5 !important;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* ─── Lenis smooth scroll ──────────────────────────────────────── */
@@ -94,19 +98,50 @@ html.lenis body {
 
 .hero-title {
   font-family: var(--font-cormorant);
-  font-size: clamp(5rem, 18vw, 18rem);
+  font-size: clamp(3rem, 12vw, 13rem);
   font-weight: 300;
-  line-height: 0.88;
+  line-height: 0.9;
   letter-spacing: -0.02em;
   color: #F7F7F5;
+  word-break: break-word;
 }
 
 .section-title {
   font-family: var(--font-cormorant);
-  font-size: clamp(3rem, 9vw, 9rem);
+  font-size: clamp(2.2rem, 7vw, 7.5rem);
   font-weight: 300;
   line-height: 0.92;
   letter-spacing: -0.02em;
+  word-break: break-word;
+}
+
+/* ─── Responsive Media Queries ─────────────────────────────────────── */
+@media (max-width: 640px) {
+  html, body {
+    font-size: 14px;
+  }
+  .hero-title {
+    font-size: clamp(2.5rem, 13vw, 4.2rem);
+    line-height: 0.95;
+  }
+  .section-title {
+    font-size: clamp(2rem, 8vw, 3.2rem);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-title {
+    font-size: clamp(4rem, 12vw, 7rem);
+  }
+  .section-title {
+    font-size: clamp(3rem, 7vw, 5rem);
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-title {
+    font-size: clamp(7rem, 14vw, 13rem);
+  }
 }
 
 .project-number {

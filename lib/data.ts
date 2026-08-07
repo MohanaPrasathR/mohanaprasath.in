@@ -125,7 +125,7 @@ export const experience = [
     company: 'SRM Institute of Science and Technology',
     period: '2023 — 2027',
     description:
-      'Pursuing B.Tech in Computer Science & Engineering with a CGPA of 9.36/10. Specialising in Software Engineering, Data Analytics, AI, Machine Learning, and Database Systems.',
+      'Pursuing B.Tech in Computer Science & Engineering. Specialising in Software Engineering, Data Analytics, AI, Machine Learning, and Database Systems.',
     tags: ['AI', 'ML', 'DBMS', 'Full Stack', 'Python'],
   },
   {
@@ -151,19 +151,46 @@ export const education = [
     degree: 'B.Tech · Computer Science & Engineering',
     institution: 'SRM Institute of Science and Technology, Kattankulathur',
     period: '2023 — 2027',
-    note: 'CGPA 9.36 / 10',
   },
   {
     degree: 'Class XII · CBSE · Bio-Maths',
     institution: 'SRM Public School, Thuraiyur',
     period: '2023',
-    note: 'Percentage: 80.4%',
   },
   {
     degree: 'Class X · CBSE',
     institution: 'SRM Public School, Thuraiyur',
     period: '2021',
-    note: 'Percentage: 87.2%',
+  },
+];
+
+export const certifications = [
+  {
+    id: '01',
+    title: 'MongoDB Associate Developer',
+    issuer: 'MongoDB University',
+    date: 'Apr 2026',
+    credentialId: 'MDB7w5qibjbij',
+    credentialUrl: 'https://university.mongodb.com/certification/verify',
+    skills: ['MongoDB', 'NoSQL', 'Database Operations', 'Schema Design'],
+  },
+  {
+    id: '02',
+    title: 'Introduction to Machine Learning',
+    issuer: 'NPTEL / IIT',
+    date: 'Oct 2025',
+    credentialId: 'NPTEL25CS88',
+    credentialUrl: 'https://nptel.ac.in/noc',
+    skills: ['Python', 'Scikit-Learn', 'Supervised Learning', 'Model Evaluation'],
+  },
+  {
+    id: '03',
+    title: 'Full Stack & AI Development',
+    issuer: 'SRM Institute of Science and Technology',
+    date: '2025',
+    credentialId: 'SRM-CSE-AI2025',
+    credentialUrl: 'https://github.com/MohanaPrasathR',
+    skills: ['Next.js', 'React', 'FastAPI', 'PyTorch', 'REST APIs'],
   },
 ];
 
