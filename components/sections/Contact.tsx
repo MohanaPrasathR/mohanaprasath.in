@@ -12,7 +12,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative min-h-screen flex flex-col justify-between py-24 overflow-hidden"
+      className="relative flex flex-col justify-between py-12 md:py-24 md:min-h-screen overflow-hidden"
     >
       {/* Top gold line */}
       <div

@@ -11,7 +11,7 @@ export default function Skills() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="skills" ref={ref} className="relative py-32 overflow-hidden">
+    <section id="skills" ref={ref} className="relative py-10 md:py-28 overflow-hidden">
       {/* Accent line */}
       <div
         className="absolute top-0 left-0 w-full h-px"

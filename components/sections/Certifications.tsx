@@ -9,14 +9,14 @@ export default function Certifications() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="certifications" ref={ref} className="relative py-28 overflow-hidden">
+    <section id="certifications" ref={ref} className="relative py-10 md:py-24 overflow-hidden">
       {/* Background divider line */}
       <div
         className="absolute top-0 left-0 w-full h-px"
         style={{ background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent)' }}
       />
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>

@@ -9,7 +9,7 @@ export default function Resume() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="resume" ref={ref} className="relative py-32 overflow-hidden">
+    <section id="resume" ref={ref} className="relative py-10 md:py-28 overflow-hidden">
       <div
         className="absolute top-0 left-0 w-full h-px"
         style={{ background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent)' }}
