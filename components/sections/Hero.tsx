@@ -7,24 +7,18 @@ import { personal } from '@/lib/data';
 import type { Variants } from "framer-motion";
 
 /* ── Stagger reveal variant ─────────────────────────────────── */
-const charVariants: Variants = {
-  hidden: {
-    y: "110%",
-    opacity: 0,
-  },
-  visible: {
-    y: "0%",
+const charVariants = {
+  hidden: { y: '110%', opacity: 0 },
+  visible: (i: number) => ({
+    y: '0%',
     opacity: 1,
     transition: { duration: 1.0, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
 
-const fadeUp: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  visible: {
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: { duration: 0.8, delay: i * 0.1 + 0.6, ease: [0.16, 1, 0.3, 1] as const },
