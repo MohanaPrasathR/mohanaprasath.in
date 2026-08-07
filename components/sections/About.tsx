@@ -30,7 +30,7 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="relative min-h-screen flex items-center px-6 md:px-12 lg:px-20 py-24 overflow-hidden"
+      className="relative flex items-center px-4 sm:px-8 md:px-12 lg:px-20 py-12 md:py-24 overflow-hidden"
     >
       {/* Background accent */}
       <div
