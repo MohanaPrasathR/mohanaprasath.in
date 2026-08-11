@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personal } from '@/lib/data';
 
@@ -15,18 +15,19 @@ const navItems = [
 export default function FloatingMenu() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [lastY, setLastY] = useState(0);
+  const lastYRef = useRef(0);
 
   // Hide on scroll down, show on scroll up
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      setHidden(y > lastY && y > 100);
-      setLastY(y);
+      const shouldHide = y > lastYRef.current && y > 100;
+      setHidden((prev) => (prev !== shouldHide ? shouldHide : prev));
+      lastYRef.current = y;
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [lastY]);
+  }, []);
 
   const handleNav = (href: string) => {
     setOpen(false);

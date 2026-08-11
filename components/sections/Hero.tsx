@@ -38,7 +38,7 @@ export default function Hero({ ready }: { ready: boolean }) {
       gsap.to(bgRef.current, { x: xPct, y: yPct, duration: 2, ease: 'power1.out' });
       gsap.to(orbRef.current, { x: xPct * 1.5, y: yPct * 1.5, duration: 2.5, ease: 'power1.out' });
     };
-    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mousemove', onMove, { passive: true });
     return () => window.removeEventListener('mousemove', onMove);
   }, []);
 
@@ -51,7 +51,7 @@ export default function Hero({ ready }: { ready: boolean }) {
       className="relative flex flex-col justify-end pb-8 sm:pb-16 md:pb-20 px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden pt-20 sm:pt-28 md:pt-32 md:min-h-screen"
     >
       {/* ── Animated background ─── */}
-      <div ref={bgRef} className="absolute inset-0 pointer-events-none" aria-hidden>
+      <div ref={bgRef} className="absolute inset-0 pointer-events-none" aria-hidden style={{ willChange: 'transform' }}>
         {/* Gold orb */}
         <div
           ref={orbRef}
@@ -59,6 +59,8 @@ export default function Hero({ ready }: { ready: boolean }) {
           style={{
             background: 'radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%)',
             filter: 'blur(60px)',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
         />
         {/* Second orb */}

@@ -23,7 +23,7 @@ export default function CustomCursor() {
     let mouseY = -100;
     let ringX = -100;
     let ringY = -100;
-    let raf: number;
+    let rafId: number;
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -34,50 +34,47 @@ export default function CustomCursor() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
     const animateRing = () => {
-      ringX = lerp(ringX, mouseX, 0.22);
-      ringY = lerp(ringY, mouseY, 0.22);
+      ringX = lerp(ringX, mouseX, 0.25);
+      ringY = lerp(ringY, mouseY, 0.25);
       ring.style.transform = `translate3d(${ringX - 18}px, ${ringY - 18}px, 0)`;
-      raf = requestAnimationFrame(animateRing);
+      rafId = requestAnimationFrame(animateRing);
     };
 
-    const onMouseEnterLink = () => {
-      ring.style.width = '48px';
-      ring.style.height = '48px';
-      ring.style.borderColor = '#DC2626';
-      ring.style.backgroundColor = 'rgba(220, 38, 38, 0.15)';
-      ring.style.boxShadow = '0 0 16px rgba(220, 38, 38, 0.5)';
-      dot.style.transform = `translate3d(${mouseX - 6}px, ${mouseY - 6}px, 0) scale(1.3)`;
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && target.closest('a, button, [data-cursor], input, textarea')) {
+        ring.style.width = '48px';
+        ring.style.height = '48px';
+        ring.style.borderColor = '#DC2626';
+        ring.style.backgroundColor = 'rgba(220, 38, 38, 0.15)';
+        ring.style.boxShadow = '0 0 16px rgba(220, 38, 38, 0.5)';
+        dot.style.transform = `translate3d(${mouseX - 6}px, ${mouseY - 6}px, 0) scale(1.3)`;
+      }
     };
 
-    const onMouseLeaveLink = () => {
-      ring.style.width = '36px';
-      ring.style.height = '36px';
-      ring.style.borderColor = 'rgba(220, 38, 38, 0.6)';
-      ring.style.backgroundColor = 'transparent';
-      ring.style.boxShadow = 'none';
-      dot.style.transform = `translate3d(${mouseX - 5}px, ${mouseY - 5}px, 0) scale(1)`;
-    };
-
-    const bindLinks = () => {
-      document.querySelectorAll('a, button, [data-cursor], input, textarea').forEach((el) => {
-        el.removeEventListener('mouseenter', onMouseEnterLink);
-        el.removeEventListener('mouseleave', onMouseLeaveLink);
-        el.addEventListener('mouseenter', onMouseEnterLink);
-        el.addEventListener('mouseleave', onMouseLeaveLink);
-      });
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && target.closest('a, button, [data-cursor], input, textarea')) {
+        ring.style.width = '36px';
+        ring.style.height = '36px';
+        ring.style.borderColor = 'rgba(220, 38, 38, 0.6)';
+        ring.style.backgroundColor = 'transparent';
+        ring.style.boxShadow = 'none';
+        dot.style.transform = `translate3d(${mouseX - 5}px, ${mouseY - 5}px, 0) scale(1)`;
+      }
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    raf = requestAnimationFrame(animateRing);
-    bindLinks();
+    document.addEventListener('mouseover', handleMouseOver, { passive: true });
+    document.addEventListener('mouseout', handleMouseOut, { passive: true });
 
-    const observer = new MutationObserver(bindLinks);
-    observer.observe(document.body, { childList: true, subtree: true });
+    rafId = requestAnimationFrame(animateRing);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
-      cancelAnimationFrame(raf);
-      observer.disconnect();
+      document.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('mouseout', handleMouseOut);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
