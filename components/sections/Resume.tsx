@@ -9,7 +9,7 @@ export default function Resume() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="resume" ref={ref} className="relative py-10 md:py-28 overflow-hidden">
+    <section id="resume" ref={ref} className="relative py-12 md:py-20 overflow-hidden">
       <div
         className="absolute top-0 left-0 w-full h-px"
         style={{ background: 'linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent)' }}
@@ -18,7 +18,7 @@ export default function Resume() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
         {/* Header */}
         <motion.div
-          className="flex items-center gap-3 mb-12"
+          className="flex items-center gap-3 mb-10"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6 }}
@@ -32,7 +32,7 @@ export default function Resume() {
           </span>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-12">
           {/* Title + CTA */}
           <div className="flex flex-col justify-between gap-12">
             <motion.h2

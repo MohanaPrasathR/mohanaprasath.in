@@ -48,7 +48,7 @@ export default function Hero({ ready }: { ready: boolean }) {
   return (
     <section
       id="hero"
-      className="relative flex flex-col justify-end pb-8 sm:pb-16 md:pb-20 px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden pt-20 sm:pt-28 md:pt-32 md:min-h-screen"
+      className="relative flex flex-col justify-center min-h-[85vh] py-16 sm:py-20 md:py-24 px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden"
     >
       {/* ── Animated background ─── */}
       <div ref={bgRef} className="absolute inset-0 pointer-events-none" aria-hidden style={{ willChange: 'transform' }}>

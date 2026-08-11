@@ -11,7 +11,7 @@ export default function Skills() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="skills" ref={ref} className="relative py-10 md:py-28 overflow-hidden">
+    <section id="skills" ref={ref} className="relative py-12 md:py-20 overflow-hidden">
       {/* Accent line */}
       <div
         className="absolute top-0 left-0 w-full h-px"
@@ -21,7 +21,7 @@ export default function Skills() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
         {/* Header */}
         <motion.div
-          className="flex items-center gap-3 mb-12"
+          className="flex items-center gap-3 mb-10"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6 }}
@@ -35,7 +35,7 @@ export default function Skills() {
           </span>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-12">
           {/* Title */}
           <div>
             <motion.h2

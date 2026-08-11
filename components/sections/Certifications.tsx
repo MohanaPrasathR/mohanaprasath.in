@@ -9,7 +9,7 @@ export default function Certifications() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="certifications" ref={ref} className="relative py-10 md:py-24 overflow-hidden">
+    <section id="certifications" ref={ref} className="relative py-12 md:py-20 overflow-hidden">
       {/* Background divider line */}
       <div
         className="absolute top-0 left-0 w-full h-px"
@@ -18,7 +18,7 @@ export default function Certifications() {
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
             <motion.div
               className="flex items-center gap-3 mb-6"

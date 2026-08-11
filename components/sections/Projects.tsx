@@ -76,7 +76,7 @@ function ProjectSlide({
   return (
     <div
       ref={ref}
-      className="relative min-h-screen flex items-center border-t border-white/[0.05] group"
+      className="relative py-12 md:py-20 flex items-center border-t border-white/[0.05] group overflow-hidden"
       style={{ backgroundColor: project.bgTone }}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
@@ -113,7 +113,7 @@ function ProjectSlide({
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 md:px-12 lg:px-20 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 md:px-12 lg:px-20 py-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         {/* Left */}
         <div>
           <motion.div
