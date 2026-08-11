@@ -64,13 +64,25 @@ export default function FloatingMenu() {
       {/* Logo top-left */}
       <motion.a
         href="#hero"
-        className="fixed top-6 left-6 z-[200] font-mono text-xs tracking-[0.3em] text-white-muted hover:text-gold transition-colors duration-300"
-        style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        className="fixed top-6 left-6 z-[200] flex items-center gap-3 group shrink-0"
         animate={{ y: hidden && !open ? -80 : 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
       >
-        MP
+        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gold/40 group-hover:border-gold bg-black/60 flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.15)] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.35)] group-hover:scale-105">
+          <span
+            className="font-mono text-xs md:text-sm font-semibold tracking-wider text-gold"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            MP
+          </span>
+        </div>
+        <span
+          className="font-mono text-xs md:text-sm font-medium tracking-[0.2em] text-white-primary group-hover:text-gold transition-colors duration-300 uppercase"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          MOHANA PRASATH
+        </span>
       </motion.a>
 
       {/* Fullscreen overlay menu */}

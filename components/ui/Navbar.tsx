@@ -65,27 +65,25 @@ export default function Navbar() {
         }}
       />
 
-      {/* Arman-Style Monogram Logo */}
+      {/* Circular MP Monogram Logo + Name */}
       <button
         onClick={() => scrollTo('hero')}
         className="relative z-10 flex items-center gap-3 group shrink-0"
         aria-label="Back to top"
       >
-        <svg
-          className="w-8 h-8 md:w-10 md:h-10 text-white transition-transform duration-300 group-hover:scale-105"
-          viewBox="0 0 100 100"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="100" height="100" rx="16" fill="#121212" stroke="#FFFFFF" strokeWidth="5"/>
-          <path d="M18 75 V25 L38 60 L58 25 V75" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M70 75 V25 Q90 25 90 45 Q90 62 70 62" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gold/40 group-hover:border-gold bg-black/60 flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.15)] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.35)] group-hover:scale-105">
+          <span
+            className="font-mono text-xs md:text-sm font-semibold tracking-wider text-gold"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            MP
+          </span>
+        </div>
         <span
-          className="font-mono text-xs md:text-sm font-bold tracking-[0.25em] text-white"
+          className="font-mono text-xs md:text-sm font-medium tracking-[0.2em] text-white-primary group-hover:text-gold transition-colors duration-300 uppercase"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
-          MP
+          MOHANA PRASATH
         </span>
       </button>
 
