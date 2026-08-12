@@ -93,19 +93,19 @@ function ProjectSlide({
 
       {/* Project number — large background text */}
       <motion.div
-        className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 select-none pointer-events-none"
+        className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 select-none pointer-events-none z-0"
         initial={{ opacity: 0, x: 40 }}
         animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
         transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
       >
         <span
-          className="font-display font-thin"
+          className="font-display font-light"
           style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
             fontSize: 'clamp(8rem, 20vw, 22rem)',
             lineHeight: 1,
             color: 'transparent',
-            WebkitTextStroke: '1px rgba(212,175,55,0.08)',
+            WebkitTextStroke: '1.5px rgba(220,38,38,0.45)',
           }}
         >
           {project.id}
@@ -123,14 +123,14 @@ function ProjectSlide({
             transition={{ duration: 0.7, delay: 0.1 }}
           >
             <span
-              className="project-number"
+              className="project-number font-bold text-red-500"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               {project.id}
             </span>
-            <span className="w-8 h-px bg-gold/40" />
+            <span className="w-8 h-px bg-red-600/60" />
             <span
-              className="text-xs text-white-muted tracking-[0.2em] font-mono uppercase"
+              className="text-xs text-white-primary tracking-[0.2em] font-mono uppercase"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               {project.category}
@@ -162,7 +162,7 @@ function ProjectSlide({
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="px-3 py-1 text-xs border border-white/10 text-white-muted font-mono"
+                className="px-3 py-1 text-xs border border-white/20 bg-white/[0.04] text-white-primary font-mono rounded-sm"
                 style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em' }}
               >
                 {t}
@@ -174,7 +174,7 @@ function ProjectSlide({
         {/* Right */}
         <div className="flex flex-col gap-6">
           <motion.p
-            className="text-base md:text-lg text-white-muted leading-relaxed"
+            className="text-base md:text-lg text-white-primary leading-relaxed"
             style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -184,7 +184,7 @@ function ProjectSlide({
           </motion.p>
 
           <motion.p
-            className="text-sm text-white-faint leading-relaxed"
+            className="text-sm text-white-muted leading-relaxed"
             style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

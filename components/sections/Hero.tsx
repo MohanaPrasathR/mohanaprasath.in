@@ -92,8 +92,8 @@ export default function Hero({ ready }: { ready: boolean }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="w-2 h-2 rounded-full bg-gold animate-pulse-slow" />
-            <span className="text-xs tracking-[0.25em] text-white-muted font-mono uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+            <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse-slow" />
+            <span className="text-xs tracking-[0.25em] text-white-primary font-mono uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
               {personal.availability}
             </span>
           </motion.div>
@@ -129,7 +129,7 @@ export default function Hero({ ready }: { ready: boolean }) {
                 className="hero-title text-transparent"
                 style={{
                   fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  WebkitTextStroke: '1px rgba(247,247,245,0.4)',
+                  WebkitTextStroke: '1.5px rgba(255,255,255,0.7)',
                 }}
               >
                 {char}
@@ -149,7 +149,7 @@ export default function Hero({ ready }: { ready: boolean }) {
           <div className="flex items-center gap-4">
             <div className="gold-line" />
             <span
-              className="text-sm md:text-base tracking-[0.2em] text-white-muted font-mono uppercase"
+              className="text-sm md:text-base tracking-[0.2em] text-white-primary font-mono uppercase font-medium"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               {personal.title}

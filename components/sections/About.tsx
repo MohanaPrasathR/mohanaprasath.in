@@ -72,7 +72,7 @@ export default function About() {
               variants={fadeUp(0.2)}
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
-              className="section-title text-white-faint"
+              className="section-title text-white-muted"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >
               Builder.
@@ -86,7 +86,7 @@ export default function About() {
               className="section-title"
               style={{
                 fontFamily: "'Cormorant Garamond', Georgia, serif",
-                WebkitTextStroke: '1px rgba(212,175,55,0.4)',
+                WebkitTextStroke: '1.5px rgba(220,38,38,0.6)',
                 color: 'transparent',
               }}
             >
@@ -101,7 +101,7 @@ export default function About() {
             variants={fadeUp(0.3)}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="text-lg md:text-xl text-white-muted leading-relaxed"
+            className="text-lg md:text-xl text-white-primary leading-relaxed"
             style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
           >
             {personal.bio}
@@ -111,7 +111,7 @@ export default function About() {
             variants={fadeUp(0.4)}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="text-base text-white-faint leading-relaxed"
+            className="text-base text-white-muted leading-relaxed"
             style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
           >
             {personal.bioLine2}
