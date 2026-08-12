@@ -68,7 +68,7 @@ export default function Skills() {
                 transition={{ duration: 0.7, delay: 0.2 + gi * 0.08, ease: "easeOut" }}
               >
                 <p
-                  className="text-xs tracking-[0.2em] text-gold font-mono uppercase mb-4"
+                  className="text-xs font-bold tracking-[0.25em] text-red-500 font-mono uppercase mb-4"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   {group.category}
@@ -77,16 +77,16 @@ export default function Skills() {
                   {group.items.map((item, ii) => (
                     <motion.div
                       key={item}
-                      className="group flex items-center gap-3 py-2 border-b border-white/[0.04] hover:border-gold/30 transition-colors duration-300"
+                      className="group flex items-center gap-3 py-2.5 border-b border-white/10 hover:border-red-500/50 transition-colors duration-300"
                       initial={{ opacity: 0, x: -10 }}
                       animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                       transition={{ duration: 0.5, delay: 0.3 + gi * 0.08 + ii * 0.05 }}
                     >
                       <span
-                        className="w-1 h-1 rounded-full bg-white-faint group-hover:bg-gold transition-colors duration-300 flex-shrink-0"
+                        className="w-1.5 h-1.5 rounded-full bg-red-500 group-hover:scale-125 transition-all duration-300 flex-shrink-0"
                       />
                       <span
-                        className="text-sm text-white-muted group-hover:text-white-primary transition-colors duration-300"
+                        className="text-sm font-medium text-white group-hover:text-red-400 transition-colors duration-300"
                         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                       >
                         {item}
@@ -101,16 +101,16 @@ export default function Skills() {
       </div>
 
       {/* ── Marquee strip ─── */}
-      <div className="w-full overflow-hidden border-t border-b border-white/[0.04] py-5">
+      <div className="w-full overflow-hidden bg-white/[0.05] border-y border-white/20 py-5 my-4">
         <div className="marquee-track">
           {[...allSkills, ...allSkills].map((skill, i) => (
             <span
               key={i}
-              className="flex items-center gap-4 whitespace-nowrap text-sm text-white-faint font-mono"
+              className="flex items-center gap-4 whitespace-nowrap text-sm font-bold text-white font-mono"
               style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.15em' }}
             >
               {skill}
-              <span className="text-gold/30">◆</span>
+              <span className="text-red-500 font-bold text-base">◆</span>
             </span>
           ))}
         </div>

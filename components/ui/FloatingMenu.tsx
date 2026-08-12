@@ -69,16 +69,16 @@ export default function FloatingMenu() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
       >
-        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gold/40 group-hover:border-gold bg-black/60 flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.15)] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.35)] group-hover:scale-105">
+        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/60 group-hover:border-white bg-white/10 flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] group-hover:scale-105">
           <span
-            className="font-mono text-xs md:text-sm font-semibold tracking-wider text-gold"
+            className="font-mono text-xs md:text-sm font-bold tracking-wider text-white"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             MP
           </span>
         </div>
         <span
-          className="font-mono text-xs md:text-sm font-medium tracking-[0.2em] text-white-primary group-hover:text-gold transition-colors duration-300 uppercase"
+          className="font-mono text-xs md:text-sm font-semibold tracking-[0.2em] text-white group-hover:text-red-500 transition-colors duration-300 uppercase"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           MOHANA PRASATH

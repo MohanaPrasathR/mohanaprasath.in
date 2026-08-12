@@ -99,13 +99,13 @@ function ProjectSlide({
         transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
       >
         <span
-          className="font-display font-light"
+          className="font-display font-semibold"
           style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: 'clamp(8rem, 20vw, 22rem)',
+            fontSize: 'clamp(9rem, 22vw, 24rem)',
             lineHeight: 1,
-            color: 'transparent',
-            WebkitTextStroke: '1.5px rgba(220,38,38,0.45)',
+            color: 'rgba(255, 255, 255, 0.06)',
+            WebkitTextStroke: '2px rgba(255, 255, 255, 0.5)',
           }}
         >
           {project.id}
@@ -123,14 +123,14 @@ function ProjectSlide({
             transition={{ duration: 0.7, delay: 0.1 }}
           >
             <span
-              className="project-number font-bold text-red-500"
+              className="project-number font-bold text-red-500 text-sm tracking-widest"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               {project.id}
             </span>
-            <span className="w-8 h-px bg-red-600/60" />
+            <span className="w-8 h-px bg-red-600" />
             <span
-              className="text-xs text-white-primary tracking-[0.2em] font-mono uppercase"
+              className="text-xs text-white font-semibold tracking-[0.25em] font-mono uppercase bg-red-600/20 px-2.5 py-1 rounded border border-red-500/40"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               {project.category}
@@ -138,7 +138,7 @@ function ProjectSlide({
           </motion.div>
 
           <motion.h3
-            className="font-display font-light text-white-primary mb-6"
+            className="font-display font-light text-white mb-6"
             style={{
               fontFamily: "'Cormorant Garamond', Georgia, serif",
               fontSize: 'clamp(2.5rem, 6vw, 6rem)',
@@ -154,7 +154,7 @@ function ProjectSlide({
 
           {/* Tech stack */}
           <motion.div
-            className="flex flex-wrap gap-2"
+            className="flex flex-wrap gap-2.5"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.7, delay: 0.35 }}
@@ -162,7 +162,7 @@ function ProjectSlide({
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="px-3 py-1 text-xs border border-white/20 bg-white/[0.04] text-white-primary font-mono rounded-sm"
+                className="px-3.5 py-1.5 text-xs font-mono font-medium text-white bg-white/10 border border-white/30 rounded-md shadow-sm hover:border-red-500 hover:bg-white/20 transition-all duration-300"
                 style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em' }}
               >
                 {t}
@@ -174,8 +174,8 @@ function ProjectSlide({
         {/* Right */}
         <div className="flex flex-col gap-6">
           <motion.p
-            className="text-base md:text-lg text-white-primary leading-relaxed"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
+            className="text-base md:text-lg text-white font-normal leading-relaxed"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
@@ -184,8 +184,8 @@ function ProjectSlide({
           </motion.p>
 
           <motion.p
-            className="text-sm text-white-muted leading-relaxed"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
+            className="text-sm text-gray-300 font-normal leading-relaxed"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
