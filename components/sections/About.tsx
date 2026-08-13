@@ -122,10 +122,9 @@ export default function About() {
             variants={fadeUp(0.5)}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="grid grid-cols-3 gap-4 md:gap-6 pt-6 border-t border-white/20"
+            className="grid grid-cols-2 gap-6 pt-6 border-t border-white/20"
           >
             {[
-              { num: '9.29', label: 'CGPA (SRM IST)' },
               { num: '6+', label: 'Certifications' },
               { num: '5+', label: 'Projects Built' },
             ].map((stat) => (
@@ -137,7 +136,7 @@ export default function About() {
                   {stat.num}
                 </p>
                 <p
-                  className="text-[11px] text-gray-300 font-semibold tracking-[0.1em] uppercase font-mono"
+                  className="text-xs text-gray-300 font-semibold tracking-[0.1em] uppercase font-mono"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   {stat.label}

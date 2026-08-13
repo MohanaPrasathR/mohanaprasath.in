@@ -148,7 +148,7 @@ export const experience = [
 
 export const education = [
   {
-    degree: 'B.Tech · Computer Science & Engineering (9.29 CGPA)',
+    degree: 'B.Tech · Computer Science & Engineering',
     institution: 'SRM Institute of Science and Technology, Kattankulathur',
     period: '2023 — 2027',
   },
