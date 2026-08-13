@@ -122,21 +122,22 @@ export default function About() {
             variants={fadeUp(0.5)}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="grid grid-cols-2 gap-6 pt-6 border-t border-white-faint/20"
+            className="grid grid-cols-3 gap-4 md:gap-6 pt-6 border-t border-white/20"
           >
             {[
+              { num: '9.29', label: 'CGPA (SRM IST)' },
+              { num: '6+', label: 'Certifications' },
               { num: '5+', label: 'Projects Built' },
-              { num: '3+', label: 'Certifications' },
             ].map((stat) => (
-              <div key={stat.label}>
+              <div key={stat.label} className="p-4 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm">
                 <p
-                  className="text-4xl md:text-5xl font-display font-light text-white-primary mb-1"
+                  className="text-3xl md:text-4xl font-display font-bold text-white mb-1"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
                   {stat.num}
                 </p>
                 <p
-                  className="text-xs text-white-muted tracking-[0.15em] uppercase font-mono"
+                  className="text-[11px] text-gray-300 font-semibold tracking-[0.1em] uppercase font-mono"
                   style={{ fontFamily: "'JetBrains Mono', monospace" }}
                 >
                   {stat.label}

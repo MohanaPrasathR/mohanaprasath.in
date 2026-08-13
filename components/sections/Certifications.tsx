@@ -61,26 +61,26 @@ export default function Certifications() {
         </div>
 
         {/* Certification Cards Grid / Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {certifications.map((cert, i) => (
             <motion.div
               key={cert.id || i}
-              className="group relative flex flex-col justify-between p-8 border border-white/[0.08] bg-white/[0.02] hover:border-gold/50 hover:bg-white/[0.04] transition-all duration-500 rounded-none"
+              className="group relative flex flex-col justify-between p-8 border border-white/20 bg-white/[0.04] hover:border-red-500 hover:bg-white/[0.08] transition-all duration-500 rounded-2xl shadow-xl hover:shadow-[0_0_35px_rgba(220,38,38,0.25)] backdrop-blur-md"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.7, delay: 0.2 + i * 0.12 }}
+              transition={{ duration: 0.7, delay: 0.15 + i * 0.1 }}
             >
               {/* Top Row: Badge & Date */}
               <div>
                 <div className="flex items-center justify-between gap-4 mb-6">
                   <span
-                    className="text-xs font-mono text-gold px-2.5 py-1 border border-gold/20 bg-gold/5"
+                    className="text-xs font-mono font-semibold text-white px-3 py-1 rounded-full border border-red-500/50 bg-red-600/20 shadow-sm"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
                     {cert.issuer}
                   </span>
                   <span
-                    className="text-xs text-white-faint font-mono"
+                    className="text-xs text-gray-300 font-mono font-medium"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
                     {cert.date}
@@ -89,7 +89,7 @@ export default function Certifications() {
 
                 {/* Title */}
                 <h3
-                  className="text-2xl text-white-primary font-light mb-3 group-hover:text-gold transition-colors duration-300"
+                  className="text-2xl text-white font-light mb-3 group-hover:text-red-400 transition-colors duration-300"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
                   {cert.title}
@@ -98,10 +98,10 @@ export default function Certifications() {
                 {/* Credential ID */}
                 {cert.credentialId && (
                   <p
-                    className="text-xs text-white-muted font-mono mb-6"
+                    className="text-xs text-gray-300 font-mono mb-6"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
-                    ID: <span className="text-white-primary">{cert.credentialId}</span>
+                    CREDENTIAL ID: <span className="text-white font-semibold">{cert.credentialId}</span>
                   </p>
                 )}
 
@@ -111,7 +111,7 @@ export default function Certifications() {
                     {cert.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="text-[11px] font-mono px-2 py-0.5 border border-white/[0.06] text-white-muted"
+                        className="text-[11px] font-mono px-2.5 py-1 border border-white/30 bg-white/10 text-white rounded-md font-medium"
                         style={{ fontFamily: "'JetBrains Mono', monospace" }}
                       >
                         {skill}
@@ -126,16 +126,16 @@ export default function Certifications() {
                 href={cert.credentialUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 pt-4 border-t border-white/[0.06] text-xs font-mono text-gold group-hover:text-white-primary transition-colors duration-300 uppercase tracking-widest"
+                className="inline-flex items-center justify-between pt-4 border-t border-white/20 text-xs font-mono font-bold text-red-500 group-hover:text-white transition-colors duration-300 uppercase tracking-widest"
                 style={{ fontFamily: "'JetBrains Mono', monospace" }}
               >
-                <span>VERIFY CERTIFICATE</span>
+                <span>VERIFY CREDENTIAL</span>
                 <svg
-                  className="w-3.5 h-3.5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
+                  className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 text-red-500 group-hover:text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
