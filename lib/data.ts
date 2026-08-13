@@ -25,13 +25,14 @@ export const projects = [
     title: 'TechMobile — E-Commerce Store',
     category: 'Full Stack · AI',
     year: '2025',
-    href: 'https://github.com/MohanaPrasathR',
+    demoUrl: 'https://mohanaprasath.in',
+    githubUrl: 'https://github.com/MohanaPrasathR/TechMobile',
     description:
       'A responsive e-commerce web app for flagship smartphone sales with real-time product search, brand filtering, shopping cart management, and a modern dark-themed UI.',
     longDescription:
       'Built with Next.js, React, TypeScript, and CSS Modules. Implemented reusable components optimised for mobile, tablet, and desktop. Smooth animations enhance usability and visual appeal.',
     tech: ['Next.js', 'React', 'TypeScript', 'CSS Modules'],
-    accentColor: '#D4AF37',
+    accentColor: '#DC2626',
     bgTone: '#080808',
   },
   {
@@ -39,13 +40,14 @@ export const projects = [
     title: 'E-Hospital AI Framework',
     category: 'Full Stack · AI & ML · DBMS',
     year: '2025',
-    href: 'https://github.com/MohanaPrasathR',
+    demoUrl: 'https://mohanaprasath.in',
+    githubUrl: 'https://github.com/MohanaPrasathR/E-Hospital-AI',
     description:
       'A full-stack healthcare app where users input symptoms and receive AI-assisted disease predictions using Random Forest and NLP models.',
     longDescription:
       'Designed patient registration, symptom management, and prediction workflows. Managed patient records and prediction results through efficient database operations with Python and SQL.',
     tech: ['Python', 'SQL', 'NLP', 'Random Forest', 'Flask'],
-    accentColor: '#D4AF37',
+    accentColor: '#DC2626',
     bgTone: '#060606',
   },
   {
@@ -53,13 +55,14 @@ export const projects = [
     title: 'Stadium Management System',
     category: 'Database Management Systems',
     year: '2024',
-    href: 'https://github.com/MohanaPrasathR',
+    demoUrl: 'https://mohanaprasath.in',
+    githubUrl: 'https://github.com/MohanaPrasathR/Stadium-Management',
     description:
       'A stadium management system for ticket booking and event scheduling, with optimised relational schemas and a Python-based GUI.',
     longDescription:
       'Designed relational database schemas and optimised SQL queries for data retrieval efficiency. Built a Python GUI to streamline stadium operations end-to-end.',
     tech: ['Python', 'SQL', 'DBMS'],
-    accentColor: '#D4AF37',
+    accentColor: '#DC2626',
     bgTone: '#070707',
   },
   {
@@ -67,13 +70,14 @@ export const projects = [
     title: 'Cache Memory Simulator',
     category: 'Computer Architecture',
     year: '2024',
-    href: 'https://github.com/MohanaPrasathR',
+    demoUrl: 'https://mohanaprasath.in',
+    githubUrl: 'https://github.com/MohanaPrasathR/Cache-Memory-Simulator',
     description:
       'An interactive simulator to visualise cache operations — hits, misses, and replacement policies — in real time with RESTful APIs.',
     longDescription:
       'Built with React.js, Node.js, and Express.js. Designed an intuitive UI for analysing cache performance and memory access patterns through simulated memory operations.',
-    tech: ['React.js', 'Node.js', 'Express.js'],
-    accentColor: '#D4AF37',
+    tech: ['React', 'Node.js', 'Express.js'],
+    accentColor: '#DC2626',
     bgTone: '#050505',
   },
   {
@@ -81,13 +85,14 @@ export const projects = [
     title: 'Electricity Usage Predictor',
     category: 'Machine Learning',
     year: '2024',
-    href: 'https://github.com/MohanaPrasathR',
+    demoUrl: 'https://mohanaprasath.in',
+    githubUrl: 'https://github.com/MohanaPrasathR/Electricity-Predictor',
     description:
       'A machine learning model to forecast household electricity consumption using Random Forest Regression with time-based feature engineering.',
     longDescription:
       'Applied data preprocessing, feature extraction, and model evaluation to generate data-driven insights from electricity usage patterns.',
     tech: ['Python', 'Scikit-Learn', 'Random Forest', 'Pandas'],
-    accentColor: '#D4AF37',
+    accentColor: '#DC2626',
     bgTone: '#060606',
   },
 ];
