@@ -50,9 +50,10 @@ export default function Resume() {
 
             {/* Download CTA */}
             <motion.a
-              href={personal.resumeUrl}
-              download="Mohana_Prasath_Resume.pdf"
-              className="group self-start inline-flex items-center gap-4 px-8 py-4 border border-gold/30 hover:border-gold hover:bg-gold hover:text-bg transition-all duration-500"
+              href="/resume"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group self-start inline-flex items-center gap-4 px-8 py-4 border border-gold/30 hover:border-gold hover:bg-gold hover:text-bg transition-all duration-500 rounded-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.4 }}

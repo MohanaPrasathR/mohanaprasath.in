@@ -167,9 +167,10 @@ export default function Hero({ ready }: { ready: boolean }) {
 
             {/* Resume Download */}
             <motion.a
-              href={personal.resumeUrl}
-              download="Mohana_Prasath_Resume.pdf"
-              className="group inline-flex items-center gap-3 px-5 py-2.5 border border-gold/30 hover:border-gold text-sm text-gold hover:bg-gold hover:text-bg transition-all duration-500"
+              href="/resume"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 px-5 py-2.5 border border-gold/30 hover:border-gold text-sm text-gold hover:bg-gold hover:text-bg transition-all duration-500 rounded-md"
               custom={1}
               variants={fadeUp}
               initial="hidden"
