@@ -152,21 +152,15 @@ function ProjectSlide({
             {project.title}
           </motion.h3>
 
-          {/* Tech stack */}
+          {/* Tech stack brand icons */}
           <motion.div
-            className="flex flex-wrap gap-2.5"
+            className="flex flex-wrap gap-3 items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.7, delay: 0.35 }}
           >
             {project.tech.map((t) => (
-              <span
-                key={t}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-semibold text-white bg-white/10 border border-white/30 rounded-md shadow-sm hover:border-red-500 hover:bg-white/20 transition-all duration-300"
-                style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.08em' }}
-              >
-                <span>{t}</span>
-              </span>
+              <TechIcon key={t} name={t} />
             ))}
           </motion.div>
         </div>
@@ -231,6 +225,98 @@ function ProjectSlide({
           </motion.div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function TechIcon({ name }: { name: string }) {
+  const getIcon = (tech: string) => {
+    const t = tech.toLowerCase();
+    if (t.includes('next')) {
+      return (
+        <svg className="w-6 h-6 text-white" viewBox="0 0 180 180" fill="none">
+          <mask id="mask_next" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180"><circle cx="90" cy="90" r="90" fill="black"/></mask>
+          <g mask="url(#mask_next)">
+            <circle cx="90" cy="90" r="90" fill="white"/>
+            <path d="M149.508 157.52L69.142 54H54V126H67.08V70.7061L136.082 160.038C140.89 159.502 145.405 158.625 149.508 157.52Z" fill="black"/>
+            <path d="M115 54H128V126H115V54Z" fill="black"/>
+          </g>
+        </svg>
+      );
+    }
+    if (t.includes('react')) {
+      return (
+        <svg className="w-6 h-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="2" fill="currentColor"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.5"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)"/>
+          <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)"/>
+        </svg>
+      );
+    }
+    if (t.includes('typescript') || t === 'ts') {
+      return (
+        <svg className="w-6 h-6 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 3h18v18H3V3zm9.5 8.5h-2v7h2v-7zm1.8 0v1.8h1.8v1.8h-1.8v1.6c0 .7.3 1 1 1h.8v1.8h-1.6c-1.8 0-3-.9-3-2.7v-1.7h-1.2v-1.8h1.2v-1.8h1.8z"/>
+        </svg>
+      );
+    }
+    if (t.includes('python')) {
+      return (
+        <svg className="w-6 h-6 text-amber-300" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M11.9 2c-5.2 0-4.9 2.3-4.9 2.3v2.4h5v.7H5.2S2.9 7.1 2.9 12.3c0 5.2 2 5 2 5h1.2v-2.5c0-2.8 2.4-2.8 2.4-2.8h4.9s2.3.1 2.3-2.3V4.3S17.1 2 11.9 2zm-2.6 1.6c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9zm.2 18.4c5.2 0 4.9-2.3 4.9-2.3v-2.4h-5v-.7h6.8s2.3.3 2.3-4.9c0-5.2-2-5-2-5h-1.2v2.5c0 2.8-2.4 2.8-2.4 2.8H7.9s-2.3-.1-2.3 2.3v4.9s-1.4 2.3 3.8 2.3zm2.6-1.6c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9z"/>
+        </svg>
+      );
+    }
+    if (t.includes('node')) {
+      return (
+        <svg className="w-6 h-6 text-emerald-400" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L2 7.8v8.4L12 22l10-5.8V7.8L12 2zm0 2.3l7.5 4.3v5.8L12 18.7l-7.5-4.3V8.6L12 4.3z"/>
+        </svg>
+      );
+    }
+    if (t.includes('express')) {
+      return (
+        <svg className="w-6 h-6 text-gray-200" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-4V15h4v1.5zm1.5-3.5h-5.5V11H14.5v2zm1.5-3.5h-7V7.5h7V9z"/>
+        </svg>
+      );
+    }
+    if (t.includes('flask')) {
+      return (
+        <svg className="w-6 h-6 text-gray-100" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 2v2h1v4.17A7.001 7.001 0 005 15c0 3.87 3.13 7 7 7s7-3.13 7-7c0-3.1-2.02-5.73-5-6.83V4h1V2H9zm3 8a5 5 0 015 5H7a5 5 0 015-5z"/>
+        </svg>
+      );
+    }
+    if (t.includes('sql') || t.includes('dbms')) {
+      return (
+        <svg className="w-6 h-6 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.34 6 2s-2.13 2-6 2-6-1.34-6-2 2.13-2 6-2zm0 6c-3.87 0-6-1.34-6-2v2.5c0 .66 2.13 2 6 2s6-1.34 6-2V9c0 .66-2.13 2-6 2zm0 5c-3.87 0-6-1.34-6-2v2.5c0 .66 2.13 2 6 2s6-1.34 6-2V14c0 .66-2.13 2-6 2z"/>
+        </svg>
+      );
+    }
+    if (t.includes('css')) {
+      return (
+        <svg className="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 3l1.6 18L12 23l7.4-2L21 3H3zm14.3 4.5l-.3 3.5H8.8l.3 3.5h7.9l-.6 6.5-4.4 1.2-4.4-1.2-.3-3h2.3l.1 1.4 2.3.6 2.3-.6.2-2.7H6.3l-.8-8.4h11.8z"/>
+        </svg>
+      );
+    }
+    // Default AI / ML / Scikit-Learn / Pandas icon
+    return (
+      <svg className="w-6 h-6 text-purple-400" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L9.5 7.5L4 10l5.5 2.5L12 18l2.5-5.5L20 10l-5.5-2.5L12 2zm0 18l-1.5 3L9 20l-3-1.5L9 17l1.5-3L12 17l3 1.5L12 20z"/>
+      </svg>
+    );
+  };
+
+  return (
+    <div className="group relative flex items-center justify-center p-3 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-red-500 rounded-xl shadow-md transition-all duration-300 transform hover:scale-110">
+      {getIcon(name)}
+      <span className="absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 bg-black/90 border border-white/20 text-white text-[11px] font-mono font-semibold px-2.5 py-1 rounded shadow-lg whitespace-nowrap z-30">
+        {name}
+      </span>
     </div>
   );
 }
