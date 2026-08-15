@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 import Loader from '@/components/ui/Loader';
@@ -20,8 +20,20 @@ const CustomCursor = dynamic(() => import('@/components/ui/CustomCursor'), { ssr
 export default function Home() {
   const [ready, setReady] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   const handleLoaderComplete = useCallback(() => {
     setReady(true);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   return (
