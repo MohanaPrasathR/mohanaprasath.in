@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({
