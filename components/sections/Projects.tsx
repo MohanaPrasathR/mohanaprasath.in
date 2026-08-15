@@ -32,15 +32,15 @@ export default function Projects() {
         </motion.div>
 
         <motion.h2
-          className="section-title text-white-primary"
+          className="section-title text-white font-bold tracking-tight"
           style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
         >
-          Selected<br />
-          <span style={{ WebkitTextStroke: '1px rgba(247,247,245,0.25)', color: 'transparent' }}>
-            Work
+          FEATURED<br />
+          <span className="text-red-500 font-bold">
+            PROJECTS
           </span>
         </motion.h2>
       </div>

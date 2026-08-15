@@ -25,8 +25,8 @@ export const projects = [
     title: 'TechMobile — E-Commerce Store',
     category: 'Full Stack · AI',
     year: '2025',
-    demoUrl: 'https://mohanaprasath.in',
-    githubUrl: 'https://github.com/MohanaPrasathR/TechMobile',
+    demoUrl: 'https://github.com/MohanaPrasathR/ec-mobile',
+    githubUrl: 'https://github.com/MohanaPrasathR/ec-mobile',
     description:
       'A responsive e-commerce web app for flagship smartphone sales with real-time product search, brand filtering, shopping cart management, and a modern dark-themed UI.',
     longDescription:
@@ -40,8 +40,8 @@ export const projects = [
     title: 'E-Hospital AI Framework',
     category: 'Full Stack · AI & ML · DBMS',
     year: '2025',
-    demoUrl: 'https://mohanaprasath.in',
-    githubUrl: 'https://github.com/MohanaPrasathR/E-Hospital-AI',
+    demoUrl: 'https://github.com/MohanaPrasathR/E-HOSPITAL',
+    githubUrl: 'https://github.com/MohanaPrasathR/E-HOSPITAL',
     description:
       'A full-stack healthcare app where users input symptoms and receive AI-assisted disease predictions using Random Forest and NLP models.',
     longDescription:
@@ -55,8 +55,8 @@ export const projects = [
     title: 'Stadium Management System',
     category: 'Database Management Systems',
     year: '2024',
-    demoUrl: 'https://mohanaprasath.in',
-    githubUrl: 'https://github.com/MohanaPrasathR/Stadium-Management',
+    demoUrl: 'https://github.com/MohanaPrasathR/Stadium-Management-System',
+    githubUrl: 'https://github.com/MohanaPrasathR/Stadium-Management-System',
     description:
       'A stadium management system for ticket booking and event scheduling, with optimised relational schemas and a Python-based GUI.',
     longDescription:
@@ -70,8 +70,8 @@ export const projects = [
     title: 'Cache Memory Simulator',
     category: 'Computer Architecture',
     year: '2024',
-    demoUrl: 'https://mohanaprasath.in',
-    githubUrl: 'https://github.com/MohanaPrasathR/Cache-Memory-Simulator',
+    demoUrl: 'https://github.com/MohanaPrasathR/algorithm-visualizer',
+    githubUrl: 'https://github.com/MohanaPrasathR/algorithm-visualizer',
     description:
       'An interactive simulator to visualise cache operations — hits, misses, and replacement policies — in real time with RESTful APIs.',
     longDescription:
@@ -85,8 +85,8 @@ export const projects = [
     title: 'Electricity Usage Predictor',
     category: 'Machine Learning',
     year: '2024',
-    demoUrl: 'https://mohanaprasath.in',
-    githubUrl: 'https://github.com/MohanaPrasathR/Electricity-Predictor',
+    demoUrl: 'https://github.com/MohanaPrasathR/machine-learning-basics',
+    githubUrl: 'https://github.com/MohanaPrasathR/machine-learning-basics',
     description:
       'A machine learning model to forecast household electricity consumption using Random Forest Regression with time-based feature engineering.',
     longDescription:
