@@ -211,47 +211,59 @@ html.lenis body {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Light mode theme overrides */
-html.light-mode {
-  color-scheme: light;
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
-}
-
+/* ─── Complete Light Mode System ─── */
+html.light-mode,
 html.light-mode body {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+  background-color: #FAFAFA !important;
+  color: #0F172A !important;
 }
 
-html.light-mode .bg-bg {
-  background-color: #f8fafc !important;
+html.light-mode section,
+html.light-mode main,
+html.light-mode header {
+  background-color: #FAFAFA !important;
+  color: #0F172A !important;
 }
 
+/* Light mode text color overrides */
+html.light-mode h1,
+html.light-mode h2,
+html.light-mode h3,
+html.light-mode h4,
+html.light-mode p,
 html.light-mode .text-white,
-html.light-mode .text-white-primary {
-  color: #0f172a !important;
+html.light-mode .text-white-primary,
+html.light-mode .text-gray-100,
+html.light-mode .text-gray-200 {
+  color: #0F172A !important;
 }
 
-html.light-mode .text-white-muted,
 html.light-mode .text-gray-300,
-html.light-mode .text-gray-400 {
-  color: #334155 !important;
+html.light-mode .text-gray-400,
+html.light-mode .text-white-muted {
+  color: #475569 !important;
 }
 
+/* Card & Box Overrides */
 html.light-mode .border-white\/20,
 html.light-mode .border-white\/30,
 html.light-mode .border-white\/10,
-html.light-mode .border-white\/60 {
-  border-color: rgba(15, 23, 42, 0.2) !important;
+html.light-mode .border-white\/60,
+html.light-mode .border-white\/5 {
+  border-color: rgba(15, 23, 42, 0.15) !important;
 }
 
-html.light-mode .bg-white\/\[0\.04\],
 html.light-mode .bg-white\/10,
+html.light-mode .bg-white\/\[0\.04\],
 html.light-mode .bg-white\/\[0\.03\],
 html.light-mode .bg-white\/\[0\.05\],
 html.light-mode .bg-white\/\[0\.02\] {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+  background-color: #FFFFFF !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light-mode .bg-bg {
+  background-color: #FAFAFA !important;
 }
 
 .project-bg {
