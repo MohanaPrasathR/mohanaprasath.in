@@ -25,7 +25,7 @@ export const projects = [
     title: 'TechMobile — E-Commerce Store',
     category: 'Full Stack · AI',
     year: '2025',
-    demoUrl: 'https://mobilesale-ten.vercel.app',
+    demoUrl: 'https://mobilesale.vercel.app',
     githubUrl: 'https://github.com/MohanaPrasathR/ec-mobile',
     description:
       'A responsive e-commerce web app for flagship smartphone sales with real-time product search, brand filtering, shopping cart management, and a modern dark-themed UI.',
