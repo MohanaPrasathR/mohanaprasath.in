@@ -61,30 +61,20 @@ export default function Loader({ onComplete }: LoaderProps) {
       );
 
       // ── 5. Hold ───────────────────────────────────────────────────
-      tl.to({}, { duration: 0.85 });
+      tl.to({}, { duration: 0.5 });
 
-      // ── 6. Logo + name fade out ───────────────────────────────────
-      tl.to([logoRef.current, nameRef.current, lineRef.current], {
-        autoAlpha: 0,
-        y: -16,
-        duration: 0.55,
-        ease: 'power3.in',
-        stagger: 0.04,
-      });
-
-      // ── 7. Overlay wipes up ───────────────────────────────────────
+      // ── 6. Seamless Fade Out ───────────────────────────────────────
       tl.to(
         containerRef.current,
         {
-          yPercent: -100,
-          duration: 1.1,
-          ease: 'expo.inOut',
+          autoAlpha: 0,
+          duration: 0.7,
+          ease: 'power2.inOut',
           onComplete: () => {
             setVisible(false);
             onComplete();
           },
-        },
-        '-=0.1'
+        }
       );
     }, containerRef);
 

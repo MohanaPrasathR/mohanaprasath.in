@@ -47,12 +47,12 @@ export default function Home() {
       {/* Cinematic loader */}
       <Loader onComplete={handleLoaderComplete} />
 
-      {/* Fixed top navbar — always visible, all sections */}
-      {ready && <Navbar />}
+      {/* Fixed top navbar */}
+      <Navbar />
 
       {/* Smooth scroll wrapper */}
       <SmoothScroll>
-        <main>
+        <main className={`transition-opacity duration-700 ${ready ? 'opacity-100' : 'opacity-0'}`}>
           <Hero ready={ready} />
           <About />
           <Projects />
