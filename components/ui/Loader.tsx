@@ -77,61 +77,41 @@ export default function Loader({ onComplete }: LoaderProps) {
         }}
       />
 
-      {/* ── Authentic Solid White Shield Crest MP Monogram ── */}
+      {/* ── Exact User-Requested MP Shield Monogram Vector SVG ── */}
       <svg
         ref={logoRef}
-        viewBox="0 0 200 240"
+        viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[clamp(150px,26vw,260px)] filter drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]"
-        aria-label="Solid White Shield Crest MP Monogram"
+        className="w-[clamp(160px,28vw,280px)] filter drop-shadow-[0_0_25px_rgba(255,255,255,0.45)]"
+        aria-label="Exact MP Shield Monogram Logo"
       >
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="
-            M 20 20
-            H 180
-            V 140
-            L 100 220
-            L 20 140
-            Z
+        {/* Top Left Bar */}
+        <path d="M 10 10 H 96 V 30 H 10 Z" fill="#FFFFFF" />
 
-            M 20 42 H 180 V 48 H 20 Z
+        {/* Top Right Bar */}
+        <path d="M 104 10 H 190 V 30 H 104 Z" fill="#FFFFFF" />
 
-            M 50 60
-            L 70 120
-            L 90 60
-            H 78
-            L 70 95
-            L 62 60
-            Z
+        {/* Left M Outer Pillar */}
+        <path d="M 10 36 H 26 V 134 L 10 126 Z" fill="#FFFFFF" />
 
-            M 96 20 H 104 V 165 L 96 157 Z
+        {/* Left M Center Leg */}
+        <path d="M 32 36 H 45 L 53 60 V 151 L 32 139 Z" fill="#FFFFFF" />
 
-            M 124 60
-            H 160
-            V 95
-            H 124
-            Z
+        {/* Right M Center Leg */}
+        <path d="M 53 60 L 61 36 H 74 V 163 L 53 151 Z" fill="#FFFFFF" />
 
-            M 124 112
-            H 180
-            V 140
-            L 100 220
-            V 180
-            L 124 156
-            Z
+        {/* Right M Inner Pillar */}
+        <path d="M 80 36 H 96 V 176 L 80 167 Z" fill="#FFFFFF" />
 
-            M 20 140
-            L 100 220
-            V 180
-            L 46 126
-            H 20
-            Z
-          "
-          fill="#FFFFFF"
-        />
+        {/* Top M Center Chevron Join */}
+        <path d="M 45 36 H 61 L 53 60 Z" fill="#FFFFFF" />
+
+        {/* P Main Stem (Tapered at bottom right) */}
+        <path d="M 104 36 H 125 V 176 L 104 188 Z" fill="#FFFFFF" />
+
+        {/* P Loop Outer Frame with Chamfered Bottom Right Corner */}
+        <path d="M 125 36 H 190 V 92 L 165 117 H 125 V 101 H 165 L 174 92 V 52 H 125 V 36 Z" fill="#FFFFFF" />
       </svg>
     </div>
   );
