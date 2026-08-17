@@ -40,7 +40,7 @@ export const projects = [
     title: 'E-Hospital AI Framework',
     category: 'Full Stack · AI & ML · DBMS',
     year: '2025',
-    demoUrl: '/demos/ehospital',
+    demoUrl: 'https://minor-project-3rd-year-master.vercel.app/',
     githubUrl: 'https://github.com/MohanaPrasathR/E-HOSPITAL',
     description:
       'A full-stack healthcare app where users input symptoms and receive AI-assisted disease predictions using Random Forest and NLP models.',
