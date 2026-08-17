@@ -76,7 +76,7 @@ function ProjectSlide({
   return (
     <div
       ref={ref}
-      className="relative py-12 md:py-20 flex items-center border-t border-white/[0.05] group overflow-hidden"
+      className="relative py-12 md:py-20 flex items-center border-t border-white/[0.05] group overflow-hidden project-slide"
       style={{ backgroundColor: project.bgTone }}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
@@ -99,7 +99,7 @@ function ProjectSlide({
         transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
       >
         <span
-          className="font-display font-semibold"
+          className="font-display font-semibold project-number-bg"
           style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
             fontSize: 'clamp(9rem, 22vw, 24rem)',

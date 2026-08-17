@@ -212,58 +212,126 @@ html.lenis body {
 }
 
 /* ─── Complete Light Mode System ─── */
-html.light-mode,
-html.light-mode body {
-  background-color: #FAFAFA !important;
-  color: #0F172A !important;
+html.light-mode {
+  --bg: #F8FAFC;
+  --white: #0F172A;
+  --muted: #475569;
 }
 
+html.light-mode,
+html.light-mode body,
 html.light-mode section,
 html.light-mode main,
-html.light-mode header {
-  background-color: #FAFAFA !important;
+html.light-mode header,
+html.light-mode footer {
+  background-color: #F8FAFC !important;
   color: #0F172A !important;
 }
 
-/* Light mode text color overrides */
+/* Hero & Section Titles */
+html.light-mode .hero-title,
+html.light-mode .section-title {
+  color: #0F172A !important;
+}
+
+/* Hollow Text Stroke in Light Mode */
+html.light-mode [style*="WebkitTextStroke"] {
+  -webkit-text-stroke: 1.5px rgba(15, 23, 42, 0.25) !important;
+  color: transparent !important;
+}
+
+/* Light mode typography overrides */
 html.light-mode h1,
 html.light-mode h2,
 html.light-mode h3,
 html.light-mode h4,
+html.light-mode h5,
+html.light-mode h6,
 html.light-mode p,
 html.light-mode .text-white,
 html.light-mode .text-white-primary,
 html.light-mode .text-gray-100,
-html.light-mode .text-gray-200 {
+html.light-mode .text-gray-200,
+html.light-mode .text-slate-100,
+html.light-mode .text-slate-200 {
   color: #0F172A !important;
 }
 
+html.light-mode .text-white-muted,
 html.light-mode .text-gray-300,
 html.light-mode .text-gray-400,
-html.light-mode .text-white-muted {
+html.light-mode .text-white-faint,
+html.light-mode .text-gray-500 {
   color: #475569 !important;
 }
 
-/* Card & Box Overrides */
+/* Accent Red / Gold colors */
+html.light-mode .text-gold {
+  color: #DC2626 !important;
+}
+
+html.light-mode .gold-line {
+  background: #DC2626 !important;
+}
+
+/* Card & Container Borders */
 html.light-mode .border-white\/20,
 html.light-mode .border-white\/30,
 html.light-mode .border-white\/10,
 html.light-mode .border-white\/60,
-html.light-mode .border-white\/5 {
-  border-color: rgba(15, 23, 42, 0.15) !important;
+html.light-mode .border-white\/5,
+html.light-mode .border-white\/\[0\.06\],
+html.light-mode .border-white\/\[0\.05\] {
+  border-color: rgba(15, 23, 42, 0.12) !important;
 }
 
+/* Card & Container Backgrounds */
 html.light-mode .bg-white\/10,
+html.light-mode .bg-white\/5,
 html.light-mode .bg-white\/\[0\.04\],
 html.light-mode .bg-white\/\[0\.03\],
-html.light-mode .bg-white\/\[0\.05\],
-html.light-mode .bg-white\/\[0\.02\] {
+html.light-mode .bg-white\/\[0\.02\],
+html.light-mode .bg-white\/\[0\.08\] {
   background-color: #FFFFFF !important;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05) !important;
 }
 
-html.light-mode .bg-bg {
-  background-color: #FAFAFA !important;
+html.light-mode .bg-bg,
+html.light-mode .bg-black,
+html.light-mode .bg-neutral-950,
+html.light-mode .bg-slate-950 {
+  background-color: #F8FAFC !important;
+}
+
+/* Project Section Slides in Light Mode */
+html.light-mode .project-slide {
+  background-color: #F8FAFC !important;
+  border-top-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light-mode .project-slide:nth-child(even) {
+  background-color: #FFFFFF !important;
+}
+
+/* Watermark Project Number in Light Mode */
+html.light-mode .project-number-bg {
+  color: #0F172A !important;
+  opacity: 0.06 !important;
+}
+
+/* Custom Scrollbar in Light Mode */
+html.light-mode ::-webkit-scrollbar-track {
+  background: #F1F5F9 !important;
+}
+
+html.light-mode ::-webkit-scrollbar-thumb {
+  background: #DC2626 !important;
+}
+
+/* Floating Menu / Navigation Backdrop */
+html.light-mode .menu-backdrop {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
 }
 
 .project-bg {
@@ -285,14 +353,6 @@ html.light-mode .bg-bg {
   transform: scaleX(1);
 }
 
-/* ─── Floating menu ────────────────────────────────────────────── */
-.menu-backdrop {
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  background: rgba(14, 14, 14, 0.85);
-  border: 1px solid rgba(212, 175, 55, 0.12);
-}
-
 /* ─── Noise texture on surfaces ────────────────────────────────── */
 .surface-noise::before {
   content: '';
@@ -311,3 +371,4 @@ html.light-mode .bg-bg {
 .magnetic {
   will-change: transform;
 }
+

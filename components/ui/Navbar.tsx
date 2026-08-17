@@ -88,8 +88,8 @@ export default function Navbar() {
         style={{
           backdropFilter: scrolled || menuOpen ? 'blur(20px)' : 'none',
           WebkitBackdropFilter: scrolled || menuOpen ? 'blur(20px)' : 'none',
-          background: scrolled || menuOpen ? (theme === 'light' ? 'rgba(248,250,252,0.92)' : 'rgba(5,5,5,0.92)') : 'transparent',
-          borderBottom: scrolled || menuOpen ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
+          background: scrolled || menuOpen ? (theme === 'light' ? 'rgba(248,250,252,0.95)' : 'rgba(5,5,5,0.92)') : 'transparent',
+          borderBottom: scrolled || menuOpen ? (theme === 'light' ? '1px solid rgba(15,23,42,0.1)' : '1px solid rgba(255,255,255,0.08)') : '1px solid transparent',
         }}
       />
 
@@ -99,16 +99,26 @@ export default function Navbar() {
         className="relative z-10 flex items-center gap-3 group shrink-0"
         aria-label="Back to top"
       >
-        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/60 group-hover:border-white bg-white/10 flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] group-hover:scale-105">
+        <div
+          className={`w-9 h-9 md:w-10 md:h-10 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm ${
+            theme === 'light'
+              ? 'border-slate-400/60 bg-slate-200/80 text-slate-900 shadow-sm group-hover:border-slate-900 group-hover:scale-105'
+              : 'border-white/60 bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.2)] group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] group-hover:scale-105'
+          }`}
+        >
           <span
-            className="font-mono text-xs md:text-sm font-bold tracking-wider text-white"
+            className={`font-mono text-xs md:text-sm font-bold tracking-wider ${
+              theme === 'light' ? 'text-slate-900' : 'text-white'
+            }`}
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             MP
           </span>
         </div>
         <span
-          className="font-mono text-xs md:text-sm font-semibold tracking-[0.2em] text-white group-hover:text-red-500 transition-colors duration-300 uppercase"
+          className={`font-mono text-xs md:text-sm font-semibold tracking-[0.2em] transition-colors duration-300 uppercase ${
+            theme === 'light' ? 'text-slate-900 group-hover:text-red-600' : 'text-white group-hover:text-red-500'
+          }`}
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           MOHANA PRASATH
@@ -144,7 +154,11 @@ export default function Navbar() {
         {/* Theme Toggle Button */}
         <button
           onClick={toggleTheme}
-          className="ml-2 p-2 rounded-full border border-white/30 bg-white/10 hover:border-red-500 hover:bg-white/20 transition-all duration-300 text-white shadow-sm flex items-center justify-center"
+          className={`ml-2 p-2 rounded-full border transition-all duration-300 flex items-center justify-center ${
+            theme === 'light'
+              ? 'border-slate-300 bg-white text-slate-800 hover:border-red-500 hover:bg-slate-100 shadow-sm'
+              : 'border-white/30 bg-white/10 text-white hover:border-red-500 hover:bg-white/20 shadow-sm'
+          }`}
           title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
           aria-label="Toggle theme"
         >
@@ -155,7 +169,7 @@ export default function Navbar() {
             </svg>
           ) : (
             /* Moon Icon for Dark mode */
-            <svg className="w-4 h-4 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="w-4 h-4 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
             </svg>
           )}
@@ -165,24 +179,26 @@ export default function Navbar() {
       {/* Mobile Hamburger Button */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="relative z-50 md:hidden p-2 text-white focus:outline-none"
+        className={`relative z-50 md:hidden p-2 focus:outline-none ${
+          theme === 'light' ? 'text-slate-900' : 'text-white'
+        }`}
         aria-label="Toggle menu"
       >
         <div className="w-6 h-5 flex flex-col justify-between">
           <span
-            className={`w-full h-0.5 bg-white transition-transform duration-300 ${
-              menuOpen ? 'rotate-45 translate-y-2.5' : ''
-            }`}
+            className={`w-full h-0.5 transition-transform duration-300 ${
+              theme === 'light' ? 'bg-slate-900' : 'bg-white'
+            } ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`}
           />
           <span
-            className={`w-full h-0.5 bg-white transition-opacity duration-300 ${
-              menuOpen ? 'opacity-0' : ''
-            }`}
+            className={`w-full h-0.5 transition-opacity duration-300 ${
+              theme === 'light' ? 'bg-slate-900' : 'bg-white'
+            } ${menuOpen ? 'opacity-0' : ''}`}
           />
           <span
-            className={`w-full h-0.5 bg-white transition-transform duration-300 ${
-              menuOpen ? '-rotate-45 -translate-y-2.5' : ''
-            }`}
+            className={`w-full h-0.5 transition-transform duration-300 ${
+              theme === 'light' ? 'bg-slate-900' : 'bg-white'
+            } ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`}
           />
         </div>
       </button>
@@ -191,7 +207,9 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 top-[64px] z-40 bg-bg/98 backdrop-blur-2xl md:hidden flex flex-col justify-center px-8 py-12"
+            className={`fixed inset-0 top-[64px] z-40 backdrop-blur-2xl md:hidden flex flex-col justify-center px-8 py-12 ${
+              theme === 'light' ? 'bg-slate-50/98 text-slate-900' : 'bg-bg/98 text-white'
+            }`}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -204,18 +222,24 @@ export default function Navbar() {
                   <button
                     key={id}
                     onClick={() => scrollTo(id)}
-                    className="flex items-center justify-between text-left group border-b border-white/10 pb-4"
+                    className={`flex items-center justify-between text-left group border-b pb-4 ${
+                      theme === 'light' ? 'border-slate-200' : 'border-white/10'
+                    }`}
                   >
                     <span
                       className={`text-2xl tracking-[0.2em] font-mono uppercase transition-colors duration-300 ${
-                        isActive ? 'text-red-600 font-bold' : 'text-white/80 group-hover:text-white'
+                        isActive
+                          ? 'text-red-600'
+                          : theme === 'light'
+                          ? 'text-slate-900 group-hover:text-red-600'
+                          : 'text-white group-hover:text-red-500'
                       }`}
                       style={{ fontFamily: "'JetBrains Mono', monospace" }}
                     >
                       {label}
                     </span>
                     <span
-                      className="font-mono text-xs text-white/40 tracking-widest"
+                      className="text-xs font-mono text-red-500"
                       style={{ fontFamily: "'JetBrains Mono', monospace" }}
                     >
                       0{index + 1}
