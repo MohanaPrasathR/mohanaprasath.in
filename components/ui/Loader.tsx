@@ -22,18 +22,18 @@ export default function Loader({ onComplete }: LoaderProps) {
       gsap.set([logoRef.current, nameRef.current, lineRef.current], {
         autoAlpha: 0,
       });
-      gsap.set(logoRef.current, { scale: 0.85, y: 20 });
-      gsap.set(nameRef.current, { y: 24 });
-      gsap.set(lineRef.current, { scaleX: 0, transformOrigin: 'left center' });
+      gsap.set(logoRef.current, { scale: 1.35, y: 15 });
+      gsap.set(nameRef.current, { y: 20 });
+      gsap.set(lineRef.current, { scaleX: 0, transformOrigin: 'center center' });
 
-      // ── 2. Logo draws in ──────────────────────────────────────────
+      // ── 2. Logo power impact entry ─────────────────────────
       tl.to(logoRef.current, {
         autoAlpha: 1,
         scale: 1,
         y: 0,
-        duration: 1.1,
-        ease: 'expo.out',
-        delay: 0.2,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: 0.15,
       });
 
       // ── 3. Gold line expands ──────────────────────────────────────
@@ -106,52 +106,45 @@ export default function Loader({ onComplete }: LoaderProps) {
         }}
       />
 
-      {/* ── Monogram SVG ── */}
+      {/* ── Ultra-Bold Khabib Style Monogram SVG ── */}
       <svg
         ref={logoRef}
-        viewBox="0 0 160 120"
+        viewBox="0 0 200 130"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ width: 'clamp(110px, 20vw, 180px)', marginBottom: '1.5rem' }}
-        aria-label="MP monogram"
+        className="w-[clamp(140px,24vw,240px)] mb-6 drop-shadow-[0_0_25px_rgba(220,38,38,0.6)]"
+        aria-label="MP Khabib Style Bold Monogram"
       >
-        {/* M */}
+        {/* M - Heavy Bold Block */}
         <path
-          d="M10 100 L10 20 L40 70 L70 20 L70 100"
-          stroke="#F7F7F5"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d="M16 110 V20 L62 78 L108 20 V110"
+          stroke="#F8FAFC"
+          strokeWidth="16"
+          strokeLinecap="square"
+          strokeLinejoin="miter"
           fill="none"
         />
-        {/* P */}
+        {/* P - Heavy Bold Block */}
         <path
-          d="M90 100 L90 20"
-          stroke="#F7F7F5"
-          strokeWidth="2.5"
-          strokeLinecap="round"
+          d="M136 110 V20 H176 C196 20 196 68 176 68 H136"
+          stroke="#F8FAFC"
+          strokeWidth="16"
+          strokeLinecap="square"
+          strokeLinejoin="miter"
           fill="none"
         />
-        <path
-          d="M90 20 L125 20 Q150 20 150 47 Q150 74 125 74 L90 74"
-          stroke="#F7F7F5"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-        {/* Gold accent dot */}
-        <circle cx="80" cy="110" r="2.5" fill="#D4AF37" />
+        {/* Red Accent Power Block */}
+        <rect x="115" y="96" width="14" height="14" fill="#DC2626" rx="2" />
       </svg>
 
-      {/* ── Gold separator line ── */}
+      {/* ── Red separator power line ── */}
       <div
         ref={lineRef}
         style={{
-          width: 'clamp(80px, 14vw, 140px)',
-          height: '1px',
+          width: 'clamp(100px, 18vw, 160px)',
+          height: '2px',
           background:
-            'linear-gradient(90deg, transparent, #D4AF37 30%, #D4AF37 70%, transparent)',
+            'linear-gradient(90deg, transparent, #DC2626 30%, #DC2626 70%, transparent)',
           marginBottom: '1.4rem',
         }}
       />
@@ -159,16 +152,13 @@ export default function Loader({ onComplete }: LoaderProps) {
       {/* ── Name label ── */}
       <div ref={nameRef} style={{ textAlign: 'center' }}>
         <p
+          className="font-mono text-xs md:text-sm font-bold tracking-[0.4em] text-white uppercase"
           style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 'clamp(0.6rem, 1.4vw, 0.78rem)',
-            letterSpacing: '0.35em',
-            color: '#9A9A9A',
-            textTransform: 'uppercase',
             lineHeight: 1,
           }}
         >
-          Mohana Prasath
+          MOHANA PRASATH
         </p>
       </div>
     </div>

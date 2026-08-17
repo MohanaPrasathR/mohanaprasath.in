@@ -112,38 +112,33 @@ export default function Navbar() {
             {/* Ambient inner red glow */}
             <div className="absolute inset-0 bg-gradient-to-tr from-red-600/30 via-transparent to-amber-500/20 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
 
-            {/* Custom Sleek Vector Monogram SVG */}
+            {/* Custom Ultra-Bold Khabib Style Monogram SVG */}
             <svg
-              viewBox="0 0 160 120"
+              viewBox="0 0 200 130"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className="w-7 h-7 relative z-10 transition-transform duration-500 group-hover:scale-110"
             >
-              {/* M path */}
+              {/* M - Heavy Bold Block */}
               <path
-                d="M12 100 L12 20 L42 70 L72 20 L72 100"
+                d="M16 110 V20 L62 78 L108 20 V110"
                 stroke="#F8FAFC"
-                strokeWidth="7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeWidth="18"
+                strokeLinecap="square"
+                strokeLinejoin="miter"
+                fill="none"
               />
-              {/* P stem */}
+              {/* P - Heavy Bold Block */}
               <path
-                d="M96 100 L96 20"
+                d="M136 110 V20 H176 C196 20 196 68 176 68 H136"
                 stroke="#F8FAFC"
-                strokeWidth="7"
-                strokeLinecap="round"
+                strokeWidth="18"
+                strokeLinecap="square"
+                strokeLinejoin="miter"
+                fill="none"
               />
-              {/* P curve */}
-              <path
-                d="M96 20 L128 20 Q152 20 152 47 Q152 74 128 74 L96 74"
-                stroke="#F8FAFC"
-                strokeWidth="7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              {/* Red Accent Dot */}
-              <circle cx="84" cy="108" r="7" fill="#DC2626" />
+              {/* Red Accent Power Block */}
+              <rect x="115" y="96" width="14" height="14" fill="#DC2626" rx="2" />
             </svg>
           </div>
         </div>
