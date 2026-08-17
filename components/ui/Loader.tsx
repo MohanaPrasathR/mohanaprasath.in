@@ -77,23 +77,61 @@ export default function Loader({ onComplete }: LoaderProps) {
         }}
       />
 
-      {/* ── Arman Style White Shield Crest MP Monogram ── */}
+      {/* ── Authentic Solid White Shield Crest MP Monogram ── */}
       <svg
         ref={logoRef}
-        viewBox="0 0 200 160"
+        viewBox="0 0 200 240"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[clamp(150px,26vw,260px)] filter drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]"
-        aria-label="Arman Style White Shield Crest MP Monogram"
+        className="w-[clamp(150px,26vw,260px)] filter drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]"
+        aria-label="Solid White Shield Crest MP Monogram"
       >
-        {/* Left Bar of M */}
-        <path d="M 10 10 H 34 V 82 L 10 70 Z" fill="#FFFFFF" />
-        
-        {/* Center V & Right Bar of M */}
-        <path d="M 40 10 H 58 L 72 52 L 86 10 H 104 V 127 L 84 116 V 38 L 72 74 L 60 38 V 94 L 40 82 Z" fill="#FFFFFF" />
-        
-        {/* P Outer Loop & Stem (Tapered to Shield Bottom) */}
-        <path d="M 112 10 H 190 V 72 H 138 V 147 L 112 133 Z M 138 26 H 168 V 52 H 138 Z" fillRule="evenodd" fill="#FFFFFF" />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="
+            M 20 20
+            H 180
+            V 140
+            L 100 220
+            L 20 140
+            Z
+
+            M 20 42 H 180 V 48 H 20 Z
+
+            M 50 60
+            L 70 120
+            L 90 60
+            H 78
+            L 70 95
+            L 62 60
+            Z
+
+            M 96 20 H 104 V 165 L 96 157 Z
+
+            M 124 60
+            H 160
+            V 95
+            H 124
+            Z
+
+            M 124 112
+            H 180
+            V 140
+            L 100 220
+            V 180
+            L 124 156
+            Z
+
+            M 20 140
+            L 100 220
+            V 180
+            L 46 126
+            H 20
+            Z
+          "
+          fill="#FFFFFF"
+        />
       </svg>
     </div>
   );

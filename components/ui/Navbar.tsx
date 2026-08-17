@@ -112,16 +112,27 @@ export default function Navbar() {
             {/* Ambient inner red glow */}
             <div className="absolute inset-0 bg-gradient-to-tr from-red-600/30 via-transparent to-amber-500/20 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
 
-            {/* Arman Style White Shield Crest MP Monogram */}
+            {/* Solid White Shield Crest MP Monogram */}
             <svg
-              viewBox="0 0 200 160"
+              viewBox="0 0 200 240"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className="w-7 h-7 relative z-10 transition-transform duration-500 group-hover:scale-110"
             >
-              <path d="M 10 10 H 34 V 82 L 10 70 Z" fill="#FFFFFF" />
-              <path d="M 40 10 H 58 L 72 52 L 86 10 H 104 V 127 L 84 116 V 38 L 72 74 L 60 38 V 94 L 40 82 Z" fill="#FFFFFF" />
-              <path d="M 112 10 H 190 V 72 H 138 V 147 L 112 133 Z M 138 26 H 168 V 52 H 138 Z" fillRule="evenodd" fill="#FFFFFF" />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="
+                  M 20 20 H 180 V 140 L 100 220 L 20 140 Z
+                  M 20 42 H 180 V 48 H 20 Z
+                  M 50 60 L 70 120 L 90 60 H 78 L 70 95 L 62 60 Z
+                  M 96 20 H 104 V 165 L 96 157 Z
+                  M 124 60 H 160 V 95 H 124 Z
+                  M 124 112 H 180 V 140 L 100 220 V 180 L 124 156 Z
+                  M 20 140 L 100 220 V 180 L 46 126 H 20 Z
+                "
+                fill="#FFFFFF"
+              />
             </svg>
           </div>
         </div>
