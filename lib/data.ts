@@ -25,7 +25,7 @@ export const projects = [
     title: 'TechMobile — E-Commerce Store',
     category: 'Full Stack · AI',
     year: '2025',
-    demoUrl: '/demos/techmobile',
+    demoUrl: 'https://mobilesale-ten.vercel.app',
     githubUrl: 'https://github.com/MohanaPrasathR/ec-mobile',
     description:
       'A responsive e-commerce web app for flagship smartphone sales with real-time product search, brand filtering, shopping cart management, and a modern dark-themed UI.',
@@ -55,7 +55,7 @@ export const projects = [
     title: 'Stadium Management System',
     category: 'Database Management Systems',
     year: '2024',
-    demoUrl: '/demos/stadium',
+    demoUrl: 'https://stadium-management-omega.vercel.app',
     githubUrl: 'https://github.com/MohanaPrasathR/Stadium-Management-System',
     description:
       'A stadium management system for ticket booking and event scheduling, with optimised relational schemas and a Python-based GUI.',
