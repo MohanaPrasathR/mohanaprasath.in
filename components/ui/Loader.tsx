@@ -77,42 +77,14 @@ export default function Loader({ onComplete }: LoaderProps) {
         }}
       />
 
-      {/* ── 1:1 Pixel-Perfect User MP Shield Monogram Vector SVG ── */}
-      <svg
+      {/* ── Exact User-Uploaded logomp.png Image ── */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         ref={logoRef}
-        viewBox="0 0 100 120"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-[clamp(160px,28vw,280px)] filter drop-shadow-[0_0_25px_rgba(255,255,255,0.45)]"
-        aria-label="Exact User MP Shield Monogram"
-      >
-        {/* M Top Bar */}
-        <rect x="10" y="10" width="38.5" height="12" fill="#FFFFFF" />
-
-        {/* P Top Bar */}
-        <rect x="51.5" y="10" width="38.5" height="12" fill="#FFFFFF" />
-
-        {/* M Leftmost Pillar */}
-        <polygon points="10,26 17.5,26 17.5,90 10,85" fill="#FFFFFF" />
-
-        {/* M Left-Center Leg */}
-        <polygon points="21,26 25.5,26 29.25,43 29.25,97 20.5,92" fill="#FFFFFF" />
-
-        {/* M Right-Center Leg */}
-        <polygon points="29.25,43 33,26 38,26 38,102 29.25,97" fill="#FFFFFF" />
-
-        {/* M Rightmost Pillar */}
-        <polygon points="41,26 48.5,26 48.5,109 41,104" fill="#FFFFFF" />
-
-        {/* P Main Stem */}
-        <polygon points="51.5,26 63,26 63,98 50,109 51.5,26" fill="#FFFFFF" />
-
-        {/* P Loop Top Bar */}
-        <rect x="63" y="26" width="27" height="14" fill="#FFFFFF" />
-
-        {/* P Loop Chamfered Wall & Return */}
-        <polygon points="78,40 90,40 90,68 74,84 63,84 63,70 78,70" fill="#FFFFFF" />
-      </svg>
+        src="/logomp.png"
+        alt="MP Shield Monogram Logo"
+        className="w-[clamp(160px,28vw,280px)] h-auto object-contain filter drop-shadow-[0_0_25px_rgba(255,255,255,0.45)]"
+      />
     </div>
   );
 }
