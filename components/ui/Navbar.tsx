@@ -112,33 +112,31 @@ export default function Navbar() {
             {/* Ambient inner red glow */}
             <div className="absolute inset-0 bg-gradient-to-tr from-red-600/30 via-transparent to-amber-500/20 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
 
-            {/* Custom Ultra-Bold Khabib Style Monogram SVG */}
+            {/* Pure White Sharp 3D Monogram Vector SVG */}
             <svg
-              viewBox="0 0 200 130"
+              viewBox="0 0 260 200"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className="w-7 h-7 relative z-10 transition-transform duration-500 group-hover:scale-110"
             >
-              {/* M - Heavy Bold Block */}
               <path
-                d="M16 110 V20 L62 78 L108 20 V110"
+                d="M 28 55 L 50 32 H 78 L 62 55 V 140 L 42 162 H 28 V 55 Z
+                   M 62 55 L 122 135 L 182 55 V 140 L 162 162 H 146 V 55 Z
+                   M 162 55 L 180 32 H 222 C 244 32 254 46 254 68 C 254 90 244 104 222 104 H 192 V 148 L 172 168 H 156 V 55 Z
+                   M 192 52 H 218 C 230 52 236 58 236 68 C 236 78 230 84 218 84 H 192 V 52 Z"
+                fill="#FFFFFF"
                 stroke="#F8FAFC"
-                strokeWidth="18"
-                strokeLinecap="square"
+                strokeWidth="3"
                 strokeLinejoin="miter"
-                fill="none"
               />
-              {/* P - Heavy Bold Block */}
               <path
-                d="M136 110 V20 H176 C196 20 196 68 176 68 H136"
-                stroke="#F8FAFC"
-                strokeWidth="18"
-                strokeLinecap="square"
-                strokeLinejoin="miter"
-                fill="none"
+                d="M 36 58 L 48 44 H 68 L 56 58 V 132 L 44 148 H 36 Z
+                   M 56 58 L 122 126 L 174 58 V 132 L 164 148 H 154 V 58 Z
+                   M 170 58 L 182 44 H 214 C 230 44 238 52 238 68 C 238 84 230 92 214 92 H 184 V 138 L 170 152 Z
+                   M 184 60 H 210 C 220 60 224 63 224 68 C 224 73 220 76 210 76 H 184 Z"
+                fill="#FFFFFF"
+                opacity="0.9"
               />
-              {/* Red Accent Power Block */}
-              <rect x="115" y="96" width="14" height="14" fill="#DC2626" rx="2" />
             </svg>
           </div>
         </div>
