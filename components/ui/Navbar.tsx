@@ -93,36 +93,81 @@ export default function Navbar() {
         }}
       />
 
-      {/* Circular MP Monogram Logo + Name */}
+      {/* Outstanding Glowing MP Monogram Emblem + Brand Name */}
       <button
         onClick={() => scrollTo('hero')}
-        className="relative z-10 flex items-center gap-3 group shrink-0"
+        className="relative z-10 flex items-center gap-3.5 group shrink-0"
         aria-label="Back to top"
       >
-        <div
-          className={`w-9 h-9 md:w-10 md:h-10 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm ${
-            theme === 'light'
-              ? 'border-slate-400/60 bg-slate-200/80 text-slate-900 shadow-sm group-hover:border-slate-900 group-hover:scale-105'
-              : 'border-white/60 bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.2)] group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] group-hover:scale-105'
-          }`}
-        >
+        {/* Outer Animated Glow Ring & Gradient Border */}
+        <div className="relative p-[1.5px] rounded-xl bg-gradient-to-br from-red-600 via-red-500 to-amber-500 shadow-[0_0_18px_rgba(220,38,38,0.4)] group-hover:shadow-[0_0_30px_rgba(220,38,38,0.85)] group-hover:scale-105 transition-all duration-500">
+          {/* Inner Emblem Box */}
+          <div
+            className={`w-10 h-10 md:w-11 md:h-11 rounded-[10.5px] flex items-center justify-center relative overflow-hidden transition-colors duration-300 ${
+              theme === 'light'
+                ? 'bg-slate-900 text-white'
+                : 'bg-neutral-950/95 text-white backdrop-blur-md'
+            }`}
+          >
+            {/* Ambient inner red glow */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-red-600/30 via-transparent to-amber-500/20 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+
+            {/* Custom Sleek Vector Monogram SVG */}
+            <svg
+              viewBox="0 0 160 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-7 h-7 relative z-10 transition-transform duration-500 group-hover:scale-110"
+            >
+              {/* M path */}
+              <path
+                d="M12 100 L12 20 L42 70 L72 20 L72 100"
+                stroke="#F8FAFC"
+                strokeWidth="7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* P stem */}
+              <path
+                d="M96 100 L96 20"
+                stroke="#F8FAFC"
+                strokeWidth="7"
+                strokeLinecap="round"
+              />
+              {/* P curve */}
+              <path
+                d="M96 20 L128 20 Q152 20 152 47 Q152 74 128 74 L96 74"
+                stroke="#F8FAFC"
+                strokeWidth="7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {/* Red Accent Dot */}
+              <circle cx="84" cy="108" r="7" fill="#DC2626" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Brand Name & Subtitle Badge */}
+        <div className="flex flex-col text-left">
           <span
-            className={`font-mono text-xs md:text-sm font-bold tracking-wider ${
-              theme === 'light' ? 'text-slate-900' : 'text-white'
+            className={`font-mono text-xs md:text-sm font-bold tracking-[0.22em] uppercase transition-colors duration-300 ${
+              theme === 'light'
+                ? 'text-slate-900 group-hover:text-red-600'
+                : 'text-white group-hover:text-red-500'
             }`}
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
-            MP
+            MOHANA PRASATH
+          </span>
+          <span
+            className="text-[9px] font-mono tracking-[0.22em] text-red-500 uppercase font-semibold flex items-center gap-1.5"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+            AI &amp; FULL STACK
           </span>
         </div>
-        <span
-          className={`font-mono text-xs md:text-sm font-semibold tracking-[0.2em] transition-colors duration-300 uppercase ${
-            theme === 'light' ? 'text-slate-900 group-hover:text-red-600' : 'text-white group-hover:text-red-500'
-          }`}
-          style={{ fontFamily: "'JetBrains Mono', monospace" }}
-        >
-          MOHANA PRASATH
-        </span>
       </button>
 
       {/* Desktop Navigation Links + Theme Toggle */}
