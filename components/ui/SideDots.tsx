@@ -43,7 +43,7 @@ export default function SideDots() {
 
   return (
     <div
-      className="fixed right-6 top-1/2 -translate-y-1/2 z-[300] flex flex-col items-center gap-4"
+      className="fixed right-6 top-1/2 -translate-y-1/2 z-[300] hidden md:flex flex-col items-center gap-4"
       aria-label="Section navigation"
     >
       {sections.map(({ id, label }) => {

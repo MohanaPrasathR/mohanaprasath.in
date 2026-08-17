@@ -125,11 +125,14 @@ html.lenis body {
     font-size: 14px;
   }
   .hero-title {
-    font-size: clamp(2.5rem, 13vw, 4.2rem);
+    font-size: clamp(2.4rem, 11vw, 3.8rem);
     line-height: 0.95;
   }
   .section-title {
-    font-size: clamp(2rem, 8vw, 3.2rem);
+    font-size: clamp(1.9rem, 7.5vw, 3rem);
+  }
+  * {
+    cursor: auto !important;
   }
 }
 
