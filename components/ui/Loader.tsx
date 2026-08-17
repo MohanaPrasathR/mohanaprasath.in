@@ -77,25 +77,23 @@ export default function Loader({ onComplete }: LoaderProps) {
         }}
       />
 
-      {/* ── Crystal Clear Solid White Bold MP Monogram ── */}
+      {/* ── Arman Style White Shield Crest MP Monogram ── */}
       <svg
         ref={logoRef}
-        viewBox="0 0 230 140"
+        viewBox="0 0 200 160"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[clamp(160px,28vw,280px)] filter drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
-        aria-label="Crystal Clear Bold MP Monogram"
+        className="w-[clamp(150px,26vw,260px)] filter drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]"
+        aria-label="Arman Style White Shield Crest MP Monogram"
       >
-        {/* Crisp Solid M */}
-        <path
-          d="M 16 120 V 20 H 34 L 70 82 L 106 20 H 124 V 120 H 104 V 58 L 75 108 H 65 L 36 58 V 120 H 16 Z"
-          fill="#FFFFFF"
-        />
-        {/* Crisp Solid P */}
-        <path
-          d="M 140 120 V 20 H 186 C 206 20 216 32 216 54 C 216 76 206 88 186 88 H 162 V 120 H 140 Z M 162 40 V 68 H 184 C 192 68 196 63 196 54 C 196 45 192 40 184 40 H 162 Z"
-          fill="#FFFFFF"
-        />
+        {/* Left Bar of M */}
+        <path d="M 10 10 H 34 V 82 L 10 70 Z" fill="#FFFFFF" />
+        
+        {/* Center V & Right Bar of M */}
+        <path d="M 40 10 H 58 L 72 52 L 86 10 H 104 V 127 L 84 116 V 38 L 72 74 L 60 38 V 94 L 40 82 Z" fill="#FFFFFF" />
+        
+        {/* P Outer Loop & Stem (Tapered to Shield Bottom) */}
+        <path d="M 112 10 H 190 V 72 H 138 V 147 L 112 133 Z M 138 26 H 168 V 52 H 138 Z" fillRule="evenodd" fill="#FFFFFF" />
       </svg>
     </div>
   );
