@@ -1,10 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 527 527" fill="#FFFFFF">
-  <rect width="527" height="527" rx="80" fill="#0A0F18"/>
-  <g transform="translate(0, 0)">
-    <path d="M 40 40 H 240 V 380 L 140 450 L 40 380 Z" />
-    <polygon points="95,110 140,260 185,110 185,340 140,375 95,340" />
-    <polygon points="275,40 335,40 335,450 275,405" />
-    <polygon points="335,40 487,40 487,240 415,310 335,310" />
-    <polygon points="385,100 435,100 435,200 385,240" />
+  <rect width="527" height="527" rx="80" fill="#060608"/>
+  <g transform="translate(10, 10) scale(0.96)">
+    <path d="M 30 40 H 240 V 100 H 100 V 420 L 30 380 Z" />
+    <polygon points="100,120 170,260 240,120 240,405 170,445 100,405" />
+    <polygon points="277,40 345,40 345,450 277,410" />
+    <path d="M 345 40 H 497 V 240 L 415 315 H 345 Z M 345 100 H 437 V 195 L 395 240 H 345 Z" fillRule="evenodd" />
   </g>
 </svg>

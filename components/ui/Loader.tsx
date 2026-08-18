@@ -11,10 +11,10 @@ export default function Loader({ onComplete }: LoaderProps) {
   const [filled, setFilled] = useState(false);
 
   useEffect(() => {
-    // 1. Fill solid white after stroke drawing finishes
+    // 1. Fill solid white after stroke line drawing finishes
     const fillTimer = setTimeout(() => {
       setFilled(true);
-    }, 1600);
+    }, 1500);
 
     // 2. Complete loader after red curtain wipe finishes
     const completeTimer = setTimeout(() => {
@@ -54,52 +54,48 @@ export default function Loader({ onComplete }: LoaderProps) {
           id="arman-loader-svg"
           viewBox="0 0 527 527"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-[125px] h-[125px] md:w-[155px] md:h-[155px] filter drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+          className="w-[125px] h-[125px] md:w-[155px] md:h-[155px] filter drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]"
           aria-label="Arman Style Animated MP Monogram"
         >
-          {/* Path 1: M Outer Frame */}
+          {/* Path 1: M Left Pillar & Header */}
           <path
-            d="M 40 40 H 240 V 380 L 140 450 L 40 380 Z"
+            d="M 30 40 H 240 V 100 H 100 V 420 L 30 380 Z"
             stroke="#FFFFFF"
-            strokeWidth="16"
+            strokeWidth="14"
+            strokeLinejoin="miter"
             fill={filled ? '#FFFFFF' : 'none'}
             className="arman-draw-path-1"
           />
 
-          {/* Path 2: M Center V Chevron */}
+          {/* Path 2: M Center Chevron V */}
           <polygon
-            points="95,110 140,260 185,110 185,340 140,375 95,340"
+            points="100,120 170,260 240,120 240,405 170,445 100,405"
             stroke="#FFFFFF"
-            strokeWidth="16"
+            strokeWidth="14"
+            strokeLinejoin="miter"
             fill={filled ? '#FFFFFF' : 'none'}
             className="arman-draw-path-2"
           />
 
           {/* Path 3: P Main Stem */}
           <polygon
-            points="275,40 335,40 335,450 275,405"
+            points="277,40 345,40 345,450 277,410"
             stroke="#FFFFFF"
-            strokeWidth="16"
+            strokeWidth="14"
+            strokeLinejoin="miter"
             fill={filled ? '#FFFFFF' : 'none'}
             className="arman-draw-path-3"
           />
 
-          {/* Path 4: P Outer Loop */}
-          <polygon
-            points="335,40 487,40 487,240 415,310 335,310"
+          {/* Path 4: P Outer Loop & Inner Cutout */}
+          <path
+            d="M 345 40 H 497 V 240 L 415 315 H 345 Z M 345 100 H 437 V 195 L 395 240 H 345 Z"
+            fillRule="evenodd"
             stroke="#FFFFFF"
-            strokeWidth="16"
+            strokeWidth="14"
+            strokeLinejoin="miter"
             fill={filled ? '#FFFFFF' : 'none'}
             className="arman-draw-path-4"
-          />
-
-          {/* Path 5: P Inner Window */}
-          <polygon
-            points="385,100 435,100 435,200 385,240"
-            stroke="#FFFFFF"
-            strokeWidth="16"
-            fill={filled ? '#FFFFFF' : 'none'}
-            className="arman-draw-path-5"
           />
         </svg>
 

@@ -93,40 +93,24 @@ export default function Navbar() {
         }}
       />
 
-      {/* Outstanding Glowing MP Monogram Emblem + Brand Name */}
+      {/* Arman-Style Top Left Clean Vector Monogram Logo + Brand Name */}
       <button
         onClick={() => scrollTo('hero')}
         className="relative z-10 flex items-center gap-3.5 group shrink-0"
         aria-label="Back to top"
       >
-        {/* Outer Animated Glow Ring & Gradient Border */}
-        <div className="relative p-[1.5px] rounded-xl bg-gradient-to-br from-red-600 via-red-500 to-amber-500 shadow-[0_0_18px_rgba(220,38,38,0.4)] group-hover:shadow-[0_0_30px_rgba(220,38,38,0.85)] group-hover:scale-105 transition-all duration-500">
-          {/* Inner Emblem Box */}
-          <div
-            className={`w-10 h-10 md:w-11 md:h-11 rounded-[10.5px] flex items-center justify-center relative overflow-hidden transition-colors duration-300 ${
-              theme === 'light'
-                ? 'bg-slate-900 text-white'
-                : 'bg-neutral-950/95 text-white backdrop-blur-md'
-            }`}
-          >
-            {/* Ambient inner red glow */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-red-600/30 via-transparent to-amber-500/20 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-
-            {/* Arman-Style Solid White MP Monogram Vector SVG */}
-            <svg
-              viewBox="0 0 527 527"
-              fill={theme === 'light' ? '#0F172A' : '#FFFFFF'}
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 relative z-10 transition-transform duration-500 group-hover:scale-110"
-            >
-              <path d="M 40 40 H 240 V 380 L 140 450 L 40 380 Z" />
-              <polygon points="95,110 140,260 185,110 185,340 140,375 95,340" />
-              <polygon points="275,40 335,40 335,450 275,405" />
-              <polygon points="335,40 487,40 487,240 415,310 335,310" />
-              <polygon points="385,100 435,100 435,200 385,240" />
-            </svg>
-          </div>
-        </div>
+        {/* Clean Vector Monogram SVG Logo */}
+        <svg
+          viewBox="0 0 527 527"
+          fill={theme === 'light' ? '#0F172A' : '#FFFFFF'}
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-7 h-7 md:w-8 md:h-8 relative z-10 transition-transform duration-300 group-hover:scale-110"
+        >
+          <path d="M 30 40 H 240 V 100 H 100 V 420 L 30 380 Z" />
+          <polygon points="100,120 170,260 240,120 240,405 170,445 100,405" />
+          <polygon points="277,40 345,40 345,450 277,410" />
+          <path d="M 345 40 H 497 V 240 L 415 315 H 345 Z M 345 100 H 437 V 195 L 395 240 H 345 Z" fillRule="evenodd" />
+        </svg>
 
         {/* Brand Name & Subtitle Badge */}
         <div className="flex flex-col text-left">
