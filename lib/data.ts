@@ -12,7 +12,7 @@ export const personal = {
   availability: 'Open to opportunities',
   email: 'mr0928@srmist.edu.in',
   phone: '+91 78453 79301',
-  resumeUrl: '/resume/Mohana_Prasath_Resume.pdf',
+  resumeUrl: '/Mohana_Prasath_Resume.pdf',
   socials: [
     { label: 'GitHub', href: 'https://github.com/MohanaPrasathR' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mohana-prasath-r-6268b132a/' },

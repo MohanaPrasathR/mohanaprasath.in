@@ -14,12 +14,21 @@ export default function ResumePage() {
         >
           ← Back to Portfolio
         </Link>
-        <button
-          onClick={() => window.print()}
-          className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-semibold rounded-lg shadow-lg transition-all"
-        >
-          Print / Save as PDF 📄
-        </button>
+        <div className="flex items-center gap-3">
+          <a
+            href="/Mohana_Prasath_Resume.pdf"
+            download="Mohana_Prasath_Resume.pdf"
+            className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-semibold rounded-lg shadow-lg transition-all flex items-center gap-2"
+          >
+            Download PDF 📥
+          </a>
+          <button
+            onClick={() => window.print()}
+            className="px-4 py-2 border border-white/30 hover:bg-white/10 text-white font-mono text-xs font-semibold rounded-lg transition-all"
+          >
+            Print 📄
+          </button>
+        </div>
       </div>
 
       {/* Resume Card */}
