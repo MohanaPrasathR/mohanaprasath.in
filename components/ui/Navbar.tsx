@@ -112,13 +112,19 @@ export default function Navbar() {
             {/* Ambient inner red glow */}
             <div className="absolute inset-0 bg-gradient-to-tr from-red-600/30 via-transparent to-amber-500/20 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
 
-            {/* Exact User-Uploaded logomp.png Image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logomp.png"
-              alt="MP Shield Monogram Logo"
-              className="w-7 h-7 object-contain relative z-10 transition-transform duration-500 group-hover:scale-110"
-            />
+            {/* Arman-Style Solid White MP Monogram Vector SVG */}
+            <svg
+              viewBox="0 0 527 527"
+              fill={theme === 'light' ? '#0F172A' : '#FFFFFF'}
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6 relative z-10 transition-transform duration-500 group-hover:scale-110"
+            >
+              <path d="M 40 40 H 240 V 380 L 140 450 L 40 380 Z" />
+              <polygon points="95,110 140,260 185,110 185,340 140,375 95,340" />
+              <polygon points="275,40 335,40 335,450 275,405" />
+              <polygon points="335,40 487,40 487,240 415,310 335,310" />
+              <polygon points="385,100 435,100 435,200 385,240" />
+            </svg>
           </div>
         </div>
 

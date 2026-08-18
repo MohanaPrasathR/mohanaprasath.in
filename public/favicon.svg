@@ -1,4 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120">
-  <rect width="100" height="120" rx="16" fill="#0A0F18"/>
-  <image href="/logomp.png" x="5" y="5" width="90" height="110"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 527 527" fill="#FFFFFF">
+  <rect width="527" height="527" rx="80" fill="#0A0F18"/>
+  <g transform="translate(0, 0)">
+    <path d="M 40 40 H 240 V 380 L 140 450 L 40 380 Z" />
+    <polygon points="95,110 140,260 185,110 185,340 140,375 95,340" />
+    <polygon points="275,40 335,40 335,450 275,405" />
+    <polygon points="335,40 487,40 487,240 415,310 335,310" />
+    <polygon points="385,100 435,100 435,200 385,240" />
+  </g>
 </svg>
