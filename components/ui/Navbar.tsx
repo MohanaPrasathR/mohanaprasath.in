@@ -102,14 +102,18 @@ export default function Navbar() {
         {/* Clean Vector Monogram SVG Logo */}
         <svg
           viewBox="0 0 527 527"
-          fill={theme === 'light' ? '#0F172A' : '#FFFFFF'}
+          stroke={theme === 'light' ? '#0F172A' : '#FFFFFF'}
+          strokeWidth="16"
+          strokeLinejoin="miter"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="w-7 h-7 md:w-8 md:h-8 relative z-10 transition-transform duration-300 group-hover:scale-110"
         >
-          <path d="M 30 40 H 240 V 100 H 100 V 420 L 30 380 Z" />
-          <polygon points="100,120 170,260 240,120 240,405 170,445 100,405" />
-          <polygon points="277,40 345,40 345,450 277,410" />
-          <path d="M 345 40 H 497 V 240 L 415 315 H 345 Z M 345 100 H 437 V 195 L 395 240 H 345 Z" fillRule="evenodd" />
+          <path d="M 40 40 V 390 L 100 425 V 40 Z" />
+          <polygon points="100,130 140,250 180,130 180,375 140,400 100,375" />
+          <path d="M 180 40 H 240 V 390 L 180 425 Z" />
+          <polygon points="287,40 347,40 347,450 287,410" />
+          <path d="M 347 40 H 487 V 230 L 415 295 H 347 Z M 347 95 H 435 V 190 L 395 230 H 347 Z" fillRule="evenodd" />
         </svg>
 
         {/* Brand Name & Subtitle Badge */}

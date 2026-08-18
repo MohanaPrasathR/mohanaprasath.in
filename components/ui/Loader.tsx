@@ -8,22 +8,15 @@ interface LoaderProps {
 
 export default function Loader({ onComplete }: LoaderProps) {
   const [visible, setVisible] = useState(true);
-  const [filled, setFilled] = useState(false);
 
   useEffect(() => {
-    // 1. Fill solid white after stroke line drawing finishes
-    const fillTimer = setTimeout(() => {
-      setFilled(true);
-    }, 1500);
-
-    // 2. Complete loader after red curtain wipe finishes
+    // Complete loader after red curtain wipe finishes (3.0s)
     const completeTimer = setTimeout(() => {
       setVisible(false);
       onComplete();
     }, 3050);
 
     return () => {
-      clearTimeout(fillTimer);
       clearTimeout(completeTimer);
     };
   }, [onComplete]);
@@ -57,45 +50,55 @@ export default function Loader({ onComplete }: LoaderProps) {
           className="w-[125px] h-[125px] md:w-[155px] md:h-[155px] filter drop-shadow-[0_0_25px_rgba(255,255,255,0.4)]"
           aria-label="Arman Style Animated MP Monogram"
         >
-          {/* Path 1: M Left Pillar & Header */}
+          {/* Path 1: M Left Outer Pillar */}
           <path
-            d="M 30 40 H 240 V 100 H 100 V 420 L 30 380 Z"
+            d="M 40 40 V 390 L 100 425 V 40 Z"
             stroke="#FFFFFF"
-            strokeWidth="14"
+            strokeWidth="10"
             strokeLinejoin="miter"
-            fill={filled ? '#FFFFFF' : 'none'}
+            fill="none"
             className="arman-draw-path-1"
           />
 
           {/* Path 2: M Center Chevron V */}
           <polygon
-            points="100,120 170,260 240,120 240,405 170,445 100,405"
+            points="100,130 140,250 180,130 180,375 140,400 100,375"
             stroke="#FFFFFF"
-            strokeWidth="14"
+            strokeWidth="10"
             strokeLinejoin="miter"
-            fill={filled ? '#FFFFFF' : 'none'}
+            fill="none"
             className="arman-draw-path-2"
           />
 
-          {/* Path 3: P Main Stem */}
-          <polygon
-            points="277,40 345,40 345,450 277,410"
+          {/* Path 3: M Right Outer Pillar */}
+          <path
+            d="M 180 40 H 240 V 390 L 180 425 Z"
             stroke="#FFFFFF"
-            strokeWidth="14"
+            strokeWidth="10"
             strokeLinejoin="miter"
-            fill={filled ? '#FFFFFF' : 'none'}
+            fill="none"
             className="arman-draw-path-3"
           />
 
-          {/* Path 4: P Outer Loop & Inner Cutout */}
+          {/* Path 4: P Left Main Stem */}
+          <polygon
+            points="287,40 347,40 347,450 287,410"
+            stroke="#FFFFFF"
+            strokeWidth="10"
+            strokeLinejoin="miter"
+            fill="none"
+            className="arman-draw-path-4"
+          />
+
+          {/* Path 5: P Outer Loop & Chamfer */}
           <path
-            d="M 345 40 H 497 V 240 L 415 315 H 345 Z M 345 100 H 437 V 195 L 395 240 H 345 Z"
+            d="M 347 40 H 487 V 230 L 415 295 H 347 Z M 347 95 H 435 V 190 L 395 230 H 347 Z"
             fillRule="evenodd"
             stroke="#FFFFFF"
-            strokeWidth="14"
+            strokeWidth="10"
             strokeLinejoin="miter"
-            fill={filled ? '#FFFFFF' : 'none'}
-            className="arman-draw-path-4"
+            fill="none"
+            className="arman-draw-path-5"
           />
         </svg>
 
