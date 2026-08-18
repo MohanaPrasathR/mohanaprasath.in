@@ -195,32 +195,59 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Hamburger Button */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className={`relative z-50 md:hidden p-2 focus:outline-none ${
-          theme === 'light' ? 'text-slate-900' : 'text-white'
-        }`}
-        aria-label="Toggle menu"
-      >
-        <div className="w-6 h-5 flex flex-col justify-between">
-          <span
-            className={`w-full h-0.5 transition-transform duration-300 ${
-              theme === 'light' ? 'bg-slate-900' : 'bg-white'
-            } ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`}
-          />
-          <span
-            className={`w-full h-0.5 transition-opacity duration-300 ${
-              theme === 'light' ? 'bg-slate-900' : 'bg-white'
-            } ${menuOpen ? 'opacity-0' : ''}`}
-          />
-          <span
-            className={`w-full h-0.5 transition-transform duration-300 ${
-              theme === 'light' ? 'bg-slate-900' : 'bg-white'
-            } ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`}
-          />
-        </div>
-      </button>
+      {/* Mobile Right Controls: Theme Toggle + Hamburger */}
+      <div className="flex md:hidden items-center gap-2 relative z-50">
+        {/* Mobile Theme Toggle Button */}
+        <button
+          onClick={toggleTheme}
+          className={`p-2 rounded-full border transition-all duration-300 flex items-center justify-center ${
+            theme === 'light'
+              ? 'border-slate-300 bg-white text-slate-800 hover:border-red-500 shadow-sm'
+              : 'border-white/30 bg-white/10 text-white hover:border-red-500 shadow-sm'
+          }`}
+          title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? (
+            /* Sun Icon for Light mode */
+            <svg className="w-4 h-4 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          ) : (
+            /* Moon Icon for Dark mode */
+            <svg className="w-4 h-4 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          )}
+        </button>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className={`p-2 focus:outline-none ${
+            theme === 'light' ? 'text-slate-900' : 'text-white'
+          }`}
+          aria-label="Toggle menu"
+        >
+          <div className="w-6 h-5 flex flex-col justify-between">
+            <span
+              className={`w-full h-0.5 transition-transform duration-300 ${
+                theme === 'light' ? 'bg-slate-900' : 'bg-white'
+              } ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`}
+            />
+            <span
+              className={`w-full h-0.5 transition-opacity duration-300 ${
+                theme === 'light' ? 'bg-slate-900' : 'bg-white'
+              } ${menuOpen ? 'opacity-0' : ''}`}
+            />
+            <span
+              className={`w-full h-0.5 transition-transform duration-300 ${
+                theme === 'light' ? 'bg-slate-900' : 'bg-white'
+              } ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`}
+            />
+          </div>
+        </button>
+      </div>
 
       {/* Mobile Menu Drawer Overlay */}
       <AnimatePresence>
@@ -234,19 +261,19 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               {sections.map(({ id, label }, index) => {
                 const isActive = active === id;
                 return (
                   <button
                     key={id}
                     onClick={() => scrollTo(id)}
-                    className={`flex items-center justify-between text-left group border-b pb-4 ${
+                    className={`flex items-center justify-between text-left group border-b pb-3 ${
                       theme === 'light' ? 'border-slate-200' : 'border-white/10'
                     }`}
                   >
                     <span
-                      className={`text-2xl tracking-[0.2em] font-mono uppercase transition-colors duration-300 ${
+                      className={`text-xl tracking-[0.2em] font-mono uppercase transition-colors duration-300 ${
                         isActive
                           ? 'text-red-600'
                           : theme === 'light'
@@ -266,6 +293,38 @@ export default function Navbar() {
                   </button>
                 );
               })}
+
+              {/* Theme Toggle option inside Mobile Drawer */}
+              <button
+                onClick={toggleTheme}
+                className={`flex items-center justify-between text-left group pt-3 mt-1 border-t ${
+                  theme === 'light' ? 'border-slate-200 text-slate-900' : 'border-white/10 text-white'
+                }`}
+              >
+                <span
+                  className="text-lg tracking-[0.18em] font-mono uppercase flex items-center gap-3"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  {theme === 'dark' ? (
+                    <>
+                      <svg className="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                      Switch to Light Mode
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                      </svg>
+                      Switch to Dark Mode
+                    </>
+                  )}
+                </span>
+                <span className="text-xs font-mono text-red-500 uppercase tracking-widest">
+                  {theme === 'dark' ? 'Light' : 'Dark'}
+                </span>
+              </button>
             </div>
           </motion.div>
         )}
