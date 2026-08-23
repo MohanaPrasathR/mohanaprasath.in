@@ -173,6 +173,24 @@ export const education = [
 export const certifications = [
   {
     id: '01',
+    title: 'SQL (Advanced)',
+    issuer: 'HackerRank',
+    date: 'Aug 2026',
+    credentialId: '782585506b39',
+    credentialUrl: 'https://www.hackerrank.com/certificates/782585506b39',
+    skills: ['SQL', 'Advanced SQL', 'Query Optimization', 'Complex Joins', 'Database Analytics'],
+  },
+  {
+    id: '02',
+    title: 'Selenium WebDriver with Java',
+    issuer: 'TestAutomationU',
+    date: 'Aug 2026',
+    credentialId: 'f5d7edca',
+    credentialUrl: 'https://testautomationu.applitools.com/certificates/f5d7edca',
+    skills: ['Selenium', 'Java', 'Test Automation', 'WebDriver', 'UI Testing'],
+  },
+  {
+    id: '03',
     title: 'Associate Developer Python',
     issuer: 'MongoDB',
     date: 'Apr 2026',
@@ -181,7 +199,7 @@ export const certifications = [
     skills: ['MongoDB', 'Python', 'NoSQL', 'Aggregation Framework', 'Database Architecture'],
   },
   {
-    id: '02',
+    id: '04',
     title: 'Introduction to Machine Learning',
     issuer: 'NPTEL / IIT Kharagpur',
     date: 'Oct 2025',
@@ -190,7 +208,7 @@ export const certifications = [
     skills: ['Machine Learning', 'Python', 'Supervised Learning', 'Model Evaluation'],
   },
   {
-    id: '03',
+    id: '05',
     title: 'Real-Time Operating Systems: Design & Implementation',
     issuer: 'Udemy',
     date: 'Jan 2025',
@@ -199,7 +217,7 @@ export const certifications = [
     skills: ['RTOS', 'Embedded Systems', 'Concurrency', 'Task Scheduling'],
   },
   {
-    id: '04',
+    id: '06',
     title: 'Programming in Java',
     issuer: 'NPTEL',
     date: 'Dec 2024',
@@ -208,7 +226,7 @@ export const certifications = [
     skills: ['Java', 'OOP', 'Exception Handling', 'Multithreading', 'Collections Framework'],
   },
   {
-    id: '05',
+    id: '07',
     title: 'Data Structures',
     issuer: 'Udemy',
     date: 'Nov 2024',
@@ -217,7 +235,7 @@ export const certifications = [
     skills: ['Data Structures', 'Trees', 'Graphs', 'Algorithm Optimization', 'Memory Management'],
   },
   {
-    id: '06',
+    id: '08',
     title: 'Programming in C++',
     issuer: 'Udemy',
     date: 'Apr 2024',
