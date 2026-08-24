@@ -232,6 +232,20 @@ function ProjectSlide({
 function TechIcon({ name }: { name: string }) {
   const getIcon = (tech: string) => {
     const t = tech.toLowerCase();
+    if (t.includes('spring')) {
+      return (
+        <svg className="w-4 h-4 text-emerald-400 fill-current" viewBox="0 0 24 24">
+          <path d="M21.5 14.7c-.7 3.5-3.8 6.1-7.5 6.1-4.2 0-7.7-3.5-7.7-7.7 0-3.3 2.1-6.1 5.1-7.2-.3.9-.4 1.9-.4 2.9 0 4.6 3.7 8.3 8.3 8.3.8 0 1.5-.1 2.2-.4z"/>
+        </svg>
+      );
+    }
+    if (t.includes('java')) {
+      return (
+        <svg className="w-4 h-4 text-amber-500 fill-current" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+        </svg>
+      );
+    }
     if (t.includes('next')) {
       return (
         <svg className="w-4 h-4 text-white fill-current" viewBox="0 0 24 24">

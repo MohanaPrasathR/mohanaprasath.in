@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { personal } from '@/lib/data';
+import { personal, certifications, projects } from '@/lib/data';
 
 import type { Variants } from "framer-motion";
 
@@ -125,8 +125,8 @@ export default function About() {
             className="grid grid-cols-2 gap-6 pt-6 border-t border-white/20"
           >
             {[
-              { num: '6+', label: 'Certifications' },
-              { num: '5+', label: 'Projects Built' },
+              { num: `${certifications.length}+`, label: 'Certifications' },
+              { num: `${projects.length}+`, label: 'Projects Built' },
             ].map((stat) => (
               <div key={stat.label} className="p-4 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm">
                 <p
