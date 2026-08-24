@@ -232,20 +232,125 @@ function ProjectSlide({
 function TechIcon({ name }: { name: string }) {
   const getIcon = (tech: string) => {
     const t = tech.toLowerCase();
+
+    // Java
+    if (t.includes('java') && !t.includes('script')) {
+      return (
+        <svg className="w-4 h-4 text-[#f89820] fill-current" viewBox="0 0 24 24">
+          <path d="M8.85 16.84s-.67.43.48.58c1.39.18 2.15.17 3.73-.18 0 0 .54.34.88.58-4.14 1.76-8.9-.3-5.09-.98zm-1.07-2.61s-.77.58.37.75c1.55.23 2.76.24 5.34-.31 0 0 .37.31.65.49-5.18 1.83-10.74-.23-6.36-.93zm6.39-4.88c.64.71.49 1.34.49 1.34s.82-.44.4-1.28c-.46-.91-1.63-1.42-2.14-2.12-.9-1.26-.07-2.73-.07-2.73s-.99.5-1.12 1.78c-.14 1.37.58 2.08 1.25 2.53.51.35.88.37 1.19.48zm-1.92 11.23c2.72-.18 5.48-.91 5.48-.91l-.4.53s-2.31.75-5.59.88c-3.53.15-7.44-.09-7.44-.09s.42-.48.97-.6c1.69-.37 4.2-.07 6.98.19zm6.65-4.47s.74.52-.39.81c-2.3.59-5.11.83-8.86.84-2.88 0-6.19-.28-6.19-.28s.47-.41 1.05-.57c3.34-.89 12.35-.91 14.39-.8zm-4.73-8.08s.77.77-.52 1.95c-1.39 1.28-.7 2.05-.7 2.05s.74-.46.33-.92c-.39-.45-.63-.73-.24-1.21.46-.57 1.13-.98 1.13-1.87zM11.66.55s1.95 1.58-.69 3.65c-2.11 1.66-.46 2.6-.46 2.6s.79-.58.35-1.13c-.43-.53-.87-.8-.44-1.39.46-.63 1.24-1.3 1.24-2.38v-1.4zM4.94 20.91s1.39.38 3.8.44c2.81.08 6.55-.17 9.07-.94 0 0-.25.32-.7.54-3.14.93-7.91 1.02-11.45.38-.45-.09-.72-.42-.72-.42z"/>
+        </svg>
+      );
+    }
+
+    // Spring Boot / Spring
     if (t.includes('spring')) {
       return (
-        <svg className="w-4 h-4 text-emerald-400 fill-current" viewBox="0 0 24 24">
-          <path d="M21.5 14.7c-.7 3.5-3.8 6.1-7.5 6.1-4.2 0-7.7-3.5-7.7-7.7 0-3.3 2.1-6.1 5.1-7.2-.3.9-.4 1.9-.4 2.9 0 4.6 3.7 8.3 8.3 8.3.8 0 1.5-.1 2.2-.4z"/>
+        <svg className="w-4 h-4 text-[#6db33f] fill-current" viewBox="0 0 24 24">
+          <path d="M21.57 14.63c-.68 3.51-3.77 6.13-7.49 6.13-4.22 0-7.65-3.43-7.65-7.65 0-3.32 2.11-6.14 5.08-7.2-.26.91-.4 1.88-.4 2.87 0 4.6 3.73 8.33 8.33 8.33.74 0 1.46-.1 2.13-.48zM19.16 3.16c-4.42-1.37-9.35.29-12.06 4.09C4.4 11.05 4.63 15.65 7.42 18.9c3.08 3.58 8.08 4.7 12.38 2.76 4.31-1.95 6.84-6.62 5.97-11.28-.88-4.66-4.52-6.53-6.61-7.22z"/>
         </svg>
       );
     }
-    if (t.includes('java')) {
+
+    // Angular
+    if (t.includes('angular')) {
       return (
-        <svg className="w-4 h-4 text-amber-500 fill-current" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+        <svg className="w-4 h-4 text-[#dd0031] fill-current" viewBox="0 0 24 24">
+          <path d="M12 2.5L2.5 5.9l1.4 12.2L12 22.5l8.1-4.4 1.4-12.2L12 2.5zm0 2.8l6.1 2.2-1 8.8-5.1 2.8-5.1-2.8-1-8.8 6.1-2.2zm0 3.2l-3.6 8h1.7l.7-1.8h2.4l.7 1.8h1.7l-3.6-8zm-1.1 5l1.1-2.8 1.1 2.8h-2.2z"/>
         </svg>
       );
     }
+
+    // NLP (Natural Language Processing)
+    if (t.includes('nlp')) {
+      return (
+        <svg className="w-4 h-4 text-[#c084fc] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+        </svg>
+      );
+    }
+
+    // Machine Learning / AI / Data Science
+    if (t.includes('machine learning') || t.includes('ai')) {
+      return (
+        <svg className="w-4 h-4 text-[#f472b6] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <circle cx="6" cy="6" r="3" fill="currentColor" fillOpacity="0.2"/>
+          <circle cx="18" cy="6" r="3" fill="currentColor" fillOpacity="0.2"/>
+          <circle cx="6" cy="18" r="3" fill="currentColor" fillOpacity="0.2"/>
+          <circle cx="18" cy="18" r="3" fill="currentColor" fillOpacity="0.2"/>
+          <circle cx="12" cy="12" r="3" fill="currentColor" fillOpacity="0.4"/>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.5 7.5l7 7M15.5 7.5l-7 7M6 9v6M18 9v6M9 6h6M9 18h6"/>
+        </svg>
+      );
+    }
+
+    // Random Forest / Decision Trees
+    if (t.includes('random forest')) {
+      return (
+        <svg className="w-4 h-4 text-[#34d399] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 2L8 8h3v4H7l-3 5h5v5h6v-5h5l-3-5h-4V8h3l-4-6z"/>
+        </svg>
+      );
+    }
+
+    // Pandas
+    if (t.includes('pandas')) {
+      return (
+        <svg className="w-4 h-4 text-[#38bdf8] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <rect x="3" y="4" width="18" height="16" rx="2" strokeWidth="2"/>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M10 4v16M16 4v16"/>
+        </svg>
+      );
+    }
+
+    // Scikit-Learn
+    if (t.includes('scikit')) {
+      return (
+        <svg className="w-4 h-4 text-[#fb923c] fill-current" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+        </svg>
+      );
+    }
+
+    // MySQL / Relational
+    if (t.includes('mysql')) {
+      return (
+        <svg className="w-4 h-4 text-[#00758f] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4-3.58 4-8 4-8-1.79-8-4z"/>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 7v5c0 2.21 3.58 4 8 4s8-1.79 8-4V7"/>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 12v5c0 2.21 3.58 4 8 4s8-1.79 8-4v-5"/>
+        </svg>
+      );
+    }
+
+    // JPA / Hibernate
+    if (t.includes('jpa') || t.includes('hibernate')) {
+      return (
+        <svg className="w-4 h-4 text-[#a3e635] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7v10M16 7v10M4 12h16M7 4h10a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3z"/>
+        </svg>
+      );
+    }
+
+    // JUnit
+    if (t.includes('junit')) {
+      return (
+        <svg className="w-4 h-4 text-[#22c55e] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+      );
+    }
+
+    // Swagger / OpenAPI
+    if (t.includes('swagger') || t.includes('openapi')) {
+      return (
+        <svg className="w-4 h-4 text-[#84cc16] fill-current" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fillOpacity="0.2"/>
+          <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-2 15l-4-4 1.4-1.4 2.6 2.6 6.6-6.6 1.4 1.4-8 8z"/>
+        </svg>
+      );
+    }
+
+    // Next.js
     if (t.includes('next')) {
       return (
         <svg className="w-4 h-4 text-white fill-current" viewBox="0 0 24 24">
@@ -253,9 +358,11 @@ function TechIcon({ name }: { name: string }) {
         </svg>
       );
     }
+
+    // React
     if (t.includes('react')) {
       return (
-        <svg className="w-4 h-4 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg className="w-4 h-4 text-[#61dafb]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="12" cy="12" r="2" fill="currentColor"/>
           <ellipse cx="12" cy="12" rx="10" ry="4.5"/>
           <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)"/>
@@ -263,65 +370,100 @@ function TechIcon({ name }: { name: string }) {
         </svg>
       );
     }
+
+    // TypeScript
     if (t.includes('typescript') || t === 'ts') {
       return (
-        <svg className="w-4 h-4 text-blue-400 fill-current" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-[#38bdf8] fill-current" viewBox="0 0 24 24">
           <path d="M1.5 0h21A1.5 1.5 0 0124 1.5v21a1.5 1.5 0 01-1.5 1.5h-21A1.5 1.5 0 010 22.5v-21A1.5 1.5 0 011.5 0zM12 8.5H6.5v2.3h1.9v8.7h2.7v-8.7h1.9V8.5zm7.3 3.8c-.5-.6-1.3-.9-2.4-.9-1 0-1.8.3-2.3.9-.6.6-.8 1.4-.8 2.5 0 1.2.3 2.1.9 2.7.6.6 1.4.9 2.4.9 1.1 0 1.9-.3 2.4-.9.6-.6.8-1.5.8-2.7 0-1.1-.2-2-.8-2.5zm-1.1 4.1c-.3.4-.8.6-1.4.6-.6 0-1.1-.2-1.4-.6-.3-.4-.4-1-.4-1.8 0-.8.1-1.4.4-1.8.3-.4.8-.6 1.4-.6.6 0 1.1.2 1.4.6.3.4.4 1 .4 1.8 0 .8-.1 1.4-.4 1.8z"/>
         </svg>
       );
     }
+
+    // JavaScript
+    if (t.includes('javascript') || t === 'js') {
+      return (
+        <svg className="w-4 h-4 text-[#facc15] fill-current" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.017-.892-1.79-2.08-2.285-.506-.214-1.077-.384-1.63-.52l-.458-.113c-.633-.153-1.043-.324-1.229-.533-.186-.21-.247-.468-.247-.775 0-.347.114-.645.341-.892.227-.247.566-.37 1.016-.37.428 0 .753.114.975.341.223.227.362.535.419.923l1.832-.37c-.122-.752-.458-1.378-1.009-1.876-.55-.499-1.294-.748-2.232-.748-.962 0-1.724.262-2.285.787-.56.524-.841 1.206-.841 2.045 0 .734.201 1.343.603 1.828.402.485 1.008.83 1.818 1.035l.655.166c.743.184 1.248.393 1.516.629.267.235.401.542.401.918 0 .428-.148.795-.445 1.1-.297.306-.734.459-1.311.459-.62 0-1.1-.17-1.44-.511-.341-.341-.533-.808-.577-1.402l-1.868.219c.105 1.005.515 1.799 1.232 2.384.716.586 1.637.878 2.763.878 1.135 0 2.033-.28 2.695-.839.663-.56.994-1.306.994-2.24zm-8.814-6.495H11.23v6.806c0 .76-.118 1.327-.354 1.703-.236.376-.646.564-1.231.564-.42 0-.765-.079-1.036-.236-.271-.157-.467-.376-.59-.655l-1.633.996c.358.646.852 1.131 1.48 1.455.629.323 1.382.485 2.259.485 1.258 0 2.2-.349 2.827-1.049.629-.699.943-1.747.943-3.143v-6.93z"/>
+        </svg>
+      );
+    }
+
+    // Python
     if (t.includes('python')) {
       return (
-        <svg className="w-4 h-4 text-amber-300 fill-current" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-[#fbbf24] fill-current" viewBox="0 0 24 24">
           <path d="M11.9 2c-5.2 0-4.9 2.3-4.9 2.3v2.4h5v.7H5.2S2.9 7.1 2.9 12.3c0 5.2 2 5 2 5h1.2v-2.5c0-2.8 2.4-2.8 2.4-2.8h4.9s2.3.1 2.3-2.3V4.3S17.1 2 11.9 2zm-2.6 1.6c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9zm.2 18.4c5.2 0 4.9-2.3 4.9-2.3v-2.4h-5v-.7h6.8s2.3.3 2.3-4.9c0-5.2-2-5-2-5h-1.2v2.5c0 2.8-2.4 2.8-2.4 2.8H7.9s-2.3-.1-2.3 2.3v4.9s-1.4 2.3 3.8 2.3zm2.6-1.6c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9z"/>
         </svg>
       );
     }
+
+    // Node.js
     if (t.includes('node')) {
       return (
-        <svg className="w-4 h-4 text-emerald-400 fill-current" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-[#4ade80] fill-current" viewBox="0 0 24 24">
           <path d="M12 2L2 7.8v8.4L12 22l10-5.8V7.8L12 2zm0 2.3l7.5 4.3v5.8L12 18.7l-7.5-4.3V8.6L12 4.3z"/>
         </svg>
       );
     }
+
+    // Express
     if (t.includes('express')) {
       return (
-        <svg className="w-4 h-4 text-gray-200 fill-current" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-4V15h4v1.5zm1.5-3.5h-5.5V11H14.5v2zm1.5-3.5h-7V7.5h7V9z"/>
+        <svg className="w-4 h-4 text-gray-200 fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       );
     }
+
+    // Flask
     if (t.includes('flask')) {
       return (
-        <svg className="w-4 h-4 text-gray-100 fill-current" viewBox="0 0 24 24">
-          <path d="M9 2v2h1v4.17A7.001 7.001 0 005 15c0 3.87 3.13 7 7 7s7-3.13 7-7c0-3.1-2.02-5.73-5-6.83V4h1V2H9zm3 8a5 5 0 015 5H7a5 5 0 015-5z"/>
+        <svg className="w-4 h-4 text-gray-100 fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
         </svg>
       );
     }
+
+    // SQL / DBMS
     if (t.includes('sql') || t.includes('dbms')) {
       return (
-        <svg className="w-4 h-4 text-cyan-400 fill-current" viewBox="0 0 24 24">
-          <path d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.34 6 2s-2.13 2-6 2-6-1.34-6-2 2.13-2 6-2zm0 6c-3.87 0-6-1.34-6-2v2.5c0 .66 2.13 2 6 2s6-1.34 6-2V9c0 .66-2.13 2-6 2zm0 5c-3.87 0-6-1.34-6-2v2.5c0 .66 2.13 2 6 2s6-1.34 6-2V14c0 .66-2.13 2-6 2z"/>
+        <svg className="w-4 h-4 text-[#38bdf8] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4-3.58 4-8 4-8-1.79-8-4z"/>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 7v5c0 2.21 3.58 4 8 4s8-1.79 8-4V7"/>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 12v5c0 2.21 3.58 4 8 4s8-1.79 8-4v-5"/>
         </svg>
       );
     }
+
+    // CSS Modules / CSS
     if (t.includes('css')) {
       return (
-        <svg className="w-4 h-4 text-blue-500 fill-current" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-[#60a5fa] fill-current" viewBox="0 0 24 24">
           <path d="M3 3l1.6 18L12 23l7.4-2L21 3H3zm14.3 4.5l-.3 3.5H8.8l.3 3.5h7.9l-.6 6.5-4.4 1.2-4.4-1.2-.3-3h2.3l.1 1.4 2.3.6 2.3-.6.2-2.7H6.3l-.8-8.4h11.8z"/>
         </svg>
       );
     }
-    // Default AI / ML / Scikit-Learn / Pandas icon
+
+    // REST APIs / Generic Networking
+    if (t.includes('rest') || t.includes('api')) {
+      return (
+        <svg className="w-4 h-4 text-[#38bdf8] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+      );
+    }
+
+    // Default Tech Tag Icon
     return (
-      <svg className="w-4 h-4 text-purple-400 fill-current" viewBox="0 0 24 24">
-        <path d="M12 2L9.5 7.5L4 10l5.5 2.5L12 18l2.5-5.5L20 10l-5.5-2.5L12 2zm0 18l-1.5 3L9 20l-3-1.5L9 17l1.5-3L12 17l3 1.5L12 20z"/>
+      <svg className="w-4 h-4 text-[#a855f7] fill-none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
       </svg>
     );
   };
 
   return (
-    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-red-500 rounded-lg text-xs font-mono font-semibold text-white transition-all duration-300 shadow-sm backdrop-blur-sm">
+    <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/[0.05] hover:bg-white/[0.1] border border-white/20 hover:border-red-500/60 rounded-lg text-xs font-mono font-semibold text-white transition-all duration-300 shadow-sm backdrop-blur-sm">
       {getIcon(name)}
       <span>{name}</span>
     </span>
