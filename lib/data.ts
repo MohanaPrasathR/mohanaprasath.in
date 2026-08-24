@@ -16,7 +16,7 @@ export const personal = {
   socials: [
     { label: 'GitHub', href: 'https://github.com/MohanaPrasathR' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mohana-prasath-r-6268b132a/' },
-    { label: 'Portfolio', href: 'https://mohanaprasath.in' },
+    { label: 'Instagram', href: 'https://www.instagram.com/mohanaprasathr/' },
   ],
   languages: ['English', 'Tamil', 'Hindi', 'Japanese (Elementary)'],
 };
