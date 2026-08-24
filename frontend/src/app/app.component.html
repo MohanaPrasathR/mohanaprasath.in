@@ -1,0 +1,22 @@
+<div class="app-layout">
+  <!-- TOP NAVBAR -->
+  <app-navbar 
+    [backendOnline]="backendOnline" 
+    (refreshRequested)="onRefresh()">
+  </app-navbar>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="main-content">
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <span>Hotel Revenue Analytics Platform · Angular 19 & Spring Boot 3</span>
+      <span class="footer-credit">Engineered by <strong>Mohana Prasath R</strong></span>
+    </div>
+  </footer>
+</div>

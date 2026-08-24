@@ -36,3 +36,20 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# Subproject ignores (Hotel Revenue Analytics backend & frontend)
+target/
+**/target/
+dist/
+**/dist/
+.angular/
+**/.angular/
+frontend/node_modules/
+**/node_modules/
+.idea/
+**/.idea/
+.vscode/
+**/.vscode/
+*.iml
+application-local.properties
+application-secret.properties

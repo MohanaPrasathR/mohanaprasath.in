@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Revenue Analytics Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+                  #070a10;
+      color: #f3f4f6;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(16, 185, 129, 0.3);
+      box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.15);
+      transform: translateY(-2px);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.3);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased flex flex-col selection:bg-emerald-500 selection:text-white">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 bg-[#0a0f1d]/85 backdrop-blur-xl border-b border-white/10 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-slate-950 font-extrabold text-xl shadow-lg glow-emerald">
+          🏨
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-bold tracking-tight text-white">Hotel Revenue Analytics</h1>
+            <span class="px-2 py-0.5 text-[10px] font-mono font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">LIVE BACKEND</span>
+          </div>
+          <p class="text-xs text-slate-400 font-mono">Spring Boot 3.2 · Spring Data JPA · H2 / MySQL</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex items-center gap-3">
+        <div id="statusBadge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          API Connected
+        </div>
+        <button onclick="openModal()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-semibold text-xs hover:opacity-95 transition-all shadow-lg hover:shadow-emerald-500/25 active:scale-95">
+          <i data-lucide="plus-circle" class="w-4 h-4"></i>
+          <span>New Reservation</span>
+        </button>
+        <a href="/swagger-ui/index.html" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-medium text-slate-300 transition-colors">
+          <i data-lucide="code-2" class="w-4 h-4 text-emerald-400"></i>
+          <span>Swagger Docs</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 space-y-8">
+
+    <!-- KPI STATS CARDS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Total Revenue -->
+      <div class="glass-card rounded-2xl p-5 relative overflow-hidden transition-all duration-300 glass-card-hover group">
+        <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all"></div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-medium text-slate-400 uppercase tracking-wider">Total Revenue</span>
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <i data-lucide="dollar-sign" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="text-3xl font-extrabold text-white tracking-tight font-mono" id="kpiTotalRevenue">$0.00</div>
+        <div class="mt-2 flex items-center gap-1.5 text-xs text-slate-400">
+          <span class="text-emerald-400 font-semibold" id="kpiEligibleCount">0</span> active non-cancelled bookings
+        </div>
+      </div>
+
+      <!-- Average Revenue -->
+      <div class="glass-card rounded-2xl p-5 relative overflow-hidden transition-all duration-300 glass-card-hover group">
+        <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-medium text-slate-400 uppercase tracking-wider">Avg Ticket Size</span>
+          <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+            <i data-lucide="receipt" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="text-3xl font-extrabold text-white tracking-tight font-mono" id="kpiAvgRevenue">$0.00</div>
+        <div class="mt-2 flex items-center gap-1.5 text-xs text-slate-400">
+          Average gross yield per booking
+        </div>
+      </div>
+
+      <!-- Top Hotel -->
+      <div class="glass-card rounded-2xl p-5 relative overflow-hidden transition-all duration-300 glass-card-hover group">
+        <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-medium text-slate-400 uppercase tracking-wider">Top Performing Hotel</span>
+          <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+            <i data-lucide="crown" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="text-xl font-bold text-white truncate tracking-tight" id="kpiTopHotel">Loading...</div>
+        <div class="mt-2 flex items-center gap-1.5 text-xs text-slate-400 font-mono" id="kpiTopHotelRev">
+          $0.00 cumulative
+        </div>
+      </div>
+
+      <!-- Total Bookings -->
+      <div class="glass-card rounded-2xl p-5 relative overflow-hidden transition-all duration-300 glass-card-hover group">
+        <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all"></div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-medium text-slate-400 uppercase tracking-wider">Reservations</span>
+          <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="text-3xl font-extrabold text-white tracking-tight font-mono" id="kpiTotalBookingsCount">0</div>
+        <div class="mt-2 flex items-center gap-1.5 text-xs text-slate-400">
+          Total stored database records
+        </div>
+      </div>
+    </div>
+
+    <!-- CHARTS GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Monthly Revenue Time-Series Chart (2 cols) -->
+      <div class="lg:col-span-2 glass-card rounded-2xl p-6 flex flex-col justify-between">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="trending-up" class="w-4 h-4 text-emerald-400"></i>
+              Monthly Revenue Performance
+            </h2>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">Aggregated financial trends by check-in month (YYYY-MM)</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">
+            Time-Series Breakdown
+          </span>
+        </div>
+        <div class="h-72 w-full relative">
+          <canvas id="monthlyTrendChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Status Occupancy Donut Chart (1 col) -->
+      <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="pie-chart" class="w-4 h-4 text-blue-400"></i>
+              Status Breakdown
+            </h2>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">Booking lifecycle operational states</p>
+          </div>
+        </div>
+        <div class="h-64 w-full relative flex items-center justify-center">
+          <canvas id="statusChart"></canvas>
+        </div>
+        <div id="statusPills" class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-white/5 text-xs font-mono">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- PROPERTY LEADERBOARD & REVENUE BY HOTEL -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Hotel Revenue Bar Chart (2 cols) -->
+      <div class="lg:col-span-2 glass-card rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+              <i data-lucide="building" class="w-4 h-4 text-purple-400"></i>
+              Revenue by Hotel Property
+            </h2>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">Gross revenue comparison across all properties</p>
+          </div>
+        </div>
+        <div class="h-72 w-full relative">
+          <canvas id="hotelRevenueChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Top Hotels Leaderboard (1 col) -->
+      <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+            Top Ranked Hotels
+          </h2>
+          <span class="text-xs font-mono text-slate-400">Leaderboard</span>
+        </div>
+        <div id="topHotelsList" class="space-y-3.5 flex-1 flex flex-col justify-center">
+          <!-- Populated dynamically -->
+          <div class="animate-pulse space-y-2">
+            <div class="h-10 bg-white/5 rounded-xl"></div>
+            <div class="h-10 bg-white/5 rounded-xl"></div>
+            <div class="h-10 bg-white/5 rounded-xl"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS DATA TABLE -->
+    <div class="glass-card rounded-2xl p-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <i data-lucide="table" class="w-4 h-4 text-emerald-400"></i>
+            Live Reservations Repository
+          </h2>
+          <p class="text-xs text-slate-400 font-mono mt-0.5">Filter, search, and manage all hotel bookings</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Search input -->
+          <div class="relative">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Search hotel or guest..."
+              class="pl-9 pr-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500/50 w-52 sm:w-64"
+              oninput="renderBookingsTable()"
+            />
+          </div>
+
+          <!-- Status filter -->
+          <select 
+            id="statusFilter" 
+            class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-slate-300 focus:outline-none focus:border-emerald-500/50"
+            onchange="renderBookingsTable()"
+          >
+            <option value="ALL" class="bg-slate-900 text-white">All Statuses</option>
+            <option value="CONFIRMED" class="bg-slate-900 text-white">CONFIRMED</option>
+            <option value="CHECKED_IN" class="bg-slate-900 text-white">CHECKED_IN</option>
+            <option value="CHECKED_OUT" class="bg-slate-900 text-white">CHECKED_OUT</option>
+            <option value="CANCELLED" class="bg-slate-900 text-white">CANCELLED</option>
+          </select>
+
+          <!-- Refresh button -->
+          <button 
+            onclick="loadAllData()" 
+            class="p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 transition-all hover:text-emerald-400"
+            title="Refresh Data"
+          >
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Table Container -->
+      <div class="overflow-x-auto rounded-xl border border-white/5">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-white/[0.03] text-slate-400 font-mono uppercase tracking-wider border-b border-white/10">
+            <tr>
+              <th class="py-3 px-4">ID</th>
+              <th class="py-3 px-4">Hotel Property</th>
+              <th class="py-3 px-4">Guest Name</th>
+              <th class="py-3 px-4">Dates</th>
+              <th class="py-3 px-4">Room Type</th>
+              <th class="py-3 px-4">Status</th>
+              <th class="py-3 px-4 text-right">Revenue</th>
+              <th class="py-3 px-4 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsTableBody" class="divide-y divide-white/5 font-mono">
+            <tr>
+              <td colspan="8" class="py-8 text-center text-slate-500">Loading bookings...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto border-t border-white/10 bg-[#070a10] py-6 px-6 text-center text-xs text-slate-500 font-mono">
+    Hotel Revenue Analytics API · Crafted by Mohana Prasath R · Spring Boot 3 & Tailwind CSS
+  </footer>
+
+  <!-- NEW BOOKING MODAL -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="glass-card rounded-2xl w-full max-w-lg p-6 border border-white/15 relative overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
+      
+      <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">Create New Reservation</h3>
+            <p class="text-xs text-slate-400 font-mono">Dispatches `POST /api/bookings`</p>
+          </div>
+        </div>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="bookingForm" onsubmit="handleCreateBooking(event)" class="space-y-4 text-xs font-mono">
+        <!-- Error Banner -->
+        <div id="modalError" class="hidden p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs"></div>
+
+        <div>
+          <label class="block text-slate-400 mb-1">Hotel Property Name</label>
+          <select id="formHotelName" required class="w-full px-3 py-2 bg-slate-900 border border-white/15 rounded-xl text-white focus:outline-none focus:border-emerald-500">
+            <option value="Grand Horizon Resort">Grand Horizon Resort</option>
+            <option value="Starlight Palace Hotel">Starlight Palace Hotel</option>
+            <option value="Royal Palm Haven">Royal Palm Haven</option>
+            <option value="Azure Bay Suites">Azure Bay Suites</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1">Guest Name</label>
+          <input type="text" id="formGuestName" required placeholder="e.g. John Doe" class="w-full px-3 py-2 bg-slate-900 border border-white/15 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">Check-in Date</label>
+            <input type="date" id="formCheckInDate" required class="w-full px-3 py-2 bg-slate-900 border border-white/15 rounded-xl text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Check-out Date</label>
+            <input type="date" id="formCheckOutDate" required class="w-full px-3 py-2 bg-slate-900 border border-white/15 rounded-xl text-white focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">Room Type</label>
+            <select id="formRoomType" class="w-full px-3 py-2 bg-slate-900 border border-white/15 rounded-xl text-white focus:outline-none focus:border-emerald-500">
+              <option value="SINGLE">SINGLE</option>
+              <option value="DOUBLE">DOUBLE</option>
+              <option value="DELUXE" selected>DELUXE</option>
+              <option value="SUITE">SUITE</option>
+              <option value="PRESIDENTIAL">PRESIDENTIAL</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Guests</label>
+            <input type="number" id="formGuests" min="1" max="10" value="2" required class="w-full px-3 py-2 bg-slate-900 border border-white/15 rounded-xl text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Status</label>
+            <select id="formStatus" class="w-full px-3 py-2 bg-slate-900 border border-white/15 rounded-xl text-white focus:outline-none focus:border-emerald-500">
+              <option value="CONFIRMED" selected>CONFIRMED</option>
+              <option value="CHECKED_IN">CHECKED_IN</option>
+              <option value="CHECKED_OUT">CHECKED_OUT</option>
+              <option value="CANCELLED">CANCELLED</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1">Total Revenue ($)</label>
+          <input type="number" step="0.01" id="formRevenue" required min="1" value="1250.00" class="w-full px-3 py-2 bg-slate-900 border border-white/15 rounded-xl text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-medium transition-colors">
+            Cancel
+          </button>
+          <button type="submit" id="submitBtn" class="px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-bold hover:opacity-90 active:scale-95 transition-all shadow-lg glow-emerald">
+            Submit Reservation
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    const API_BASE = window.location.origin.includes(':8080') ? window.location.origin : 'http://localhost:8080';
+    
+    let allBookings = [];
+    let monthlyChart = null;
+    let statusChart = null;
+    let hotelRevChart = null;
+
+    // Initialize Default Dates in Modal
+    const today = new Date();
+    const nextWeek = new Date(today.getTime() + 5 * 24 * 60 * 60 * 1000);
+    document.getElementById('formCheckInDate').value = today.toISOString().split('T')[0];
+    document.getElementById('formCheckOutDate').value = nextWeek.toISOString().split('T')[0];
+
+    // Status formatting helpers
+    const STATUS_COLORS = {
+      CONFIRMED: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+      CHECKED_IN: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+      CHECKED_OUT: 'bg-slate-500/10 text-slate-300 border-slate-500/30',
+      CANCELLED: 'bg-rose-500/10 text-rose-400 border-rose-500/30'
+    };
+
+    const ROOM_BADGES = {
+      SINGLE: 'bg-gray-800 text-gray-300',
+      DOUBLE: 'bg-indigo-950 text-indigo-300',
+      DELUXE: 'bg-amber-950 text-amber-300',
+      SUITE: 'bg-purple-950 text-purple-300',
+      PRESIDENTIAL: 'bg-emerald-950 text-emerald-300'
+    };
+
+    function formatCurrency(amount) {
+      return '$' + Number(amount || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // Modal Handlers
+    function openModal() {
+      document.getElementById('modalError').classList.add('hidden');
+      document.getElementById('bookingModal').classList.remove('hidden');
+      document.getElementById('bookingModal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('bookingModal').classList.add('hidden');
+      document.getElementById('bookingModal').classList.remove('flex');
+    }
+
+    // CREATE BOOKING HANDLER
+    async function handleCreateBooking(e) {
+      e.preventDefault();
+      const errorDiv = document.getElementById('modalError');
+      const submitBtn = document.getElementById('submitBtn');
+      errorDiv.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Creating...';
+
+      const payload = {
+        hotelName: document.getElementById('formHotelName').value,
+        guestName: document.getElementById('formGuestName').value,
+        checkInDate: document.getElementById('formCheckInDate').value,
+        checkOutDate: document.getElementById('formCheckOutDate').value,
+        roomType: document.getElementById('formRoomType').value,
+        guests: parseInt(document.getElementById('formGuests').value, 10),
+        bookingStatus: document.getElementById('formStatus').value,
+        totalRevenue: parseFloat(document.getElementById('formRevenue').value)
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/api/bookings`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          const errData = await res.json();
+          throw new Error(errData.message || 'Validation error creating booking');
+        }
+
+        closeModal();
+        await loadAllData();
+      } catch (err) {
+        errorDiv.innerText = err.message;
+        errorDiv.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Submit Reservation';
+      }
+    }
+
+    // DELETE BOOKING HANDLER
+    async function handleDeleteBooking(id) {
+      if (!confirm(`Are you sure you want to delete Booking #${id}?`)) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/bookings/${id}`, { method: 'DELETE' });
+        if (res.ok || res.status === 204) {
+          await loadAllData();
+        } else {
+          alert('Failed to delete booking #' + id);
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error communicating with API');
+      }
+    }
+
+    // FETCH ALL DATA & REFRESH CHARTS
+    async function loadAllData() {
+      try {
+        const [
+          totalRevRes,
+          avgRevRes,
+          hotelRevRes,
+          monthRevRes,
+          statusRes,
+          topHotelsRes,
+          bookingsRes
+        ] = await Promise.all([
+          fetch(`${API_BASE}/api/analytics/total-revenue`).then(r => r.json()),
+          fetch(`${API_BASE}/api/analytics/average-revenue`).then(r => r.json()),
+          fetch(`${API_BASE}/api/analytics/revenue-by-hotel`).then(r => r.json()),
+          fetch(`${API_BASE}/api/analytics/revenue-by-month`).then(r => r.json()),
+          fetch(`${API_BASE}/api/analytics/booking-count-by-status`).then(r => r.json()),
+          fetch(`${API_BASE}/api/analytics/top-hotels?limit=5`).then(r => r.json()),
+          fetch(`${API_BASE}/api/bookings`).then(r => r.json())
+        ]);
+
+        // 1. KPI Cards
+        document.getElementById('kpiTotalRevenue').innerText = formatCurrency(totalRevRes.totalRevenue);
+        document.getElementById('kpiEligibleCount').innerText = totalRevRes.eligibleBookingsCount;
+        document.getElementById('kpiAvgRevenue').innerText = formatCurrency(avgRevRes.averageRevenuePerBooking);
+        document.getElementById('kpiTotalBookingsCount').innerText = bookingsRes.length;
+
+        if (topHotelsRes && topHotelsRes.length > 0) {
+          document.getElementById('kpiTopHotel').innerText = topHotelsRes[0].hotelName;
+          document.getElementById('kpiTopHotelRev').innerText = `${formatCurrency(topHotelsRes[0].totalRevenue)} gross`;
+        }
+
+        // 2. Leaderboard
+        renderTopHotelsList(topHotelsRes, totalRevRes.totalRevenue);
+
+        // 3. Monthly Trend Chart
+        renderMonthlyChart(monthRevRes);
+
+        // 4. Status Donut Chart
+        renderStatusChart(statusRes);
+
+        // 5. Hotel Revenue Bar Chart
+        renderHotelRevChart(hotelRevRes);
+
+        // 6. Table
+        allBookings = bookingsRes;
+        renderBookingsTable();
+
+      } catch (err) {
+        console.error('Error fetching API data:', err);
+      }
+    }
+
+    // RENDER TOP HOTELS LIST
+    function renderTopHotelsList(topHotels, totalRevenue) {
+      const container = document.getElementById('topHotelsList');
+      if (!topHotels || topHotels.length === 0) {
+        container.innerHTML = `<div class="text-xs text-slate-500 text-center py-4">No data</div>`;
+        return;
+      }
+
+      const rankBadges = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+
+      container.innerHTML = topHotels.map((h, i) => {
+        const pct = totalRevenue > 0 ? Math.round((h.totalRevenue / totalRevenue) * 100) : 0;
+        return `
+          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all">
+            <div class="flex items-center justify-between text-xs mb-1.5">
+              <span class="font-medium text-white flex items-center gap-1.5 truncate">
+                <span>${rankBadges[i] || '#' + (i + 1)}</span>
+                <span class="truncate">${h.hotelName}</span>
+              </span>
+              <span class="font-mono font-bold text-emerald-400">${formatCurrency(h.totalRevenue)}</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full" style="width: ${pct}%"></div>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-slate-400 font-mono mt-1">
+              <span>${h.totalBookings || h.bookingCount || 0} reservations</span>
+              <span>${pct}% share</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // RENDER MONTHLY CHART
+    function renderMonthlyChart(data) {
+      const ctx = document.getElementById('monthlyTrendChart').getContext('2d');
+      if (monthlyChart) monthlyChart.destroy();
+
+      const labels = data.map(d => d.yearMonth);
+      const revenues = data.map(d => d.totalRevenue);
+
+      const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+      gradient.addColorStop(0, 'rgba(16, 185, 129, 0.35)');
+      gradient.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
+
+      monthlyChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Monthly Revenue ($)',
+            data: revenues,
+            borderColor: '#10b981',
+            backgroundColor: gradient,
+            fill: true,
+            tension: 0.4,
+            borderWidth: 3,
+            pointBackgroundColor: '#10b981',
+            pointBorderColor: '#ffffff',
+            pointHoverRadius: 6,
+            pointRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0f172a',
+              borderColor: 'rgba(255,255,255,0.1)',
+              borderWidth: 1,
+              titleFont: { family: 'Plus Jakarta Sans' },
+              bodyFont: { family: 'JetBrains Mono' },
+              callbacks: {
+                label: (ctx) => ` Revenue: ${formatCurrency(ctx.parsed.y)}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } }
+            },
+            y: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { 
+                color: '#94a3b8', 
+                font: { family: 'JetBrains Mono', size: 10 },
+                callback: (val) => '$' + val
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // RENDER STATUS CHART
+    function renderStatusChart(data) {
+      const ctx = document.getElementById('statusChart').getContext('2d');
+      if (statusChart) statusChart.destroy();
+
+      const labels = data.map(d => d.bookingStatus);
+      const counts = data.map(d => d.count);
+      const colors = ['#3b82f6', '#10b981', '#64748b', '#f43f5e'];
+
+      statusChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels,
+          datasets: [{
+            data: counts,
+            backgroundColor: colors,
+            borderWidth: 0,
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '72%',
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+
+      // Render pills
+      const pillsContainer = document.getElementById('statusPills');
+      pillsContainer.innerHTML = data.map((d, i) => `
+        <div class="flex items-center justify-between p-2 rounded-lg bg-white/[0.02] border border-white/5">
+          <div class="flex items-center gap-1.5 truncate">
+            <span class="w-2 h-2 rounded-full" style="background-color: ${colors[i % colors.length]}"></span>
+            <span class="text-slate-300 truncate">${d.bookingStatus}</span>
+          </div>
+          <span class="font-bold text-white">${d.count}</span>
+        </div>
+      `).join('');
+    }
+
+    // RENDER HOTEL REVENUE BAR CHART
+    function renderHotelRevChart(data) {
+      const ctx = document.getElementById('hotelRevenueChart').getContext('2d');
+      if (hotelRevChart) hotelRevChart.destroy();
+
+      const labels = data.map(d => d.hotelName);
+      const revenues = data.map(d => d.totalRevenue);
+
+      hotelRevChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Total Revenue',
+            data: revenues,
+            backgroundColor: 'rgba(168, 85, 247, 0.65)',
+            borderColor: '#a855f7',
+            borderWidth: 1,
+            borderRadius: 8,
+            hoverBackgroundColor: 'rgba(168, 85, 247, 0.9)'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0f172a',
+              borderColor: 'rgba(255,255,255,0.1)',
+              borderWidth: 1,
+              callbacks: {
+                label: (ctx) => ` Gross: ${formatCurrency(ctx.parsed.y)}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 10 } }
+            },
+            y: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { 
+                color: '#94a3b8', 
+                font: { family: 'JetBrains Mono', size: 10 },
+                callback: (val) => '$' + val
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // RENDER BOOKINGS TABLE
+    function renderBookingsTable() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const statusFilter = document.getElementById('statusFilter').value;
+      const tbody = document.getElementById('bookingsTableBody');
+
+      const filtered = allBookings.filter(b => {
+        const matchSearch = b.hotelName.toLowerCase().includes(search) || b.guestName.toLowerCase().includes(search);
+        const matchStatus = statusFilter === 'ALL' || b.bookingStatus === statusFilter;
+        return matchSearch && matchStatus;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-8 text-center text-slate-500 font-mono">
+              No matching reservations found
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(b => `
+        <tr class="hover:bg-white/[0.02] transition-colors group">
+          <td class="py-3 px-4 font-bold text-slate-400">#${b.id}</td>
+          <td class="py-3 px-4 text-white font-medium font-sans">${b.hotelName}</td>
+          <td class="py-3 px-4 text-slate-300">${b.guestName}</td>
+          <td class="py-3 px-4 text-[11px] text-slate-400">
+            ${b.checkInDate} <span class="text-slate-600">➔</span> ${b.checkOutDate}
+          </td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-0.5 rounded text-[10px] font-semibold ${ROOM_BADGES[b.roomType] || 'bg-slate-800 text-slate-300'}">
+              ${b.roomType}
+            </span>
+          </td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold border ${STATUS_COLORS[b.bookingStatus] || 'bg-slate-800 text-slate-300'}">
+              ${b.bookingStatus}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-right font-bold text-emerald-400">${formatCurrency(b.totalRevenue)}</td>
+          <td class="py-3 px-4 text-center">
+            <button 
+              onclick="handleDeleteBooking(${b.id})" 
+              class="p-1 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors opacity-60 group-hover:opacity-100"
+              title="Delete Booking #${b.id}"
+            >
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    // Initial Load & Refresh Icons
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadAllData();
+      setInterval(loadAllData, 15000); // Poll every 15s for live updates
+    });
+  </script>
+</body>
+</html>

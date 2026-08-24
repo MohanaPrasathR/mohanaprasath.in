@@ -1,0 +1,22 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!checkstyle.jar
+
+### Optionals ###
+.DS_Store
+.idea/
+*.iws
+*.iml
+*.ipr
+.classpath
+.project
+.settings/
+bin/
+.vscode/
+
+### HELP.md ###
+HELP.md
+
+### Application credentials ###
+application-local.properties
+application-secret.properties

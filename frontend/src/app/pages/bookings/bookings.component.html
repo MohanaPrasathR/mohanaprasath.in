@@ -1,0 +1,362 @@
+<div class="bookings-page">
+
+  <!-- TOAST NOTIFICATION STACK -->
+  <div class="toast-stack">
+    <div *ngFor="let toast of toasts" class="toast-item" [ngClass]="'toast-' + toast.type">
+      <div class="toast-icon">
+        <span *ngIf="toast.type === 'success'">✅</span>
+        <span *ngIf="toast.type === 'error'">⚠️</span>
+        <span *ngIf="toast.type === 'info'">ℹ️</span>
+      </div>
+      <div class="toast-body">
+        <h5 class="toast-title">{{ toast.title }}</h5>
+        <p class="toast-msg">{{ toast.message }}</p>
+      </div>
+      <button (click)="removeToast(toast.id)" class="toast-close">✕</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="bookings-header">
+    <div>
+      <h2 class="page-title">Hotel Reservations Management</h2>
+      <p class="page-subtitle">Full CRUD repository with real-time Spring Data JPA synchronization</p>
+    </div>
+
+    <div class="header-actions">
+      <button (click)="loadBookings()" class="action-secondary-btn" title="Reload from Spring Boot API">
+        <span>↻ Reload Data</span>
+      </button>
+      <button (click)="openCreateModal()" class="create-btn">
+        <span>+ Add New Booking</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- API ERROR NOTICE BANNER -->
+  <app-error-banner 
+    *ngIf="apiErrorMessage"
+    [title]="'Reservations API Error'"
+    [message]="apiErrorMessage"
+    (retry)="loadBookings()">
+  </app-error-banner>
+
+  <!-- FILTER & SEARCH TOOLBAR -->
+  <div class="filter-toolbar glass-panel">
+    
+    <!-- Search Box -->
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="applyFiltersAndSort()" 
+        placeholder="Search by guest name, hotel, or booking ID (#)..."
+        class="search-input"
+      />
+    </div>
+
+    <!-- Filters Group -->
+    <div class="filter-dropdowns">
+      
+      <!-- Status Filter -->
+      <div class="filter-item">
+        <label class="filter-label">Status</label>
+        <select [(ngModel)]="statusFilter" (change)="applyFiltersAndSort()" class="filter-select">
+          <option value="ALL">All Statuses</option>
+          <option *ngFor="let s of bookingStatuses" [value]="s">{{ s }}</option>
+        </select>
+      </div>
+
+      <!-- Room Type Filter -->
+      <div class="filter-item">
+        <label class="filter-label">Room Type</label>
+        <select [(ngModel)]="roomTypeFilter" (change)="applyFiltersAndSort()" class="filter-select">
+          <option value="ALL">All Room Types</option>
+          <option *ngFor="let r of roomTypes" [value]="r">{{ r }}</option>
+        </select>
+      </div>
+
+      <!-- Date Filters -->
+      <div class="filter-item">
+        <label class="filter-label">Check-In From</label>
+        <input 
+          type="date" 
+          [(ngModel)]="startDateFilter" 
+          (change)="applyFiltersAndSort()" 
+          class="filter-date-input"
+        />
+      </div>
+
+      <div class="filter-item">
+        <label class="filter-label">Check-Out To</label>
+        <input 
+          type="date" 
+          [(ngModel)]="endDateFilter" 
+          (change)="applyFiltersAndSort()" 
+          class="filter-date-input"
+        />
+      </div>
+
+      <!-- Clear Button -->
+      <button (click)="clearFilters()" class="clear-filters-btn" title="Reset all filters">
+        <span>Reset Filters</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- LOADING SPINNER -->
+  <app-loading-spinner *ngIf="isLoading" message="Fetching reservations from Spring Boot backend..."></app-loading-spinner>
+
+  <!-- TABLE CONTAINER / EMPTY STATE -->
+  <div *ngIf="!isLoading && !apiErrorMessage" class="glass-panel table-panel">
+    
+    <div class="table-stats-bar">
+      <span class="records-count">
+        Displaying <strong>{{ filteredBookings.length }}</strong> of <strong>{{ bookings.length }}</strong> stored reservations
+      </span>
+      <span *ngIf="searchTerm || statusFilter !== 'ALL' || roomTypeFilter !== 'ALL' || startDateFilter || endDateFilter" class="filter-active-tag">
+        Filters Active
+      </span>
+    </div>
+
+    <!-- Empty State -->
+    <app-empty-state 
+      *ngIf="filteredBookings.length === 0"
+      icon="📋"
+      title="No Matching Reservations"
+      description="No booking records match your search or filter parameters. Try clearing the filters.">
+    </app-empty-state>
+
+    <!-- Table -->
+    <div *ngIf="filteredBookings.length > 0" class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th (click)="toggleSort('id')" class="sortable-th">
+              ID <span class="sort-arrow">{{ sortColumn === 'id' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}</span>
+            </th>
+            <th (click)="toggleSort('hotelName')" class="sortable-th">
+              Hotel Property <span class="sort-arrow">{{ sortColumn === 'hotelName' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}</span>
+            </th>
+            <th (click)="toggleSort('guestName')" class="sortable-th">
+              Guest Name <span class="sort-arrow">{{ sortColumn === 'guestName' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}</span>
+            </th>
+            <th (click)="toggleSort('checkInDate')" class="sortable-th">
+              Stay Dates & Duration <span class="sort-arrow">{{ sortColumn === 'checkInDate' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}</span>
+            </th>
+            <th>Guests</th>
+            <th>Room Type</th>
+            <th (click)="toggleSort('bookingStatus')" class="sortable-th">
+              Status <span class="sort-arrow">{{ sortColumn === 'bookingStatus' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}</span>
+            </th>
+            <th (click)="toggleSort('totalRevenue')" class="sortable-th text-right">
+              Total Revenue <span class="sort-arrow">{{ sortColumn === 'totalRevenue' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}</span>
+            </th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let b of filteredBookings" class="table-row">
+            <td class="id-col">#{{ b.id }}</td>
+            <td class="hotel-col">
+              <span class="hotel-name">{{ b.hotelName }}</span>
+            </td>
+            <td class="guest-col">
+              <span class="guest-name">{{ b.guestName }}</span>
+            </td>
+            <td class="dates-col">
+              <div class="dates-range">
+                <span>{{ b.checkInDate }}</span>
+                <span class="date-arrow">➔</span>
+                <span>{{ b.checkOutDate }}</span>
+              </div>
+              <span class="nights-badge">
+                {{ getNightsForBooking(b.checkInDate, b.checkOutDate) }} nights
+              </span>
+            </td>
+            <td class="text-center">
+              <span class="guests-count">👤 {{ b.guests }}</span>
+            </td>
+            <td>
+              <span class="room-pill" [ngClass]="getRoomBadgeClass(b.roomType)">
+                {{ b.roomType }}
+              </span>
+            </td>
+            <td>
+              <span class="status-pill-table" [ngClass]="getStatusClass(b.bookingStatus)">
+                {{ b.bookingStatus }}
+              </span>
+            </td>
+            <td class="revenue-col text-right">{{ formatCurrency(b.totalRevenue) }}</td>
+            <td class="actions-col text-center">
+              <button (click)="openEditModal(b)" class="table-action-btn edit-btn" title="Edit Reservation #{{ b.id }}">
+                ✏️ Edit
+              </button>
+              <button (click)="openDeleteModal(b)" class="table-action-btn delete-btn" title="Delete Reservation #{{ b.id }}">
+                🗑️ Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CREATE / EDIT MODAL -->
+  <div *ngIf="isModalOpen" class="modal-backdrop">
+    <div class="modal-container glass-panel">
+      
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">
+            <span>{{ isEditMode ? '✏️' : '✨' }}</span>
+            {{ isEditMode ? 'Edit Reservation #' + editingId : 'Create New Hotel Reservation' }}
+          </h3>
+          <p class="modal-subtitle">{{ isEditMode ? 'Dispatches PUT /api/bookings/' + editingId : 'Dispatches POST /api/bookings' }}</p>
+        </div>
+        <button (click)="closeModal()" class="close-modal-btn" title="Close Modal">✕</button>
+      </div>
+
+      <!-- Modal Error Notice -->
+      <div *ngIf="modalError" class="modal-error-box">
+        ⚠️ {{ modalError }}
+      </div>
+
+      <form (ngSubmit)="handleSubmit()" class="modal-form">
+        
+        <!-- Hotel Name -->
+        <div class="form-group">
+          <label>Hotel Property <span class="required-star">*</span></label>
+          <select [(ngModel)]="formData.hotelName" name="hotelName" required class="form-input">
+            <option *ngFor="let h of hotelOptions" [value]="h">{{ h }}</option>
+          </select>
+        </div>
+
+        <!-- Guest Name -->
+        <div class="form-group">
+          <label>Guest Full Name <span class="required-star">*</span></label>
+          <input 
+            type="text" 
+            [(ngModel)]="formData.guestName" 
+            name="guestName" 
+            required 
+            placeholder="e.g. Marcus Vance" 
+            class="form-input"
+          />
+        </div>
+
+        <!-- Stay Dates -->
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Check-in Date <span class="required-star">*</span></label>
+            <input 
+              type="date" 
+              [(ngModel)]="formData.checkInDate" 
+              name="checkInDate" 
+              required 
+              class="form-input" 
+            />
+          </div>
+          <div class="form-group">
+            <label>Check-out Date <span class="required-star">*</span></label>
+            <input 
+              type="date" 
+              [(ngModel)]="formData.checkOutDate" 
+              name="checkOutDate" 
+              required 
+              class="form-input" 
+            />
+          </div>
+        </div>
+
+        <!-- Night duration indicator -->
+        <div class="duration-helper-bar">
+          <span>📅 Duration: <strong>{{ calculateStayNights() }} Nights</strong></span>
+          <span *ngIf="calculateStayNights() === 0" class="date-warn">Check-out must be after check-in</span>
+        </div>
+
+        <!-- Room, Guests, Status -->
+        <div class="form-row-3">
+          <div class="form-group">
+            <label>Room Type <span class="required-star">*</span></label>
+            <select [(ngModel)]="formData.roomType" name="roomType" class="form-input">
+              <option *ngFor="let r of roomTypes" [value]="r">{{ r }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Guests <span class="required-star">*</span></label>
+            <input 
+              type="number" 
+              [(ngModel)]="formData.guests" 
+              name="guests" 
+              min="1" 
+              max="10" 
+              required 
+              class="form-input" 
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Status <span class="required-star">*</span></label>
+            <select [(ngModel)]="formData.bookingStatus" name="bookingStatus" class="form-input">
+              <option *ngFor="let s of bookingStatuses" [value]="s">{{ s }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Revenue -->
+        <div class="form-group">
+          <label>Total Revenue Amount ($) <span class="required-star">*</span></label>
+          <input 
+            type="number" 
+            step="0.01" 
+            min="0.01" 
+            [(ngModel)]="formData.totalRevenue" 
+            name="totalRevenue" 
+            required 
+            class="form-input"
+          />
+        </div>
+
+        <!-- Actions -->
+        <div class="modal-actions">
+          <button type="button" (click)="closeModal()" class="cancel-btn">Cancel</button>
+          <button type="submit" [disabled]="isSubmitting" class="submit-btn">
+            {{ isSubmitting ? 'Saving...' : (isEditMode ? 'Update Reservation' : 'Create Reservation') }}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRMATION MODAL -->
+  <div *ngIf="isDeleteModalOpen" class="modal-backdrop">
+    <div class="modal-container delete-modal glass-panel">
+      
+      <div class="delete-icon">⚠️</div>
+      <h3 class="delete-title">Confirm Reservation Deletion</h3>
+      <p class="delete-desc">
+        Are you sure you want to permanently delete reservation 
+        <strong>#{{ bookingToDelete?.id }}</strong> for guest 
+        <strong>{{ bookingToDelete?.guestName }}</strong> at 
+        <em>{{ bookingToDelete?.hotelName }}</em>?
+      </p>
+      <p class="delete-subtext">This action cannot be undone and will delete the record from the Spring Boot database.</p>
+
+      <div class="delete-actions">
+        <button (click)="closeDeleteModal()" [disabled]="isDeleting" class="cancel-btn">
+          Cancel
+        </button>
+        <button (click)="confirmDelete()" [disabled]="isDeleting" class="confirm-delete-btn">
+          {{ isDeleting ? 'Deleting...' : 'Yes, Delete Booking' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

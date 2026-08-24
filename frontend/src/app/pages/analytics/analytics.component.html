@@ -1,0 +1,133 @@
+<div class="analytics-page">
+
+  <!-- HEADER -->
+  <div class="analytics-header">
+    <div>
+      <h2 class="page-title">Financial & Occupancy Analytics</h2>
+      <p class="page-subtitle">Deep-dive financial aggregations and property performance projections</p>
+    </div>
+
+    <button (click)="loadAnalytics()" class="refresh-btn">
+      <span>↻ Refresh Analytics</span>
+    </button>
+  </div>
+
+  <!-- ERROR NOTICE -->
+  <app-error-banner 
+    *ngIf="errorMessage" 
+    [title]="'Analytics API Query Error'" 
+    [message]="errorMessage" 
+    (retry)="loadAnalytics()">
+  </app-error-banner>
+
+  <!-- LOADING SPINNER -->
+  <app-loading-spinner *ngIf="isLoading" message="Executing analytical JPA aggregation queries..."></app-loading-spinner>
+
+  <!-- CONTENT -->
+  <div *ngIf="!isLoading && !errorMessage" class="analytics-content space-y-6">
+
+    <!-- KPI OVERVIEW ROW -->
+    <div class="analytics-overview-row">
+      <div class="glass-panel stat-card">
+        <span class="stat-label">Net Gross Realized Revenue</span>
+        <div class="stat-value text-emerald-400">{{ formatCurrency(totalRevenue?.totalRevenue || 0) }}</div>
+        <div class="stat-sub">{{ totalRevenue?.eligibleBookingsCount }} non-cancelled active bookings</div>
+      </div>
+
+      <div class="glass-panel stat-card">
+        <span class="stat-label">Average Yield per Booking</span>
+        <div class="stat-value text-blue-400">{{ formatCurrency(avgRevenue?.averageRevenuePerBooking || 0) }}</div>
+        <div class="stat-sub">Evaluated across all eligible stays</div>
+      </div>
+
+      <div class="glass-panel stat-card">
+        <span class="stat-label">Active Hotel Properties</span>
+        <div class="stat-value text-purple-400">{{ hotelRevenues.length }}</div>
+        <div class="stat-sub">Generating revenue in system</div>
+      </div>
+    </div>
+
+    <!-- CHARTS COMPARISON ROW -->
+    <div class="charts-comparison-grid">
+      <!-- Property Bar Chart -->
+      <div class="glass-panel">
+        <div class="panel-header">
+          <div>
+            <h3 class="panel-title">
+              <span>🏢</span> Revenue by Hotel Property
+            </h3>
+            <p class="panel-subtitle">Gross comparison from `GET /api/analytics/revenue-by-hotel`</p>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas #hotelBarChartCanvas></canvas>
+        </div>
+      </div>
+
+      <!-- Monthly Trend Bar Chart -->
+      <div class="glass-panel">
+        <div class="panel-header">
+          <div>
+            <h3 class="panel-title">
+              <span>📅</span> Monthly Financial Trends
+            </h3>
+            <p class="panel-subtitle">Time-series breakdown from `GET /api/analytics/revenue-by-month`</p>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas #monthlyBarChartCanvas></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOP PERFORMING HOTELS CONFIGURABLE LEADERBOARD -->
+    <div class="glass-panel">
+      <div class="panel-header">
+        <div>
+          <h3 class="panel-title">
+            <span>🏆</span> Top Ranked Hotels Leaderboard
+          </h3>
+          <p class="panel-subtitle">Endpoint `GET /api/analytics/top-hotels?limit={{ topLimit }}`</p>
+        </div>
+
+        <div class="limit-selector">
+          <label>Ranking Limit:</label>
+          <select [(ngModel)]="topLimit" (change)="onLimitChange()" class="limit-select">
+            <option [value]="3">Top 3</option>
+            <option [value]="5">Top 5</option>
+            <option [value]="10">Top 10</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Hotel Property Name</th>
+              <th>Total Bookings</th>
+              <th class="text-right">Total Revenue ($)</th>
+              <th class="text-right">Revenue Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let h of topHotels">
+              <td class="rank-col">
+                <span class="rank-badge" [class.rank-gold]="h.rank === 1" [class.rank-silver]="h.rank === 2" [class.rank-bronze]="h.rank === 3">
+                  #{{ h.rank }}
+                </span>
+              </td>
+              <td class="hotel-col">{{ h.hotelName }}</td>
+              <td>{{ h.totalBookings }} reservations</td>
+              <td class="revenue-col text-right">{{ formatCurrency(h.totalRevenue) }}</td>
+              <td class="text-right font-mono font-bold text-slate-300">{{ getShare(h.totalRevenue) }}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>

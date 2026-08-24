@@ -1,0 +1,199 @@
+<div class="about-page space-y-6">
+
+  <!-- HEADER -->
+  <div class="about-header">
+    <h2 class="page-title">Hotel Revenue Analytics Platform</h2>
+    <p class="page-subtitle">Enterprise Full-Stack Architecture · Executive Demonstration Guide · System Specifications</p>
+  </div>
+
+  <!-- BUSINESS PROBLEM STATEMENT -->
+  <div class="glass-panel">
+    <h3 class="section-title">
+      <span>💼</span> Business Problem & Executive Value Proposition
+    </h3>
+    <div class="problem-solution-grid">
+      <div class="problem-box">
+        <h4 class="box-subtitle problem-text">⚠️ The Business Challenge in Hospitality Revenue Management</h4>
+        <p>
+          Hotel revenue directors and property managers frequently suffer from <strong>fragmented reservation systems</strong>, delayed month-end financial reconciliations, and opaque cancellation impacts. Making timely pricing and yield management decisions is nearly impossible when metrics like <strong>Average Daily Rate (ADR)</strong>, <strong>Realized Revenue</strong>, and <strong>Occupancy Rates</strong> are locked in disparate operational silos.
+        </p>
+      </div>
+
+      <div class="solution-box">
+        <h4 class="box-subtitle solution-text">✨ The Engineered Solution</h4>
+        <p>
+          This platform bridges transactional booking management and high-level financial intelligence. By executing <strong>optimized analytical JPQL queries</strong> at the database engine tier, it delivers instant visibility into multi-property revenue yields, status distributions, and monthly time-series projections with zero manual spreadsheet reconciliation.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE & TECHNOLOGY STACK -->
+  <div class="glass-panel">
+    <h3 class="section-title">
+      <span>🏛️</span> Full-Stack Layered Architecture & Tech Stack
+    </h3>
+    <p class="section-desc">
+      Engineered using a decoupled microservices architecture with an Angular 19 reactive single-page application and a Spring Boot 3 Java 22 REST service.
+    </p>
+
+    <div class="tech-stack-grid">
+      <div class="tech-item">
+        <div class="tech-icon">🅰️</div>
+        <div class="tech-info">
+          <h4>Angular 19 & TypeScript</h4>
+          <p>Standalone reactive components, RxJS Observables, Chart.js time-series visualizations, and reverse-proxy routing.</p>
+        </div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tech-icon">🍃</div>
+        <div class="tech-info">
+          <h4>Spring Boot 3.2.3 & Java 22</h4>
+          <p>Spring Web REST controllers, Jakarta Bean Validation, RFC-7807 global exception handling, and custom JPQL repositories.</p>
+        </div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tech-icon">🗄️</div>
+        <div class="tech-info">
+          <h4>H2 In-Memory & MySQL 8.0</h4>
+          <p>High-speed analytical database with automatic schema migrations, data indexing, and idempotent sample data loader.</p>
+        </div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tech-icon">📑</div>
+        <div class="tech-info">
+          <h4>OpenAPI 3.0 & Swagger UI</h4>
+          <p>Interactive self-documenting REST contract explorer with live query execution and schema definitions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP-BY-STEP DEMONSTRATION GUIDE -->
+  <div class="glass-panel">
+    <h3 class="section-title">
+      <span>🎯</span> 5-Minute Live Demonstration Script (Ideas Company Presentation)
+    </h3>
+    <div class="demo-steps-grid">
+      <div class="demo-step-card">
+        <div class="step-num">1</div>
+        <h4>Executive Dashboard Overview</h4>
+        <p>Navigate to <strong>Dashboard</strong>. Highlight the 5 KPI summary cards (Total Revenue, Active Bookings, Occupancy %, ADR, Cancellations). Show how cancellations are automatically excluded from revenue figures.</p>
+      </div>
+
+      <div class="demo-step-card">
+        <div class="step-num">2</div>
+        <h4>Interactive Visualizations</h4>
+        <p>Hover over the <strong>Monthly Revenue Trend</strong> line chart and <strong>Occupancy Status</strong> donut chart. Point out the property performance leaderboard.</p>
+      </div>
+
+      <div class="demo-step-card">
+        <div class="step-num">3</div>
+        <h4>Multi-Property Date Filtering</h4>
+        <p>Click on the <strong>Date-Range Presets</strong> (This Month, Last 3 Months) to demonstrate real-time client-side dataset filtering.</p>
+      </div>
+
+      <div class="demo-step-card">
+        <div class="step-num">4</div>
+        <h4>Live Reservation CRUD Flow</h4>
+        <p>Go to <strong>Bookings</strong>. Create a new reservation with instant date validation (e.g. <code>Check-out > Check-in</code>). Observe the floating toast notification and automatic table reload.</p>
+      </div>
+
+      <div class="demo-step-card">
+        <div class="step-num">5</div>
+        <h4>Deep-Dive Analytics & Swagger</h4>
+        <p>Switch to <strong>Analytics</strong> to inspect the dynamic Top N hotel selector (Top 3, Top 5, Top 10). Click the <strong>Swagger</strong> button in the navbar to show the live OpenAPI explorer.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REST API SPECIFICATION CATALOG -->
+  <div class="glass-panel">
+    <div class="panel-header">
+      <div>
+        <h3 class="section-title">
+          <span>📡</span> Standardized REST API Endpoint Catalog
+        </h3>
+        <p class="section-desc">Production REST contracts exposed by the Spring Boot backend</p>
+      </div>
+
+      <a href="http://localhost:8080/swagger-ui/index.html" target="_blank" rel="noreferrer" class="swagger-link-btn">
+        <span>Open Swagger Explorer ↗</span>
+      </a>
+    </div>
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>HTTP Method</th>
+            <th>API Endpoint</th>
+            <th>Description & Responsibility</th>
+            <th>Status Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ep of apiEndpoints">
+            <td>
+              <span class="method-badge" [class.method-get]="ep.method === 'GET'" [class.method-post]="ep.method === 'POST'" [class.method-put]="ep.method === 'PUT'" [class.method-delete]="ep.method === 'DELETE'">
+                {{ ep.method }}
+              </span>
+            </td>
+            <td class="endpoint-col">{{ ep.path }}</td>
+            <td class="desc-col">{{ ep.desc }}</td>
+            <td class="status-col">{{ ep.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FEATURE CHECKLIST & FUTURE ROADMAP -->
+  <div class="glass-panel">
+    <h3 class="section-title">
+      <span>✅</span> Completed Features & Roadmap Checklist
+    </h3>
+    <div class="checklist-grid">
+      <div class="checklist-column">
+        <h4 class="checklist-title complete">✔️ Verified & Production-Ready Features</h4>
+        <ul class="checklist-items">
+          <li>✅ Decoupled Spring Boot 3 & Angular 19 Standalone Architecture</li>
+          <li>✅ 6 Optimized Analytical JPQL Aggregations (Total, Monthly, Status, ADR, Top N)</li>
+          <li>✅ Full CRUD Reservation Operations with Strict Date Validation</li>
+          <li>✅ Responsive Glassmorphic Executive Dashboard with Chart.js Line & Donut Graphs</li>
+          <li>✅ Live Toast Notification System & Confirmation Dialogs</li>
+          <li>✅ Zero-Configuration Development Sample Data Loader with Idempotency Guard</li>
+          <li>✅ 29 Automated JUnit 5 / Spring Boot Tests & PowerShell Integration Suite</li>
+          <li>✅ Global CORS Configuration with Credentials & Node Reverse Proxy</li>
+        </ul>
+      </div>
+
+      <div class="checklist-column">
+        <h4 class="checklist-title roadmap">🚀 Planned Roadmap Limitations & Enhancements</h4>
+        <ul class="checklist-items">
+          <li>⏳ Multi-tenant role-based access control (RBAC) via Spring Security & OAuth2 / JWT</li>
+          <li>⏳ Dynamic room inventory allocation and overbooking threshold triggers</li>
+          <li>⏳ PDF / CSV financial export engine for executive report distribution</li>
+          <li>⏳ Automated webhooks to external Property Management Systems (PMS) like Opera / Cloudbeds</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEVELOPER INFO -->
+  <div class="glass-panel developer-panel">
+    <div class="developer-info">
+      <h3>Designed & Engineered by <strong>Mohana Prasath R</strong></h3>
+      <p>Computer Science undergraduate specialising in Software Engineering, Data Analytics, and Full-Stack Microservices.</p>
+    </div>
+    <div class="dev-links">
+      <a href="https://github.com/MohanaPrasathR" target="_blank" class="dev-link">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/mohana-prasath-r-6268b132a/" target="_blank" class="dev-link">LinkedIn ↗</a>
+      <a href="https://mohanaprasath.in" target="_blank" class="dev-link primary">Portfolio ↗</a>
+    </div>
+  </div>
+
+</div>
