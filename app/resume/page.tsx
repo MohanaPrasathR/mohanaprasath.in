@@ -62,6 +62,14 @@ export default function ResumePage() {
             >
               GitHub ↗
             </a>
+            <a
+              href="https://www.instagram.com/mohanaprasathr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sky-400 hover:underline"
+            >
+              Instagram ↗
+            </a>
           </div>
         </div>
 
