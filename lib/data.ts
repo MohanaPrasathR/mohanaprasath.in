@@ -43,7 +43,7 @@ export const projects = [
     category: 'Full Stack · AI & ML · Security',
     year: '2026',
     demoUrl: '/demos/ehospital',
-    githubUrl: 'https://github.com/MohanaPrasathR/meditriage',
+    githubUrl: 'https://github.com/MohanaPrasathR/E-HOSPITAL',
     description:
       'Flask app with passwordless email OTP login, an NLP + Random Forest symptom checker, appointment booking and a real-time queue over Server-Sent Events.',
     longDescription:
@@ -103,7 +103,7 @@ export const projects = [
     category: 'Machine Learning · Time Series',
     year: '2026',
     demoUrl: '/demos/electricity-predictor',
-    githubUrl: 'https://github.com/MohanaPrasathR/voltcast',
+    githubUrl: 'https://github.com/MohanaPrasathR/Volt-cast',
     description:
       'Hour-by-hour electricity forecasting with leak-free lag features and a chronological comparison of Ridge, Random Forest and Gradient Boosting.',
     longDescription:
