@@ -35,6 +35,12 @@ export default function ElectricityPredictorDemo() {
         </div>
       </header>
 
+      <div className="max-w-6xl mx-auto px-6 pt-6">
+        <p className="text-xs font-mono text-amber-300/90 border border-amber-400/30 bg-amber-400/5 rounded-lg px-4 py-2">
+          Quick estimator using a simple formula. The trained forecasting pipeline and its evaluation are in the <a href="https://github.com/MohanaPrasathR/voltcast" target="_blank" rel="noreferrer" className="underline">VoltCast repository</a>.
+        </p>
+      </div>
+
       {/* Main Grid */}
       <main className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left 2 Cols: Feature Engineering Inputs */}

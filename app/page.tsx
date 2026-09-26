@@ -14,7 +14,6 @@ import Resume from '@/components/sections/Resume';
 import Certifications from '@/components/sections/Certifications';
 import Contact from '@/components/sections/Contact';
 
-import DisableInspect from '@/components/ui/DisableInspect';
 
 // Custom cursor is client-only
 const CustomCursor = dynamic(() => import('@/components/ui/CustomCursor'), { ssr: false });
@@ -41,7 +40,6 @@ export default function Home() {
   return (
     <>
       {/* Protect content: disable right click and inspect shortcuts */}
-      <DisableInspect />
 
       {/* Grain film overlay */}
       <div className="grain" aria-hidden />
