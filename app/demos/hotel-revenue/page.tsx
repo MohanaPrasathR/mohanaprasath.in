@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import CountUp, { EASE } from '@/components/demos/CountUp';
+import AiInsights from './AiInsights';
 
 type BookingStatus = 'CONFIRMED' | 'CHECKED_IN' | 'CHECKED_OUT' | 'CANCELLED';
 
@@ -92,6 +93,7 @@ export default function HotelRevenueDemo() {
   const [formError, setFormError] = useState('');
   const [hoverMonth, setHoverMonth] = useState<number | null>(null);
   const [formData, setFormData] = useState(EMPTY_FORM);
+  const [view, setView] = useState<'bookings' | 'ai'>('bookings');
 
   // Attempt to fetch live from Spring Boot backend if available
   useEffect(() => {
@@ -319,6 +321,25 @@ export default function HotelRevenueDemo() {
           </p>
         </motion.div>
 
+        <motion.div variants={rise} className="inline-flex gap-1 p-1 rounded-full bg-[#1C2B26]/[0.06]" role="tablist" aria-label="View">
+          {([['bookings', 'Bookings and revenue'], ['ai', 'AI insights']] as const).map(([id, label]) => (
+            <button
+              key={id}
+              role="tab"
+              aria-selected={view === id}
+              onClick={() => setView(id)}
+              className={`relative px-4 py-2 text-sm rounded-full transition-colors ${view === id ? 'text-[#F4EFE6]' : 'text-[#1C2B26]/65 hover:text-[#1C2B26]'}`}
+            >
+              {view === id && <motion.span layoutId="sp-view" className="absolute inset-0 rounded-full bg-[#1C2B26]" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
+              <span className="relative">{label}</span>
+            </button>
+          ))}
+        </motion.div>
+
+        {view === 'ai' ? (
+          <AiInsights />
+        ) : (
+          <>
         {/* KPIs */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <motion.div variants={rise} className="col-span-2 rounded-[20px] p-6 bg-[#1C2B26] text-[#F4EFE6] relative overflow-hidden">
@@ -620,6 +641,9 @@ export default function HotelRevenueDemo() {
             )}
           </div>
         </motion.div>
+
+          </>
+        )}
 
         <motion.p variants={rise} className="text-center text-[11px] text-[#1C2B26]/45 pb-4">
           Spring Boot 3 · JPA / MySQL · Angular · FastAPI forecasting service —{' '}
