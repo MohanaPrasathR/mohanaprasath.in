@@ -45,9 +45,9 @@ export const projects = [
     demoUrl: 'https://meditriage-8xw0.onrender.com',
     githubUrl: 'https://github.com/MohanaPrasathR/E-HOSPITAL',
     description:
-      'Flask app with passwordless email OTP login, an NLP + Random Forest symptom checker, appointment booking and a real-time queue over Server-Sent Events.',
+      'Flask app with passwordless email OTP login, an NLP + Random Forest symptom checker, video consultations with tracking IDs, appointment booking and a real-time queue over Server-Sent Events.',
     longDescription:
-      'Rebuild of my E-Hospital minor project. OTP codes are HMAC-hashed with expiry, attempt limits and rate limiting; CSRF protection and role-based access throughout. Free-text symptoms are parsed with negation handling and typo correction; the classifier reaches 99% top-3 accuracy on held-out synthetic cases. 33 pytest tests.',
+      'Rebuild of my E-Hospital minor project. OTP codes are HMAC-hashed with expiry, attempt limits and rate limiting; CSRF protection and role-based access throughout. Free-text symptoms are parsed with negation handling and typo correction; a Random Forest trained on the Kaggle disease-symptom dataset (131 symptoms, 41 conditions) reaches 96% top-3 accuracy when a patient names only three symptoms. Patients can send a photo or video to a doctor and follow the reply by tracking ID. 41 pytest tests.',
     tech: ['Python', 'Flask', 'SQLAlchemy', 'scikit-learn', 'NLP', 'SSE', 'pytest'],
     accentColor: '#DC2626',
     bgTone: '#060606',
