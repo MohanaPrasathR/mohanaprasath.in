@@ -67,6 +67,22 @@ html.lenis body {
   cursor: none;
 }
 
+/* Demo pages have no custom cursor, so give them the native one back */
+.demo-root,
+.demo-root * {
+  cursor: auto;
+}
+.demo-root a,
+.demo-root button,
+.demo-root select,
+.demo-root label,
+.demo-root input[type='range'] {
+  cursor: pointer;
+}
+.demo-root button:disabled {
+  cursor: not-allowed;
+}
+
 /* ─── Selection ────────────────────────────────────────────────── */
 ::selection {
   background: rgba(212, 175, 55, 0.25);
