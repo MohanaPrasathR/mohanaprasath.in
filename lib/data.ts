@@ -42,7 +42,7 @@ export const projects = [
     title: 'MediTriage: AI Symptom Triage & Live Clinic Queue',
     category: 'Full Stack · AI & ML · Security',
     year: '2026',
-    demoUrl: '/demos/ehospital',
+    demoUrl: 'https://meditriage-8xw0.onrender.com',
     githubUrl: 'https://github.com/MohanaPrasathR/E-HOSPITAL',
     description:
       'Flask app with passwordless email OTP login, an NLP + Random Forest symptom checker, appointment booking and a real-time queue over Server-Sent Events.',
