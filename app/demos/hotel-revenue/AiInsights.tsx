@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import CountUp, { EASE } from '@/components/demos/CountUp';
+import CountUp, { EASE } from '@/components/ui/CountUp';
 import snapshot from './ai-snapshot.json';
 
 const SERIF = { fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif" };

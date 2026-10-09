@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { animate, useReducedMotion } from 'framer-motion';
+import { animate } from 'framer-motion';
+import { useMotionOK } from '@/lib/useMotion';
 
 export const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -9,15 +10,17 @@ interface CountUpProps {
   value: number;
   format?: (n: number) => string;
   duration?: number;
+  /** Seconds to wait before each count starts. */
+  delay?: number;
 }
 
 // Tweens from the previously shown number to `value` whenever it changes.
-export default function CountUp({ value, format = (n) => Math.round(n).toString(), duration = 0.9 }: CountUpProps) {
+export default function CountUp({ value, format = (n) => Math.round(n).toString(), duration = 0.9, delay = 0 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const shown = useRef(0);
   const formatRef = useRef(format);
   formatRef.current = format;
-  const reduce = useReducedMotion();
+  const reduce = !useMotionOK();
 
   useEffect(() => {
     const node = ref.current;
@@ -29,6 +32,7 @@ export default function CountUp({ value, format = (n) => Math.round(n).toString(
     }
     const controls = animate(shown.current, value, {
       duration,
+      delay,
       ease: EASE,
       onUpdate: (v) => {
         shown.current = v;
@@ -36,7 +40,7 @@ export default function CountUp({ value, format = (n) => Math.round(n).toString(
       },
     });
     return () => controls.stop();
-  }, [value, duration, reduce]);
+  }, [value, duration, delay, reduce]);
 
   return <span ref={ref}>{format(0)}</span>;
 }

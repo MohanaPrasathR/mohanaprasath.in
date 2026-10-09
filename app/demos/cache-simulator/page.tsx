@@ -3,7 +3,7 @@
 import { useEffect, useReducer, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
-import CountUp from '@/components/demos/CountUp';
+import CountUp from '@/components/ui/CountUp';
 
 type Policy = 'LRU' | 'FIFO' | 'LFU';
 

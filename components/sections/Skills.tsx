@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { skills } from '@/lib/data';
+import VelocityMarquee from '@/components/ui/VelocityMarquee';
 
 const allSkills = skills.flatMap((s) => s.items);
 
@@ -102,18 +103,7 @@ export default function Skills() {
 
       {/* ── Marquee strip ─── */}
       <div className="w-full overflow-hidden bg-white/[0.05] border-y border-white/20 py-5 my-4">
-        <div className="marquee-track">
-          {[...allSkills, ...allSkills].map((skill, i) => (
-            <span
-              key={i}
-              className="flex items-center gap-4 whitespace-nowrap text-sm font-bold text-white font-mono"
-              style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.15em' }}
-            >
-              {skill}
-              <span className="text-red-500 font-bold text-base">◆</span>
-            </span>
-          ))}
-        </div>
+        <VelocityMarquee items={allSkills} />
       </div>
 
       <div

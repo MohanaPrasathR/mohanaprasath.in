@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { personal } from '@/lib/data';
+import Magnetic from '@/components/ui/Magnetic';
 
 export default function Contact() {
   const ref = useRef<HTMLElement>(null);
@@ -109,6 +110,7 @@ export default function Contact() {
               </div>
 
               {/* Arrow circle */}
+              <Magnetic strength={0.6}>
               <motion.div
                 className="w-10 h-10 rounded-full border border-white/10 group-hover:border-gold/40 flex items-center justify-center group-hover:bg-gold/5 transition-all duration-500"
                 whileHover={{ scale: 1.1 }}
@@ -123,6 +125,7 @@ export default function Contact() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
               </motion.div>
+              </Magnetic>
             </a>
           ))}
 

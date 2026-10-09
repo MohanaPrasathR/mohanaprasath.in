@@ -3,6 +3,8 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { personal, certifications, projects } from '@/lib/data';
+import CountUp from '@/components/ui/CountUp';
+import ScrollWords from '@/components/ui/ScrollWords';
 
 import type { Variants } from "framer-motion";
 
@@ -97,15 +99,13 @@ export default function About() {
 
         {/* Right — bio */}
         <div className="flex flex-col gap-8">
-          <motion.p
-            variants={fadeUp(0.3)}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            className="text-lg md:text-xl text-white-primary leading-relaxed"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
-          >
-            {personal.bio}
-          </motion.p>
+          <motion.div variants={fadeUp(0.3)} initial="hidden" animate={inView ? 'visible' : 'hidden'}>
+            <ScrollWords
+              text={personal.bio}
+              className="text-lg md:text-xl text-white-primary leading-relaxed"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 300 }}
+            />
+          </motion.div>
 
           <motion.p
             variants={fadeUp(0.4)}
@@ -125,15 +125,15 @@ export default function About() {
             className="grid grid-cols-2 gap-6 pt-6 border-t border-white/20"
           >
             {[
-              { num: `${certifications.length}+`, label: 'Certifications' },
-              { num: `${projects.length}+`, label: 'Projects Built' },
+              { value: certifications.length, label: 'Certifications' },
+              { value: projects.length, label: 'Projects Built' },
             ].map((stat) => (
               <div key={stat.label} className="p-4 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm">
                 <p
                   className="text-3xl md:text-4xl font-display font-bold text-white mb-1"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
-                  {stat.num}
+                  <CountUp value={inView ? stat.value : 0} format={(v) => `${Math.round(v)}+`} duration={1.4} delay={0.7} />
                 </p>
                 <p
                   className="text-xs text-gray-300 font-semibold tracking-[0.1em] uppercase font-mono"

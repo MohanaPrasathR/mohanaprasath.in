@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
-import CountUp, { EASE } from '@/components/demos/CountUp';
+import CountUp, { EASE } from '@/components/ui/CountUp';
 
 type Season = 'Summer' | 'Winter' | 'Monsoon';
 

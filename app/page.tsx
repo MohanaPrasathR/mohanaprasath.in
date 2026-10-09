@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import Loader from '@/components/ui/Loader';
 import Navbar from '@/components/ui/Navbar';
 import SmoothScroll from '@/components/ui/SmoothScroll';
+import ScrollProgress from '@/components/ui/ScrollProgress';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import Projects from '@/components/sections/Projects';
@@ -46,6 +47,9 @@ export default function Home() {
 
       {/* Custom cursor */}
       <CustomCursor />
+
+      {/* Scroll progress line */}
+      <ScrollProgress />
 
       {/* Cinematic loader */}
       <Loader onComplete={handleLoaderComplete} />

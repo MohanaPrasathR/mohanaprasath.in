@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { certifications } from '@/lib/data';
+import TiltCard from '@/components/ui/TiltCard';
 
 export default function Certifications() {
   const ref = useRef<HTMLElement>(null);
@@ -63,9 +64,9 @@ export default function Certifications() {
         {/* Certification Cards Grid / Bar */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {certifications.map((cert, i) => (
+            <TiltCard key={cert.id || i} className="h-full">
             <motion.div
-              key={cert.id || i}
-              className="group relative flex flex-col justify-between p-8 border border-white/20 bg-white/[0.04] hover:border-red-500 hover:bg-white/[0.08] transition-all duration-500 rounded-2xl shadow-xl hover:shadow-[0_0_35px_rgba(220,38,38,0.25)] backdrop-blur-md"
+              className="group relative flex h-full flex-col justify-between p-8 border border-white/20 bg-white/[0.04] hover:border-red-500 hover:bg-white/[0.08] transition-all duration-500 rounded-2xl shadow-xl hover:shadow-[0_0_35px_rgba(220,38,38,0.25)] backdrop-blur-md"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.7, delay: 0.15 + i * 0.1 }}
@@ -141,6 +142,7 @@ export default function Certifications() {
                 </svg>
               </a>
             </motion.div>
+            </TiltCard>
           ))}
         </div>
       </div>

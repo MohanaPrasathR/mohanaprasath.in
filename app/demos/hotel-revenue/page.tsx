@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
-import CountUp, { EASE } from '@/components/demos/CountUp';
+import CountUp, { EASE } from '@/components/ui/CountUp';
 import AiInsights from './AiInsights';
 
 type BookingStatus = 'CONFIRMED' | 'CHECKED_IN' | 'CHECKED_OUT' | 'CANCELLED';

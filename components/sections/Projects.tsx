@@ -80,7 +80,23 @@ function ProjectSlide({
       style={{ backgroundColor: project.bgTone }}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`);
+      }}
     >
+      {/* Spotlight that follows the pointer */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={{ duration: 0.4 }}
+        style={{
+          background: `radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), ${project.accentColor}26, transparent 65%)`,
+        }}
+      />
+
       {/* Hover gold overlay */}
       <motion.div
         className="absolute inset-0 pointer-events-none"

@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
 import gsap from 'gsap';
 import { personal } from '@/lib/data';
+import Magnetic from '@/components/ui/Magnetic';
+import { useMotionOK } from '@/lib/useMotion';
 import type { Variants } from "framer-motion";
 
 /* ── Stagger reveal variant ─────────────────────────────────── */
@@ -26,7 +28,18 @@ const fadeUp = {
 };
 
 export default function Hero({ ready }: { ready: boolean }) {
+  const heroRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+
+  // As you scroll past the hero the name drifts down slower than the page, shrinks and fades.
+  // `strength` is 0 when the visitor wants reduced motion, which flattens all three effects.
+  const motionOK = useMotionOK();
+  const strength = useMotionValue(1);
+  useEffect(() => strength.set(motionOK ? 1 : 0), [motionOK, strength]);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const contentY = useTransform([scrollYProgress, strength], ([p, k]: number[]) => p * 140 * k);
+  const contentOpacity = useTransform([scrollYProgress, strength], ([p, k]: number[]) => 1 - Math.min(p / 0.7, 1) * k);
+  const contentScale = useTransform([scrollYProgress, strength], ([p, k]: number[]) => 1 - p * 0.06 * k);
   const orbRef = useRef<HTMLDivElement>(null);
 
   // Subtle mouse-parallax background
@@ -48,6 +61,7 @@ export default function Hero({ ready }: { ready: boolean }) {
   return (
     <section
       id="hero"
+      ref={heroRef}
       className="relative flex flex-col justify-center min-h-[85vh] py-16 sm:py-20 md:py-24 px-4 sm:px-8 md:px-12 lg:px-20 overflow-hidden"
     >
       {/* ── Animated background ─── */}
@@ -83,7 +97,7 @@ export default function Hero({ ready }: { ready: boolean }) {
       </div>
 
       {/* ── Hero content ─── */}
-      <div className="relative z-10 max-w-[1400px] w-full mx-auto">
+      <motion.div className="relative z-10 max-w-[1400px] w-full mx-auto" style={{ y: contentY, opacity: contentOpacity, scale: contentScale }}>
         {/* Available badge */}
         {ready && (
           <motion.div
@@ -166,6 +180,7 @@ export default function Hero({ ready }: { ready: boolean }) {
             </p>
 
             {/* Resume Download */}
+            <Magnetic>
             <motion.a
               href="/Mohana_Prasath_Resume.pdf"
               download="Mohana_Prasath_Resume.pdf"
@@ -189,9 +204,10 @@ export default function Hero({ ready }: { ready: boolean }) {
               </svg>
               RÉSUMÉ
             </motion.a>
+            </Magnetic>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* ── Scroll indicator ─── */}
       {ready && (
